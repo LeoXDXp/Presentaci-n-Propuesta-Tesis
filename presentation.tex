@@ -15,16 +15,18 @@
 \usepackage{textcomp}
 \usepackage{setspace}
 \usepackage{gensymb}
-
+\newenvironment{figure*}%
+{\begin{figure}}
+{\end{figure}}
 %----------------------------------
 % Fill in the essential Information
 %----------------------------------
 
-\title[Individualizaci\'on de filamentos mediante optimizaci\'on]{Propuesta de Tesis: Individualizaci\'on de filamentos en una red mediante optimizaci\'on}
+\title[Individualizaci\'on de filamentos mediante optimizaci\'on]{Defensa de Tesis: Individualizaci\'on de filamentos en una red mediante optimizaci\'on}
 %\subtitle{\ldots a subtitle}
 \author[L.\ Pizarro]{Leonardo Pizarro} % between [] is short name, between {} is long name
 \date{\today} % Here you can also just type something, e.g. October 10, 2017
-\institute[DCC - FCFM - UChile]{Facultad de Ciencias F\'isicas y Matem\'aticas\\ Departmento de Ciencias de la Computaci\'on \\ Universidad de Chile}
+\institute[DCC - FCFM - UChile]{Magister en Ciencias de la Computación\\Facultad de Ciencias F\'isicas y Matem\'aticas\\ Departmento de Ciencias de la Computaci\'on \\ Universidad de Chile}
 
 %----------------------------------
 % ACTUAL PRESENTATION STARTS HERE
@@ -45,104 +47,119 @@
 \tableofcontents
 \end{frame}
 
-% FRAME 1 
-\section{Contexto}
-\begin{frame}{}
-% encontramos filamentos en todos lados (poner imagenes)
-% que entendemos por filamento: estructura alargada no totalmente recta ...
-% formas actuales de analisis: enfoques, 
-\begin{itemize}
-    \item 
+\section{Motivaci\'on y antecedentes}
+% [allowframebreaks] para dividir en multiples frames
+\begin{frame}{Que es un filamento?}
+    \begin{columns}
+    \begin{column}{0.32\textwidth}
+        \begin{itemize}
+            \item Estructuras alargadas con diferentes propiedades
+            \item Observaci\'on de Microscop\'ia
+            \begin{itemize}
+            \small
+                \item Ruido
+                \item Resoluci\'on
+            \end{itemize}
+        \end{itemize}
+    \end{column}
+    \begin{column}{0.68\textwidth}
+        \begin{figure*}[h]
+          \centering
+            \begin{subfigure}[t]{0.48\textwidth}
+            \includegraphics[height=1.2in]{Pictures/small_MT.jpg}
+            \end{subfigure}
+            ~ 
+            \begin{subfigure}[t]{0.48\textwidth}
+            \includegraphics[height=1.2in]{Pictures/sun_filament.jpg}
+            \end{subfigure}
+            \vspace{0.5cm}
+             \begin{subfigure}[t]{\textwidth}
+             \includegraphics[height=1.2in]{Pictures/citoesqueletoo-min.png}
+            \end{subfigure}
     
+        \end{figure*}
+    \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Varias soluciones posibles}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+    \includegraphics[scale=0.5]{Pictures/NoConsenso.png}
+    \end{column}
+    \begin{column}{0.2\textwidth}
+    \includegraphics[scale=0.5]{Pictures/NoConsenso2.png}
+    \end{column}
+    \begin{column}{0.2\textwidth}
+    \includegraphics[scale=0.5]{Pictures/NoConsenso3.png}
+    \vspace{0.5cm}
+    \includegraphics[scale=0.5]{Pictures/NoConsenso4.png}
+    \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Hip\'otesis y Objetivo General}
+\begin{itemize}
+    \item Hip\'otesis:
+    \vspace{1cm}
+    \item Objetivo General
 \end{itemize}
-\begin{kulblock}{Landslide}
-    A landslide is the downhill movement of soil mass
-\end{kulblock}
+    
 \end{frame}
 
-% FRAME 2
-\begin{frame}{}
-    \begin{columns}[t]
-        \column{.5\textwidth}
-        \centering
-        \includegraphics[height=3.5cm]{Pictures/define-weighted-4.png}
-        \captionof{figure}{Representaci\'on simplificada de una red con cruces y sobreposici\'on de filamentos en una imagen de microscop\'ia}
-
-        \column{.5\textwidth}
-        \centering
-        \includegraphics[height=3.5cm]{Pictures/define-weighted-4-bw-invert.png}
-        \captionof{figure}{Preprocesamiento de la imagen mediante segmentaci\'on para la extracci\'on de la red}
-    \end{columns}
+\begin{frame}{Objetivos Espec\'ificos}
+\begin{itemize}
+    \item A
+    \item B
+    \item C
+    \item D
+\end{itemize}
+    
 \end{frame}
 
-
-\begin{frame}{}
-    \begin{columns}[t]
-        \column{.5\textwidth}
-        \centering
-        \includegraphics[height=3.5cm]{Pictures/skel_in_segment.png}
-        \captionof{figure}{Esqueletonizaci\'on representativa de la red sobre la imagen de }
-        
-        \column{.5\textwidth}
-        \centering
-        \includegraphics[height=3.5cm]{Pictures/graph_of_skel_no_axis.png}
-        \captionof{figure}{Procedimiento para obtener un grafo que representa la red, a partir del procesamiento de una imagen de microscop\'ia, utilizando segmentaci\'on y esqueletonizaci\'on}
-    \end{columns}
+\subsection{Enfoques en la literatura}
+\begin{frame}{M\'etodos basados en:}
+    \begin{itemize}
+        \item Vision por Computador
+        \item Optimizaci\'on
+        \begin{itemize}
+            \item Metaheur\'istica ACO
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 
 
-\section{Antecedentes}
+\subsection{Metaheur\'istica ACO}
 
-\begin{frame}{}
-    \begin{columns}[t]
-        \column{.5\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{Pictures/flujoDefine.png}
-        \captionof{figure}{Entrada de datos y elecci\'on de subconjunto de caminos {\bf P'} en DeFine}
-        
-        \column{.5\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{Pictures/BFSvsRMSTpaths.png}
-        \captionof{figure}{Subconjunto {\bf P'} para el grafo de 5 nodos a la izquierda, utilizando la opci\'on de 100 {\it RMST} o heur\'istica de {\it BFS} que corta el camino al encontrar un \'angulo de deflexi\'on mayor a 60\degree entre aristas adyacentes}
-    \end{columns}
+\section{Algoritmo Propuesto}
+\subsection{Inicializaci\'on ACO}
+\subsection{Construcci\'on de Soluciones}
+\subsection{Anti-Feromonas}
+\subsection{M\'etodo de b\'usqueda no local}
+
+\section{Resultados}
+\begin{frame}{Metodolog\'ia}
+\begin{itemize}
+    \item 5 Iteraciones promediadas, con distinta semillas
+\end{itemize}
+    
+\end{frame}
+\begin{frame}{Im\'agenes Sint\'eticas}
+    
+\end{frame}
+\begin{frame}{Microt\'ubulos}
+    
 \end{frame}
 
-% FRAME 3
-\begin{frame}{}
-\centering
-\begin{tabular}{|c|c|}
-    \hline
-     \bf X & \bf Y \\ \hline
-     x & y \\ \hline 
-\end{tabular}
+\begin{frame}{Neuronas de rat\'on}
+
 \end{frame}
 
-\begin{frame}{}
-    \begin{columns}[t]
-        \column{.5\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{Pictures/define-weighted-4-expected2.png}
-        \captionof{figure}{Visualizaci\'on de un resultado posible de individualizaci\'on, limitando los filamentos identificados a estructuras simples}
-        
-        \column{.5\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{Pictures/define-weighted-4-expected1.png}
-        \captionof{figure}{Visualizaci\'on de otro resultado posible de individualizaci\'on, permitiendo filamentos m\'as complejos}
-    \end{columns}
-\end{frame}
-
-\begin{frame}{Visualizaci\'on de Microt\'ubulos}
-    \begin{columns}[t]
-        \column{.5\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{Pictures/ArabidopsisMT.png}
-        % \captionof{figure}{}
-        
-        \column{.5\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{Pictures/ArabidopsisMT-Zmax.png}
-        %  \captionof{figure}{}
-     \end{columns}
+\section{Conclusiones}
+\begin{frame}{Conclusiones}
+    \begin{itemize}
+        \item A
+    \end{itemize}
 \end{frame}
 
 \end{document}
