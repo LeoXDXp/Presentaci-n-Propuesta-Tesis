@@ -15,6 +15,7 @@
 \usepackage{textcomp}
 \usepackage{setspace}
 \usepackage{gensymb}
+\usepackage[ruled,vlined,spanish,onelanguage]{algorithm2e}
 \newenvironment{figure*}%
 {\begin{figure}}
 {\end{figure}}
@@ -47,7 +48,7 @@
 \tableofcontents
 \end{frame}
 
-\section{Motivaci\'on y antecedentes}
+\section{Motivaci\'on y Antecedentes}
 % [allowframebreaks] para dividir en multiples frames
 \begin{frame}{Que es un filamento?}
     \begin{columns}
@@ -98,6 +99,14 @@
 \end{columns}
 \end{frame}
 
+\begin{frame}{Dificultades del Problema}
+    \begin{itemize}
+        %\item Variaci\'on de las caracter\'isticas de filamentos entre diferentes c\'elulcas
+        \item Desconocimiento de los puntos de inicio y fin de un filamento
+        \item Descriptores de filamentos ...
+    \end{itemize}
+\end{frame}
+
 \begin{frame}{Hip\'otesis y Objetivo General}
 \begin{itemize}
     \item Hip\'otesis:
@@ -117,7 +126,7 @@
     
 \end{frame}
 
-\subsection{Enfoques en la literatura}
+\subsection{Enfoques en la Literatura}
 \begin{frame}{M\'etodos basados en:}
     \begin{itemize}
         \item Vision por Computador
@@ -129,31 +138,9 @@
 \end{frame}
 
 
-\subsection{Metaheur\'istica ACO}
+\include{ACO}
+\include{results}
 
-\section{Algoritmo Propuesto}
-\subsection{Inicializaci\'on ACO}
-\subsection{Construcci\'on de Soluciones}
-\subsection{Anti-Feromonas}
-\subsection{M\'etodo de b\'usqueda no local}
-
-\section{Resultados}
-\begin{frame}{Metodolog\'ia}
-\begin{itemize}
-    \item 5 Iteraciones promediadas, con distinta semillas
-\end{itemize}
-    
-\end{frame}
-\begin{frame}{Im\'agenes Sint\'eticas}
-    
-\end{frame}
-\begin{frame}{Microt\'ubulos}
-    
-\end{frame}
-
-\begin{frame}{Neuronas de rat\'on}
-
-\end{frame}
 
 \section{Conclusiones}
 \begin{frame}{Conclusiones}
