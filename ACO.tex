@@ -13,14 +13,15 @@
     \item Comunicaci\'on indirecta mediante feromonas
     \item Recorrido aleatorio
     \item Convergencia sobre el camino m\'as corto
+    \item Orden no estricto
 \end{itemize}
     \begin{algorithm}[H]
     \SetAlgoLined
      Ajuste de Par\'ametros \& inicializaci\'on de feromonas\;
      \While{Criterio de finalizaci\'on no se cumple}{
        Construcci\'on\_de\_soluci\'on\_de\_cada\_hormiga()\;
-       M\'etodo\_de\_b\'usqueda\_no\_local(); //Paso opcional\\
        Actualizaci\'on\_de\_feromonas()\;
+       M\'etodo\_de\_b\'usqueda\_no\_local(); //Paso opcional\\
      }
      \caption{Algoritmo metaheur\'istica ACO}\label{ACO-Algo}
     \end{algorithm}
@@ -92,42 +93,205 @@
 
 
 \section{Algoritmo Propuesto}
+\subsection{Inicializaci\'on de Par\'ametros}
+\begin{frame}{Inicializaci\'on de Par\'ametros en ACO}
+    \begin{itemize}
+        \item $\theta$, $[0, \theta]$
+        \item $Max\_Angle$, $max(2.5\theta, 90)$
+        \item {\it Max\_Axial\_Displacement}
+        \item {\it Max\_Score}
+        \item $\tau_0$
+    \end{itemize}
+\end{frame}
+
+\subsection{Construcci\'on de Soluciones}
 \begin{frame}{ACO: Construcci\'on de Soluci\'on}
 \centering
 \includegraphics[scale=0.35]{Pictures/ACO-ant-Constr.png}
 \begin{itemize}
-    \item Elecci\'on de Aristas/Componentes $c_i$ que respeten restricciones en $\Omega$
-    \begin{equation}
-P(c_{ij} | s^{P}) = \frac
-        {\tau_{ij}^{\alpha} ~ \eta_{ij}^{\beta}}
-        {\sum\limits_{c_{ij}\in N(s^p)}{\tau_{ij}^{\alpha} ~ \eta_{ij}^{\beta} } }, \forall c_{ij} \in N(s^{P}).
-\label{eq:antProbabilities}
-\end{equation}
+    \item Influencia de feromonas $\tau$ y de una heur\'istica $\eta$ en la elecci\'on de Aristas/Componentes $c_i$ que respeten restricciones en $\Omega$
+    \item Aspecto aleatorio en la elecci\'on
 \end{itemize}
+\end{frame}
+
+\begin{frame}{ACO: Heur\'istica de Asignaci\'on Inicial}
+\begin{enumerate}
+\item Arista $a: (n_i,n_j)$ tal que $deg(n_i) = 1$ o $deg(n_j) = 1$ 
+%La arista a asignar debe tener al menos uno de sus nodos con grado 1, indicando que es el inicio o final de una parte del grafo.
+
+\item De no haber aristas disponibles con esas caracter\'isticas, se realiza una asignaci\'on inicial de una arista que cumpla con 2 criterios:
+\begin{itemize}
+    \item $a: (n_i,n_j)$ tal que $deg(n_i) >= 2$ o $deg(n_j) >= 2$ 
+    \item El \'angulo que forma la arista candidata a elegir, junto a otra arista a la que pertenece el nodo, debe pertenecer al rango $]\theta, Max\_Angle]$.
+\end{itemize}
+
+\item Una arista aleatoria que no pertenezca a una soluci\'on o camino evaluado como de buena calidad
+%. La calidad de un camino se presenta m\'as adelante en esta secci\'on.
+\end{enumerate}
 \end{frame}
 
 \begin{frame}{ACO: Construcci\'on de Soluci\'on}
 \centering
-\includegraphics[scale=0.4]{Pictures/ACO-ant-ferom.png}
+\includegraphics[scale=0.35]{Pictures/ACO-ant-Constr-choices.png}
+        \begin{equation}
+P(c_{i} | s^{P}) = \frac
+        {\tau_{i}^{\alpha} ~ \eta_{i}^{\beta}}
+        {\sum\limits_{c_{i}\in N(s^p)}{\tau_{i}^{\alpha} ~ \eta_{i}^{\beta} } }, \forall c_{i} \in N(s^{P}).
+\label{eq:antProbabilities}
+\end{equation}
+\end{frame}
+
+\begin{frame}{ACO: Construcci\'on de Soluci\'on}
+\centering
+\includegraphics[scale=0.35]{Pictures/ACO-ant-Constr-choices.png}
 \begin{itemize}
-    \item Evaluaci\'on de factiblidad de soluciones candidatas $s \in S$
+    \item Calidad $s^{P}_1$ = $\sum \eta_{i}$
+    \item Calidad $s_1$ = $\frac{1}{n}\sum \eta_{i} $
+    \item Calidad M\'inima $\geq \frac{Max\_Score}{2}$
+    \item Buena Calidad: $Max\_Score$
+    \item Calidad Intermedia: $[\frac{Max\_Score}{2}, Max\_Score[$
 \end{itemize}
 \end{frame}
 
 
+\begin{frame}{ACO: Actualizaci\'on de Feromonas}
+\centering
+\includegraphics[scale=0.4]{Pictures/ACO-ant-ferom.png}
+\begin{itemize}
+    \item Evaluaci\'on de factiblidad de soluciones candidatas $s \in S$
+    \item Premiar los caminos de buena calidad
+    \item Prop\'osito: Convergencia sobre un camino \'optimo
+\end{itemize}
+\end{frame}
 
 
-
-\subsection{Inicializaci\'on ACO}
-\begin{frame}{Par\'ametros}
+\subsection{Anti-feromonas}
+\begin{frame}{Anti-feromonas}
+\centering
+\includegraphics[scale=0.4]{Pictures/ACO-ant-ferom-penalize.png}
     \begin{itemize}
-        \item 
+        \item Cambio: $\tau_0 \longrightarrow \gamma$
+        \item $\gamma$ es un factor penaliza los caminos de mala calidad
+        \item 2 penalizaciones $\longrightarrow \tau_i = 0$ 
     \end{itemize}
 \end{frame}
-\subsection{Construcci\'on de Soluciones}
-\begin{frame}{Elecci\'on de Aristas $c_i$}
 
+\begin{frame}{Anti-feromonas}
+\centering
+\includegraphics[scale=0.4]{Pictures/ACO-ant-constr-penalize.png}
+    \begin{itemize}
+        \item Problema: penalizaci\'on puede ocasionar perdida de soluciones factibles
+        \item Propuesta: Relacionar penalizaci\'on de $\tau_i$ con $c_i \in s^P$
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Anti-feromonas sobre un segmento}
+\centering
+\includegraphics[scale=0.4]{Pictures/ant_segments_simple_case.png}
+    \begin{itemize}
+        \item Cada arista del segmento forma un \'angulo en el rango $[0, \theta]$ con sus vecinos
+        \item Penalizaci\'on de $e_3$ se asocia al $seg^{b}_{1}$, sin perjudicar otros caminos que pasen por $e_3$ pero no por el segmento $seg^{b}_{1}$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Anti-feromonas sobre un segmento de una sola arista}
+\centering
+\begin{figure*}
+  \begin{subfigure}[t]{0.48\textwidth}
+    \includegraphics[scale=0.5]{Pictures/ant_segments_complex_case_B2.png}
+  \end{subfigure}%
+    ~ \hspace{0.1cm}
+    \begin{subfigure}[t]{0.48\textwidth}
+    \includegraphics[scale=0.5]{Pictures/ant_segments_complex_case_B_blocked.png}
+    \end{subfigure}
+\end{figure*}
+\begin{itemize}
+    \item Segmentos de una sola arista ocasionan mismo problema que se intenta resolver
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Anti-feromonas sobre un segmento}
+\centering
+    \includegraphics[scale=0.5]{Pictures/ant_segments_complex_case_B2_extended.png}
+    \begin{itemize}
+        \item Se extiende el segmento unitario con el segmento que lo precede
+    \end{itemize}
+\end{frame}
+
+\subsection{Criterios para la Actualizaci\'on de Anti-feromonas}
+\begin{frame}{Anti-feromonas sobre soluciones de calidad intermedia}
+\begin{itemize}
+    \item Curvatura de una soluci\'on
+    \item Magnitud de desplazamiento entre segmentos
+    \item Criterio espec\'ifico para neuronas
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Curvatura de una soluci\'on}
+\centering
+    \includegraphics[scale=0.5]{Pictures/ant_curvature_case.png}
+    \begin{itemize}
+        \item El \'angulo entre la proyecci\'on de $\Vec{p}$ y $\Vec{q}$ debe ser menor a $\theta \times Max\_Axial\_Displacement$ para no descartar la soluci\'on.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Magnitud de desplazamiento entre segmentos}
+    \begin{figure*}[h]
+    \centering
+    \begin{subfigure}[t]{0.45\textwidth}
+        \centering
+        \includegraphics[scale=0.4]{Pictures/ant_segmentMagnitude_case.png}
+    \end{subfigure}
+    ~ \hspace{0.5cm}
+    \begin{subfigure}[t]{0.45\textwidth}
+        \centering
+        \includegraphics[scale=0.4]{Pictures/ant_segmentMagnitude_case_2.png}
+    \end{subfigure}%
+    \begin{itemize}
+        %\item El criterio de curvatura puede no ser suficiente por si mismo
+        \item Comportamiento esperado de la rigidez permite descartar soluciones con cambios demasiado pronunciados entre sus segmentos
+    \end{itemize}
+\end{figure*}
+\end{frame}
+
+\begin{frame}{Criterio espec\'ifico para neuronas}
+    \begin{itemize}
+        \item Se debe validar que los filamentos de una neurona parten del {\bf soma}
+    \end{itemize}
+    \begin{equation}
+    \tau_{ij} \leftarrow
+        \begin{cases}
+         \tau_{ij} \cdot \gamma \text{ si } deg(v^{a}_{n}) = 1,  \\[3ex]
+        
+        \text{0 si } \tau_{ij} \leq 0.25, \\[3ex]
+        \tau_{ij} \quad \text{en otro caso}.
+        \end{cases}
+    \label{eq:antiPheroSAP_neuron}
+\end{equation}
+\end{frame}
+
+
+\subsection{M\'etodo de b\'usqueda no local}
+\begin{frame}{B\'usqueda no local}
     
 \end{frame}
-\subsection{Anti-Feromonas}
-\subsection{M\'etodo de b\'usqueda no local}
+
+\subsection{Extracci\'on de informaci\'on para individualizar filamentos}
+\begin{frame}{Extracci\'on de informaci\'on para individualizar filamentos}
+     \begin{figure*}[h!]
+    \centering
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[height=1.5in]{Pictures/50-ROIs-Spinning-Marchantia-somaEdges.png}
+    \end{subfigure}%
+    ~ \hspace{0.1cm}
+    \begin{subfigure}[t]{0.48\textwidth}
+    \centering
+        \includegraphics[height=1.5in]{Pictures/Porta18-3a1-somaEdges.png}
+    \end{subfigure}
+    \end{figure*}
+    \begin{itemize}
+        \item Caracter\'isticas geom\'etricas, topol\'ogicas y espaciales
+    \end{itemize}
+\end{frame}
