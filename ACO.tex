@@ -255,43 +255,74 @@ P(c_{i} | s^{P}) = \frac
 \end{figure*}
 \end{frame}
 
+%\subsection{Extracci\'on de informaci\'on para individualizar filamentos}
 \begin{frame}{Criterio espec\'ifico para neuronas}
     \begin{itemize}
         \item Se debe validar que los filamentos de una neurona parten del {\bf soma}
+        \item  Extracci\'on de informaci\'on: caracter\'isticas geom\'etricas, topol\'ogicas y espaciales
     \end{itemize}
-    \begin{equation}
-    \tau_{ij} \leftarrow
-        \begin{cases}
-         \tau_{ij} \cdot \gamma \text{ si } deg(v^{a}_{n}) = 1,  \\[3ex]
-        
-        \text{0 si } \tau_{ij} \leq 0.25, \\[3ex]
-        \tau_{ij} \quad \text{en otro caso}.
-        \end{cases}
-    \label{eq:antiPheroSAP_neuron}
-\end{equation}
-\end{frame}
-
-
-\subsection{M\'etodo de b\'usqueda no local}
-\begin{frame}{B\'usqueda no local}
+    \begin{columns}
+        \begin{column}{0.55\textwidth}
+        \centering
+        \includegraphics[height=1.7in]{Pictures/Porta183-somaEdges-example2.png}
+        \end{column}
+        \begin{column}{0.45\textwidth}
+            \begin{equation}
+                \tau_{ij} \leftarrow
+                    \begin{cases}
+                     \tau_{ij} \cdot \gamma \text{ si } deg(v^{a}_{n}) = 1,  \\[3ex]
+                    
+                    \text{0 si } \tau_{ij} \leq 0.25, \\[3ex]
+                    \tau_{ij} \quad \text{en otro caso}.
+                    \end{cases}
+            \end{equation}
+        \end{column}
+    \end{columns}
     
 \end{frame}
 
-\subsection{Extracci\'on de informaci\'on para individualizar filamentos}
-\begin{frame}{Extracci\'on de informaci\'on para individualizar filamentos}
-     \begin{figure*}[h!]
-    \centering
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[height=1.5in]{Pictures/50-ROIs-Spinning-Marchantia-somaEdges.png}
-    \end{subfigure}%
-    ~ \hspace{0.1cm}
-    \begin{subfigure}[t]{0.48\textwidth}
-    \centering
-        \includegraphics[height=1.5in]{Pictures/Porta18-3a1-somaEdges.png}
-    \end{subfigure}
-    \end{figure*}
-    \begin{itemize}
-        \item Caracter\'isticas geom\'etricas, topol\'ogicas y espaciales
-    \end{itemize}
+% \begin{frame}{Extracci\'on de informaci\'on para individualizar filamentos}
+%      \begin{figure*}[h!]
+%     \centering
+%     \begin{subfigure}[t]{0.48\textwidth}
+%         \centering
+%         %\includegraphics[height=1.5in]{Pictures/50-ROIs-Spinning-Marchantia-somaEdges.png}
+%     \end{subfigure}%
+%     ~ \hspace{0.1cm}
+%     \begin{subfigure}[t]{0.48\textwidth}
+%     \centering
+%         \includegraphics[height=1.5in]{Pictures/Porta18-3a1-somaEdges.png}
+%     \end{subfigure}
+%     \end{figure*}
+%     \begin{itemize}
+%         \item Caracter\'isticas geom\'etricas, topol\'ogicas y espaciales
+%     \end{itemize}
+% \end{frame}
+
+
+
+
+\subsection{M\'etodo de b\'usqueda no local}
+\begin{frame}{B\'usqueda no local: l\'ogicas globales/centralizadas}
+    
+    \begin{columns}
+        \begin{column}{0.4\textwidth}
+            \begin{itemize}
+                \item Eliminar soluciones candidatas que no aporten informaci\'on nueva
+                \item Soluciones parcialmente repetidas
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.2\textwidth}
+        \includegraphics[scale=0.5]{Pictures/ant-segments-repetead-sol1.png}
+        \end{column}
+        \begin{column}{0.2\textwidth}
+        \includegraphics[scale=0.5]{Pictures/NoConsenso2.png}
+        \end{column}
+        \begin{column}{0.2\textwidth}
+        \includegraphics[scale=0.5]{Pictures/NoConsenso3.png}
+        \vspace{0.5cm}
+        \includegraphics[scale=0.5]{Pictures/NoConsenso4.png}
+        \end{column}
+    \end{columns}
 \end{frame}
+
