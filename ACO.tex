@@ -1,5 +1,6 @@
-\subsection{Metaheur\'istica ACO}
-\begin{frame}{Hormigas}
+\section{Hormigas}
+\subsection{Metaheur\'istica ACO }
+\begin{frame}{Hormigas (Obj. Esp. 1)}
 \includegraphics[width=0.9\textwidth]{Pictures/ACO-ant.png}
 \end{frame}
 
@@ -9,10 +10,12 @@
 \end{frame}
 
 \begin{frame}{Modelo de Feromonas}
+\small
 \begin{itemize}
     \item Comunicaci\'on indirecta mediante feromonas
     \item Recorrido aleatorio
     \item Convergencia sobre el camino m\'as corto
+    \item Opciones de caminos posibles representan el espacio de b\'usqueda
     \item Orden no estricto
 \end{itemize}
     \begin{algorithm}[H]
@@ -20,8 +23,8 @@
      Ajuste de Par\'ametros \& inicializaci\'on de feromonas\;
      \While{Criterio de finalizaci\'on no se cumple}{
        Construcci\'on\_de\_soluci\'on\_de\_cada\_hormiga()\;
-       Actualizaci\'on\_de\_feromonas()\;
        M\'etodo\_de\_b\'usqueda\_no\_local(); //Paso opcional\\
+       Actualizaci\'on\_de\_feromonas()\;
      }
      \caption{Algoritmo metaheur\'istica ACO}\label{ACO-Algo}
     \end{algorithm}
@@ -67,13 +70,7 @@
 \end{frame}
 
 
-\begin{frame}{Individualizaci\'on de Filamentos como un Problema de Satisfacci\'on de Restricciones}
-    \begin{itemize}
-    \item Se desconoce a priori el n\'umero de filamentos a buscar.%, dado que una imagen puede tener individualizaciones distintas para 2 expertos.
-    \item Generalmente se busca individualizar m\'as de un filamento por imagen, lo que conlleva a elegir los mejores filamentos entre las soluciones que se encuentren.
-    \item El uso de un grafo para representar la red de filamentos puede implicar que las combinaciones de soluciones crezcan de manera exponencial.
-\end{itemize}
-\end{frame}
+
 
 
 % \begin{frame}{Adaptaci\'on a Individualizaci\'on de Filamentos}
@@ -95,13 +92,32 @@
 \section{Algoritmo Propuesto}
 \subsection{Inicializaci\'on de Par\'ametros}
 \begin{frame}{Inicializaci\'on de Par\'ametros en ACO}
-    \begin{itemize}
-        \item $\theta$, $[0, \theta]$
-        \item $Max\_Angle$, $max(2.5\theta, 90)$
-        \item {\it Max\_Axial\_Displacement}
-        \item {\it Max\_Score}
-        \item $\tau_0$
-    \end{itemize}
+    \begin{columns}
+        \hspace{-1cm}
+        \begin{column}{0.45\textwidth}
+            \begin{itemize} \fontsize{9pt}{5}\selectfont
+                \item Umbral $\theta$: 
+                \begin{itemize} \fontsize{9pt}{5}\selectfont
+                    \item $[0, \theta]$
+                    \item $]\theta, Max\_Angle]$
+                \end{itemize}
+                \item Umbral $Max\_Angle$: 
+                \begin{itemize} \fontsize{9pt}{5}\selectfont
+                    \item $max(2.5 \theta, 90\degree)$
+                    \item $\measuredangle (e_{i}, e_{j})> Max\_Angle$
+                \end{itemize}
+                \item Factor {\it Max\_Axial\_Displacement}: Curvatura y Magnitud entre segmentos
+                \item {\it Max\_Score}
+                \item Valor Inicial $\tau_0$
+                \item Criterio de finalizaci\'on de un recorrido
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.55\textwidth}
+        %\vspace{-2cm}
+            \centering
+            \includegraphics[scale=0.55]{Pictures/ant-params.png}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \subsection{Construcci\'on de Soluciones}
@@ -114,20 +130,29 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{ACO: Heur\'istica de Asignaci\'on Inicial}
-\begin{enumerate}
-\item Arista $a: (n_i,n_j)$ tal que $deg(n_i) = 1$ o $deg(n_j) = 1$ 
-%La arista a asignar debe tener al menos uno de sus nodos con grado 1, indicando que es el inicio o final de una parte del grafo.
+% \begin{frame}{ACO: Heur\'istica de Asignaci\'on Inicial}
+% \begin{enumerate}
+% \item Arista $a: (n_i,n_j)$ tal que $deg(n_i) = 1$ o $deg(n_j) = 1$ 
+% %La arista a asignar debe tener al menos uno de sus nodos con grado 1, indicando que es el inicio o final de una parte del grafo.
 
-\item De no haber aristas disponibles con esas caracter\'isticas, se realiza una asignaci\'on inicial de una arista que cumpla con 2 criterios:
-\begin{itemize}
-    \item $a: (n_i,n_j)$ tal que $deg(n_i) >= 2$ o $deg(n_j) >= 2$ 
-    \item El \'angulo que forma la arista candidata a elegir, junto a otra arista a la que pertenece el nodo, debe pertenecer al rango $]\theta, Max\_Angle]$.
-\end{itemize}
+% \item De no haber aristas disponibles con esas caracter\'isticas, se realiza una asignaci\'on inicial de una arista que cumpla con 2 criterios:
+% \begin{itemize}
+%     \item $a: (n_i,n_j)$ tal que $deg(n_i) >= 2$ o $deg(n_j) >= 2$ 
+%     \item El \'angulo que forma la arista candidata a elegir, junto a otra arista a la que pertenece el nodo, debe pertenecer al rango $]\theta, Max\_Angle]$.
+% \end{itemize}
 
-\item Una arista aleatoria que no pertenezca a una soluci\'on o camino evaluado como de buena calidad
-%. La calidad de un camino se presenta m\'as adelante en esta secci\'on.
-\end{enumerate}
+% \item Una arista aleatoria que no pertenezca a una soluci\'on o camino evaluado como de buena calidad
+% %. La calidad de un camino se presenta m\'as adelante en esta secci\'on.
+% \end{enumerate}
+% \end{frame}
+
+\begin{frame}{ACO: Construcci\'on de Soluci\'on, 1ra Arista}
+    \centering
+    \includegraphics[scale=0.5]{Pictures/ant-initial-edge.png}
+    \begin{itemize}
+        \item Heur\'istica de Asignaci\'on Inicial: 3 criterios
+        \item Enfoque en la exploraci\'on del espacio de b\'usqueda
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{ACO: Construcci\'on de Soluci\'on}
@@ -153,6 +178,29 @@ P(c_{i} | s^{P}) = \frac
 \end{itemize}
 \end{frame}
 
+\subsection{M\'etodo de b\'usqueda no local}
+\begin{frame}{B\'usqueda no local: l\'ogicas globales/centralizadas}
+    
+    \begin{columns}
+        \begin{column}{0.4\textwidth}
+            \begin{itemize}
+                \item Eliminar soluciones candidatas que no aporten informaci\'on nueva
+                \item Soluciones parcialmente repetidas
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.2\textwidth}
+        \includegraphics[scale=0.5]{Pictures/ant-segments-repetead-sol1.png}
+        \end{column}
+        \begin{column}{0.2\textwidth}
+        \includegraphics[scale=0.5]{Pictures/NoConsenso2.png}
+        \end{column}
+        \begin{column}{0.2\textwidth}
+        \includegraphics[scale=0.5]{Pictures/NoConsenso3.png}
+        \vspace{0.5cm}
+        \includegraphics[scale=0.5]{Pictures/NoConsenso4.png}
+        \end{column}
+    \end{columns}
+\end{frame}
 
 \begin{frame}{ACO: Actualizaci\'on de Feromonas}
 \centering
@@ -166,7 +214,7 @@ P(c_{i} | s^{P}) = \frac
 
 
 \subsection{Anti-feromonas}
-\begin{frame}{Anti-feromonas}
+\begin{frame}{Anti-feromonas SAP}
 \centering
 \includegraphics[scale=0.4]{Pictures/ACO-ant-ferom-penalize.png}
     \begin{itemize}
@@ -176,7 +224,7 @@ P(c_{i} | s^{P}) = \frac
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Anti-feromonas}
+\begin{frame}{Problema de Anti-feromonas SAP}
 \centering
 \includegraphics[scale=0.4]{Pictures/ACO-ant-constr-penalize.png}
     \begin{itemize}
@@ -185,8 +233,12 @@ P(c_{i} | s^{P}) = \frac
     \end{itemize}
 \end{frame}
 
+\begin{frame}{Anti-feromonas SAP dependientes del camino previo}
+    \includegraphics[scale=0.5]{Pictures/ACO-ant-ferom-penalize-seg.png}
+\end{frame}
 
-\begin{frame}{Anti-feromonas sobre un segmento}
+
+\begin{frame}{Extensi\'on de Anti-feromonas sobre un segmento}
 \centering
 \includegraphics[scale=0.4]{Pictures/ant_segments_simple_case.png}
     \begin{itemize}
@@ -298,31 +350,3 @@ P(c_{i} | s^{P}) = \frac
 %         \item Caracter\'isticas geom\'etricas, topol\'ogicas y espaciales
 %     \end{itemize}
 % \end{frame}
-
-
-
-
-\subsection{M\'etodo de b\'usqueda no local}
-\begin{frame}{B\'usqueda no local: l\'ogicas globales/centralizadas}
-    
-    \begin{columns}
-        \begin{column}{0.4\textwidth}
-            \begin{itemize}
-                \item Eliminar soluciones candidatas que no aporten informaci\'on nueva
-                \item Soluciones parcialmente repetidas
-            \end{itemize}
-        \end{column}
-        \begin{column}{0.2\textwidth}
-        \includegraphics[scale=0.5]{Pictures/ant-segments-repetead-sol1.png}
-        \end{column}
-        \begin{column}{0.2\textwidth}
-        \includegraphics[scale=0.5]{Pictures/NoConsenso2.png}
-        \end{column}
-        \begin{column}{0.2\textwidth}
-        \includegraphics[scale=0.5]{Pictures/NoConsenso3.png}
-        \vspace{0.5cm}
-        \includegraphics[scale=0.5]{Pictures/NoConsenso4.png}
-        \end{column}
-    \end{columns}
-\end{frame}
-
