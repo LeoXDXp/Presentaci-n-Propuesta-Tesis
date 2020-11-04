@@ -2,7 +2,21 @@
 
 \begin{frame}{Implementaci\'on del Algoritmo Propuesto (OE 2)}
     \begin{itemize}
-        \item C++
+        \item Pre y post procesamiento de resultados en {\tt Python}: 
+        \begin{itemize}
+            \item Pre: Extracci\'on de un grafo (JSON), a partir de una imagen (PNG),  mediante {\tt sknw}/{\tt NetworkX}
+            \item Post: Visualizaci\'on de resultados
+        \end{itemize}
+        
+        \item Algoritmo Propuesto en {\tt C++}. Par\'ametros de entrada:
+        \begin{itemize}
+            \item Imagen a analizar (PNG) y el grafo (JSON)
+            \item Tipo de c\'elula
+            \item Color del fondo/segundo plano
+            \item Opcionales: Nivel de debugging
+        \end{itemize}
+        
+        
     \end{itemize}
 \end{frame}
 
@@ -41,12 +55,12 @@
 \end{frame}
 
 \begin{frame}{Ponderaci\'on de los par\'ametros (OE 3)}
-    \begin{itemize}
+    \begin{itemize}\fontsize{9pt}{12}\selectfont
     \item No es posible utilizar un \'unico par\'ametro para obtener una ponderaci\'on directa
     \item Construcci\'on de soluciones: $\frac{100}{n}$\% el grado de los nodos, y el remanente para el \'angulo entre aristas, con $n$ como el n\'umero de aristas.
     \item M\'etodo de b\'usqueda no local: 100\% posici\'on de la arista.
     \item Actualizaci\'on de feromonas: 
-    \begin{itemize}
+    \begin{itemize}\fontsize{9pt}{12}\selectfont
         \item Caso General: 50\% curvatura, 50\% diferencia de magnitud entre segmentos
         \item Neuronas: $33.\overline{3}\%$ curvatura, $33.\overline{3}\%$ diferencia de magnitud entre segmentos y $33.\overline{3}\%$ informaci\'on topol\'ogica de centralidad.
     \end{itemize}

@@ -1,5 +1,19 @@
 \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
 \section{Anexo}
+
+\begin{frame}{Heur\'istica Miope}
+    \begin{equation}\fontsize{9pt}{7.2}\selectfont
+    \eta_{ij} = 
+        \begin{cases} 
+        \text{Max\_Score si } \measuredangle(c_{ij}, s_{n}^{P}) \in [0, \theta],\\[3ex]
+        
+        \text{Max\_Score} \cdot \left(1 - \dfrac{ \left| \measuredangle(c_{ij}, s_{n}^{P}) - \frac{\theta}{2} \right|} {180} \right)  \text{ si } \measuredangle(c_{ij}, s_{n}^{P}) \in \quad ]\theta, \text{Max\_Angle}],\\[3ex]
+        
+        \text{0 en otro caso.}
+        \end{cases}
+    \end{equation}    
+\end{frame}
+
 \begin{frame}{VI, \'Indice Rand e \'Indice Jaccard}
 \resizebox{\textwidth}{!}{
     \begin{tabular}{|c|c|c|c|c|c|}
@@ -19,3 +33,86 @@
     %\caption{VI $\in [0, VI\_Max]$, Rand y Jaccard $\in [0, 1]$ }
 }
 \end{frame}
+
+\begin{frame}{VI, \'Indice Rand e \'Indice Jaccard}
+%    La mayor\'ia de los criterios para comparar particiones mediante conteo de pares   se basa en la 
+    
+    %suele fundamentarse en el uso de la matriz de confusi\'on, tambi\'en llamada matriz de asociaci\'on o tabla de contingencia \cite{meilua2007comparing}. Esta tabla considera 4 casos en los que puede estar un par de elementos del {\it data set}, que para el caso de la individualizaci\'on de filamentos son pares de aristas, en las particiones $C$ y $C'$:
+
+    \begin{itemize}\fontsize{9pt}{10}\selectfont
+        \item Mayor\'ia de los criterios para comparar particiones $\rightarrow$ matriz de confusi\'on/asociaci\'on o tabla de contingencia.
+        \item $N_{11}$: N\'umero de pares que est\'an en el mismo cluster en $C$ y $C'$
+        \item $N_{00}$: N\'umero de pares que est\'an en distintos clusters en $C$ y $C'$
+        \item $N_{10}$: N\'umero de pares que est\'an en el mismo cluster en $C$ pero no en $C'$
+        \item $N_{01}$: N\'umero de pares que est\'an en el mismo cluster en $C'$ pero no en $C$
+        \item $N_{11} + N_{00} + N_{10} + N_{01} = \frac{n(n-1)}{2}$, con n como el n\'umero de aristas.
+        \item Asociaci\'on de casos con evaluaciones de clasificaci\'on
+    \end{itemize}
+
+    \resizebox{\textwidth}{!}{\fontsize{9pt}{10}\selectfont
+        \begin{tabular}{|c|c|}
+        \hline
+            Casos para un par de aristas & Clasificaci\'on \\ \hline
+            $N_{11}$ & Verdadero Positivo ({\it True Positive} o TP) \\
+            $N_{00}$ & Verdadero Negativo ({\it True Negative} o TN)\\
+            $N_{10}$ & Falso Positivo ({\it False Positive} o FP)\\
+            $N_{01}$ & Falso Negativo ({\it False Negative} o FN)\\ \hline
+        \end{tabular}
+    }
+\end{frame}
+
+\begin{frame}{\'Indice Rand y Jaccard}
+    \begin{equation}\fontsize{9pt}{7.2}\selectfont
+        \mathcal{R}(C,C^{\prime}) = \frac{N_{11} + N_{00}}{n(n-1)/2} = \frac{TP + TN}{TP + TN + FP + FN}
+    \end{equation}
+    \vspace{0.2cm}
+    \begin{equation}\fontsize{9pt}{7.2}\selectfont
+        \mathcal{J}(C,C^{\prime}) = \frac{N_{11}}{N_{11} + N_{01} + N_{10}} = \frac{TP}{TP + FP + FN}
+    \end{equation}
+    \vspace{0.2cm}
+    \begin{equation}\fontsize{9pt}{7.2}\selectfont
+        \text{Precision} = \frac{TP}{TP + FP}
+    \end{equation}
+    \vspace{0.2cm}
+    \begin{equation}\fontsize{9pt}{7.2}\selectfont
+        \text{Recall} = \frac{TP}{TP + FN}
+    \end{equation}
+\end{frame}
+
+
+\begin{frame}{Curvatura de una soluci\'on y Magnitud de desplazamiento entre segmentos}
+    \begin{equation}\fontsize{9pt}{7.2}\selectfont
+    \tau_{ij} \leftarrow
+        \begin{cases}
+        \tau_{ij} \cdot \gamma \text{ si } \measuredangle(proy(\Vec{p}), \Vec{q}) \geq \theta \cdot \text{Max\_Axial\_Displacement},\\[3ex]
+        
+        \text{0 si } \tau_{ij} \leq 0.25, \\[3ex]
+        \tau_{ij} \quad \text{en otro caso.}
+        \end{cases}
+    \end{equation}
+    \vspace{1cm}
+    \begin{equation}\fontsize{9pt}{7.2}\selectfont
+    \tau_{ij} \leftarrow
+        \begin{cases}
+        \begin{split}
+         \tau_{ij} \cdot \gamma \text{ si } & \sin(\measuredangle seg^{a}_{pMaxMin}) > seg^{a}_{iMax} \cdot 0.1 \cdot \text{Max\_Axial\_Displacement} \\ & \land \measuredangle seg^{a}_{pMaxMin}) > \theta,
+        \end{split}
+        \\[3ex]
+        
+        \text{0 si } \tau_{ij} \leq 0.25, \\[3ex]
+        \tau_{ij} \quad \text{en otro caso}.
+        \end{cases}
+\end{equation}
+\end{frame}
+
+% \begin{frame}{Ponderaci\'on de las caracter\'isticas}
+%     \begin{itemize}\fontsize{9pt}{12}\selectfont
+%     \item No es posible utilizar un \'unico par\'ametro para obtener una ponderaci\'on directa
+%     %El uso de diversas caracter\'isticas en distintas partes del algoritmo propuesto
+    
+%     %Dado que las diversas caracter\'isticas utilizadas en el algoritmo propuesto se encuentran en distintos m\'etodos de la metaheur\'istica ACO, 
+%     \item Construcci\'on de soluciones: $\frac{100}{n}$\% el grado de los nodos, y el remanente para el \'angulo entre aristas, con $n$ como el n\'umero de aristas.
+%     \item M\'etodo de b\'usqueda no local: 100\% posici\'on de la arista.
+%     \item Actualizaci\'on de feromonas: 50\% curvatura, 50\% diferencia de magnitud entre segmentos. En el caso espec\'ifico de las neuronas, corresponde a $33.\overline{3}\%$ curvatura, $33.\overline{3}\%$ diferencia de magnitud entre segmentos y $33.\overline{3}\%$ informaci\'on topol\'ogica de centralidad.
+% \end{itemize}
+% \end{frame}
