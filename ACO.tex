@@ -1,15 +1,15 @@
 \section{Hormigas}
-\subsection{Metaheur\'istica ACO }
-\begin{frame}{Hormigas (Obj. Esp. 1)}
-\includegraphics[width=0.9\textwidth]{Pictures/ACO-ant.png}
+%\subsection{Metaheur\'istica ACO }
+\begin{frame}{Hormigas (OE 1)}
+\includegraphics[width=0.95\textwidth]{Pictures/ACO-ant.png}
 \end{frame}
 
-\begin{frame}{Hormigas}
+\begin{frame}{Hormigas (OE 1)}
 \centering
-\includegraphics[width=0.9\textwidth]{Pictures/ACO-ant-2.png}
+\includegraphics[width=0.95\textwidth]{Pictures/ACO-ant-2.png}
 \end{frame}
 
-\begin{frame}{Modelo de Feromonas}
+\begin{frame}{Modelo de Feromonas (OE 1)}
 \small
 \begin{itemize}
     \item Comunicaci\'on indirecta mediante feromonas
@@ -30,7 +30,7 @@
     \end{algorithm}
 \end{frame}
 
-\begin{frame}{Adaptaci\'on de ACO a un problema de satisfacci\'on de restricciones}
+\begin{frame}{Adaptaci\'on de ACO a un problema de satisfacci\'on de restricciones (OE 1)}
     \begin{itemize}
         \item Hormigas Sint\'eticas o Agentes
         %\item Basado en el comportamiento de las hormigas reales
@@ -41,8 +41,8 @@
     \end{itemize}
 \end{frame}
 
-\subsection{Problema de Satisfacci\'on de Restricciones}
-\begin{frame}{ACO aplicado como Problema de Satisfacci\'on de Restricciones}
+%\subsection{Problema de Satisfacci\'on de Restricciones}
+\begin{frame}{ACO aplicado como Problema de Satisfacci\'on de Restricciones (OE 1)}
   \begin{columns}
     \begin{column}{0.5\textwidth}
         \begin{itemize}
@@ -90,8 +90,8 @@
 
 
 \section{Algoritmo Propuesto}
-\subsection{Inicializaci\'on de Par\'ametros}
-\begin{frame}{Inicializaci\'on de Par\'ametros en ACO}
+%\subsection{Inicializaci\'on de Par\'ametros}
+\begin{frame}{Inicializaci\'on de Par\'ametros en ACO (OE 1)}
     \begin{columns}
         \hspace{-1cm}
         \begin{column}{0.45\textwidth}
@@ -120,10 +120,10 @@
     \end{columns}
 \end{frame}
 
-\subsection{Construcci\'on de Soluciones}
-\begin{frame}{ACO: Construcci\'on de Soluci\'on}
+%\subsection{Construcci\'on de Soluciones}
+\begin{frame}{ACO: Construcci\'on de Soluci\'on (OE 1)}
 \centering
-\includegraphics[scale=0.35]{Pictures/ACO-ant-Constr.png}
+\includegraphics[scale=0.4]{Pictures/ACO-ant-Constr.png}
 \begin{itemize}
     \item Influencia de feromonas $\tau$ y de una heur\'istica $\eta$ en la elecci\'on de Aristas/Componentes $c_i$ que respeten restricciones en $\Omega$
     \item Aspecto aleatorio en la elecci\'on
@@ -146,7 +146,7 @@
 % \end{enumerate}
 % \end{frame}
 
-\begin{frame}{ACO: Construcci\'on de Soluci\'on, 1ra Arista}
+\begin{frame}{ACO: Construcci\'on de Soluci\'on, 1ra Arista (OE 1)}
     \centering
     \includegraphics[scale=0.5]{Pictures/ant-initial-edge.png}
     \begin{itemize}
@@ -155,7 +155,7 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{ACO: Construcci\'on de Soluci\'on}
+\begin{frame}{ACO: Construcci\'on de Soluci\'on (OE 1)}
 \centering
 \includegraphics[scale=0.35]{Pictures/ACO-ant-Constr-choices.png}
         \begin{equation}
@@ -166,9 +166,9 @@ P(c_{i} | s^{P}) = \frac
 \end{equation}
 \end{frame}
 
-\begin{frame}{ACO: Construcci\'on de Soluci\'on}
+\begin{frame}{ACO: Construcci\'on de Soluci\'on (OE 1)}
 \centering
-\includegraphics[scale=0.35]{Pictures/ACO-ant-Constr-choices.png}
+\includegraphics[scale=0.4]{Pictures/ACO-ant-Constr-choices.png}
 \begin{itemize}
     \item Calidad $s^{P}_1$ = $\sum \eta_{i}$
     \item Calidad $s_1$ = $\frac{1}{n}\sum \eta_{i} $
@@ -178,8 +178,8 @@ P(c_{i} | s^{P}) = \frac
 \end{itemize}
 \end{frame}
 
-\subsection{M\'etodo de b\'usqueda no local}
-\begin{frame}{B\'usqueda no local: l\'ogicas globales/centralizadas}
+%\subsection{M\'etodo de b\'usqueda no local}
+\begin{frame}{B\'usqueda no local: l\'ogicas globales/centralizadas (OE 1)}
     
     \begin{columns}
         \begin{column}{0.4\textwidth}
@@ -202,7 +202,7 @@ P(c_{i} | s^{P}) = \frac
     \end{columns}
 \end{frame}
 
-\begin{frame}{ACO: Actualizaci\'on de Feromonas}
+\begin{frame}{ACO: Actualizaci\'on de Feromonas (OE 1)}
 \centering
 \includegraphics[scale=0.4]{Pictures/ACO-ant-ferom.png}
 \begin{itemize}
@@ -213,8 +213,8 @@ P(c_{i} | s^{P}) = \frac
 \end{frame}
 
 
-\subsection{Anti-feromonas}
-\begin{frame}{Anti-feromonas SAP}
+%\subsection{Anti-feromonas}
+\begin{frame}{Anti-feromonas SAP (OE 1)}
 \centering
 \includegraphics[scale=0.4]{Pictures/ACO-ant-ferom-penalize.png}
     \begin{itemize}
@@ -224,7 +224,7 @@ P(c_{i} | s^{P}) = \frac
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Problema de Anti-feromonas SAP}
+\begin{frame}{Problema de Anti-feromonas SAP (OE 1)}
 \centering
 \includegraphics[scale=0.4]{Pictures/ACO-ant-constr-penalize.png}
     \begin{itemize}
@@ -233,12 +233,12 @@ P(c_{i} | s^{P}) = \frac
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Anti-feromonas SAP dependientes del camino previo}
-    \includegraphics[scale=0.5]{Pictures/ACO-ant-ferom-penalize-seg.png}
+\begin{frame}{Anti-feromonas SAP dependientes del camino previo (OE 1)}
+    \includegraphics[scale=0.51]{Pictures/ACO-ant-ferom-penalize-seg.png}
 \end{frame}
 
 
-\begin{frame}{Extensi\'on de Anti-feromonas sobre un segmento}
+\begin{frame}{Extensi\'on de Anti-feromonas sobre un segmento (OE 1)}
 \centering
 \includegraphics[scale=0.4]{Pictures/ant_segments_simple_case.png}
     \begin{itemize}
@@ -247,7 +247,7 @@ P(c_{i} | s^{P}) = \frac
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Anti-feromonas sobre un segmento de una sola arista}
+\begin{frame}{Anti-feromonas sobre un segmento de una sola arista (OE 1)}
 \centering
 \begin{figure*}
   \begin{subfigure}[t]{0.48\textwidth}
@@ -263,7 +263,7 @@ P(c_{i} | s^{P}) = \frac
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Anti-feromonas sobre un segmento}
+\begin{frame}{Anti-feromonas sobre un segmento (OE 1)}
 \centering
     \includegraphics[scale=0.5]{Pictures/ant_segments_complex_case_B2_extended.png}
     \begin{itemize}
@@ -271,8 +271,8 @@ P(c_{i} | s^{P}) = \frac
     \end{itemize}
 \end{frame}
 
-\subsection{Criterios para la Actualizaci\'on de Anti-feromonas}
-\begin{frame}{Anti-feromonas sobre soluciones de calidad intermedia}
+%\subsection{Criterios para la Actualizaci\'on de Anti-feromonas}
+\begin{frame}{Anti-feromonas sobre soluciones de calidad intermedia (OE 1)}
 \begin{itemize}
     \item Curvatura de una soluci\'on
     \item Magnitud de desplazamiento entre segmentos
@@ -280,7 +280,7 @@ P(c_{i} | s^{P}) = \frac
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Curvatura de una soluci\'on}
+\begin{frame}{Curvatura de una soluci\'on (OE 1)}
 \centering
     \includegraphics[scale=0.5]{Pictures/ant_curvature_case.png}
     \begin{itemize}
@@ -288,7 +288,7 @@ P(c_{i} | s^{P}) = \frac
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Magnitud de desplazamiento entre segmentos}
+\begin{frame}{Magnitud de desplazamiento entre segmentos (OE 1)}
     \begin{figure*}[h]
     \centering
     \begin{subfigure}[t]{0.45\textwidth}
@@ -307,8 +307,8 @@ P(c_{i} | s^{P}) = \frac
 \end{figure*}
 \end{frame}
 
-%\subsection{Extracci\'on de informaci\'on para individualizar filamentos}
-\begin{frame}{Criterio espec\'ifico para neuronas}
+%%\subsection{Extracci\'on de informaci\'on para individualizar filamentos}
+\begin{frame}{Criterio espec\'ifico para neuronas (OE 1)}
     \begin{itemize}
         \item Se debe validar que los filamentos de una neurona parten del {\bf soma}
         \item  Extracci\'on de informaci\'on: caracter\'isticas geom\'etricas, topol\'ogicas y espaciales
