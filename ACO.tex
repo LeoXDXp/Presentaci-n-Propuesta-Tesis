@@ -1,12 +1,13 @@
 \section{Hormigas}
 %\subsection{Metaheur\'istica ACO }
 \begin{frame}{Hormigas (OE 1)}
-\includegraphics[width=0.95\textwidth]{Pictures/ACO-ant.png}
+    \centering
+    \includegraphics[height=2.5in]{Pictures/ACO-ant.png}
 \end{frame}
 
 \begin{frame}{Hormigas (OE 1)}
 \centering
-\includegraphics[width=0.95\textwidth]{Pictures/ACO-ant-2.png}
+\includegraphics[height=2.5in]{Pictures/ACO-ant-2.png}
 \end{frame}
 
 \begin{frame}{Modelo de Feromonas (OE 1)}
@@ -95,14 +96,14 @@
     \begin{columns}
         \hspace{-1cm}
         \begin{column}{0.45\textwidth}
-            \begin{itemize} \fontsize{9pt}{5}\selectfont
+            \begin{itemize} \fontsize{10pt}{5}\selectfont
                 \item Umbral $\theta$: 
-                \begin{itemize} \fontsize{9pt}{5}\selectfont
+                \begin{itemize} \fontsize{10pt}{5}\selectfont
                     \item $[0, \theta]$
                     \item $]\theta, Max\_Angle]$
                 \end{itemize}
                 \item Umbral $Max\_Angle$: 
-                \begin{itemize} \fontsize{9pt}{5}\selectfont
+                \begin{itemize} \fontsize{10pt}{5}\selectfont
                     \item $max(2.5 \theta, 90\degree)$
                     \item $\measuredangle (e_{i}, e_{j})> Max\_Angle$
                 \end{itemize}
@@ -167,15 +168,24 @@ P(c_{i} | s^{P}) = \frac
 \end{frame}
 
 \begin{frame}{ACO: Construcci\'on de Soluci\'on (OE 1)}
-\centering
-\includegraphics[scale=0.4]{Pictures/ACO-ant-Constr-choices.png}
-\begin{itemize}
-    \item Calidad $s^{P}_1$ = $\sum \eta_{i}$
-    \item Calidad $s_1$ = $\frac{1}{n}\sum \eta_{i} $
-    \item Calidad M\'inima $\geq \frac{Max\_Score}{2}$
-    \item Buena Calidad: $Max\_Score$
-    \item Calidad Intermedia: $[\frac{Max\_Score}{2}, Max\_Score[$
-\end{itemize}
+    \centering
+    \includegraphics[scale=0.4]{Pictures/ACO-ant-Constr-choices.png}
+    \begin{columns}
+        \begin{column}{0.35\textwidth}
+            \begin{itemize}
+                \item Calidad $s^{P}_1$ = $\sum \eta_{i}$
+                \item Calidad $s_1$ = $\frac{1}{n}\sum \eta_{i} $
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.65\textwidth}
+            \begin{itemize}%\fontsize{9pt}{10}\selectfont
+                \item Calidad M\'inima $\geq \frac{Max\_Score}{2}$
+                \item Buena Calidad: $Max\_Score$
+                \item Calidad Intermedia: $[\frac{Max\_Score}{2}, Max\_Score[$
+            \end{itemize}
+        \end{column}
+    \end{columns}
+
 \end{frame}
 
 %\subsection{M\'etodo de b\'usqueda no local}
@@ -234,42 +244,37 @@ P(c_{i} | s^{P}) = \frac
 \end{frame}
 
 \begin{frame}{Anti-feromonas SAP dependientes del camino previo (OE 1)}
-    \includegraphics[scale=0.51                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ]{Pictures/ACO-ant-ferom-penalize-seg.png}
+    \centering
+    \includegraphics[scale=0.51]{Pictures/ACO-ant-ferom-penalize-seg.png}
 \end{frame}
 
 
 \begin{frame}{Extensi\'on de Anti-feromonas sobre un segmento (OE 1)}
-\centering
-\includegraphics[scale=0.4]{Pictures/ant_segments_simple_case.png}
+    \centering
+    \includegraphics[scale=0.4]{Pictures/ant_segments_simple_case.png}
     \begin{itemize}
         \item Cada arista del segmento forma un \'angulo en el rango $[0, \theta]$ con sus vecinos
         \item Penalizaci\'on de $e_3$ se asocia al $seg^{b}_{1}$, sin perjudicar otros caminos que pasen por $e_3$ pero no por el segmento $seg^{b}_{1}$.
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Anti-feromonas sobre un segmento de una sola arista (OE 1)}
-\centering
-\begin{figure*}
-  \begin{subfigure}[t]{0.48\textwidth}
-    \includegraphics[scale=0.5]{Pictures/ant_segments_complex_case_B2.png}
-  \end{subfigure}%
-    ~ \hspace{0.1cm}
-    \begin{subfigure}[t]{0.48\textwidth}
-    \includegraphics[scale=0.5]{Pictures/ant_segments_complex_case_B_blocked.png}
-    \end{subfigure}
-\end{figure*}
-\begin{itemize}
-    \item Segmentos de una sola arista ocasionan mismo problema que se intenta resolver
-\end{itemize}
-\end{frame}
+% \begin{frame}{Anti-feromonas sobre un segmento de una sola arista (OE 1)}
+%     \centering
+%     \includegraphics[height=2in]{Pictures/ant_segments_complex_case_B2.png}
+%     \hspace{0.1cm}
+%     \includegraphics[height=2in]{Pictures/ant_segments_complex_case_B_blocked.png}
+% \begin{itemize}
+%     \item Segmentos de una sola arista ocasionan mismo problema que se intenta resolver
+% \end{itemize}
+% \end{frame}
 
-\begin{frame}{Anti-feromonas sobre un segmento (OE 1)}
-\centering
-    \includegraphics[scale=0.5]{Pictures/ant_segments_complex_case_B2_extended.png}
-    \begin{itemize}
-        \item Se extiende el segmento unitario con el segmento que lo precede
-    \end{itemize}
-\end{frame}
+% \begin{frame}{Anti-feromonas sobre un segmento (OE 1)}
+% \centering
+%     \includegraphics[scale=0.5]{Pictures/ant_segments_complex_case_B2_extended.png}
+%     \begin{itemize}
+%         \item Se extiende el segmento unitario con el segmento que lo precede
+%     \end{itemize}
+% \end{frame}
 
 %\subsection{Criterios para la Actualizaci\'on de Anti-feromonas}
 \begin{frame}{Anti-feromonas sobre soluciones de calidad intermedia (OE 1)}
@@ -289,22 +294,14 @@ P(c_{i} | s^{P}) = \frac
 \end{frame}
 
 \begin{frame}{Magnitud de desplazamiento entre segmentos (OE 1)}
-    \begin{figure*}[h]
     \centering
-    \begin{subfigure}[t]{0.45\textwidth}
-        \centering
-        \includegraphics[scale=0.4]{Pictures/ant_segmentMagnitude_case.png}
-    \end{subfigure}
-    ~ \hspace{0.5cm}
-    \begin{subfigure}[t]{0.45\textwidth}
-        \centering
-        \includegraphics[scale=0.4]{Pictures/ant_segmentMagnitude_case_2.png}
-    \end{subfigure}%
+    \includegraphics[height=2in]{Pictures/ant_segmentMagnitude_case.png}
+    \hspace{0.2cm}
+    \includegraphics[height=2in]{Pictures/ant_segmentMagnitude_case_2.png}
     \begin{itemize}
         %\item El criterio de curvatura puede no ser suficiente por si mismo
         \item Comportamiento esperado de la rigidez permite descartar soluciones con cambios demasiado pronunciados entre sus segmentos
     \end{itemize}
-\end{figure*}
 \end{frame}
 
 %%\subsection{Extracci\'on de informaci\'on para individualizar filamentos}

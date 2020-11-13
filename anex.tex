@@ -2,7 +2,7 @@
 \section{Anexo}
 
 \begin{frame}{Heur\'istica Miope}
-    \begin{equation}\fontsize{9pt}{7.2}\selectfont
+    \begin{equation}%\fontsize{9pt}{7.2}\selectfont
     \eta_{ij} = 
         \begin{cases} 
         \text{Max\_Score si } \measuredangle(c_{ij}, s_{n}^{P}) \in [0, \theta],\\[3ex]
@@ -49,7 +49,8 @@
         \item Asociaci\'on de casos con evaluaciones de clasificaci\'on
     \end{itemize}
 
-    \resizebox{\textwidth}{!}{\fontsize{9pt}{10}\selectfont
+    %\resizebox{\textwidth}{!}{
+    \makebox[\linewidth][c]{\fontsize{10pt}{12}\selectfont
         \begin{tabular}{|c|c|}
         \hline
             Casos para un par de aristas & Clasificaci\'on \\ \hline
@@ -81,6 +82,7 @@
 
 
 \begin{frame}{Curvatura de una soluci\'on y Magnitud de desplazamiento entre segmentos}
+    \centering
     \begin{equation}\fontsize{9pt}{7.2}\selectfont
     \tau_{ij} \leftarrow
         \begin{cases}
