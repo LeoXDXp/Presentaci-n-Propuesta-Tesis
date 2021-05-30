@@ -19,6 +19,7 @@
 %\usepackage[font=small]{caption}
 \usepackage{diagbox}
 \usepackage[ruled,vlined,spanish,onelanguage]{algorithm2e}
+%\usepackage{enumitem}
 \newenvironment{figure*}%
 {\begin{figure}}
 {\end{figure}}
@@ -33,12 +34,12 @@
 % Fill in the essential Information
 %----------------------------------
 
-\title[Individualizaci\'on de filamentos mediante optimizaci\'on]{Charla de Tesis II: Individualizaci\'on de filamentos en una red mediante optimizaci\'on}
+\title[Individualizaci\'on de filamentos mediante optimizaci\'on]{Individualizaci\'on de filamentos en una red extra\'ida desde una imagen de microscop\'ia, mediante optimizaci\'on}
 %\subtitle{\ldots a subtitle}
 \author[L.\ Pizarro]{Leonardo Pizarro} % between [] is short name, between {} is long name
 \date{\today} % Here you can also just type something, e.g. October 10, 2017
 %\institute[DCC - FCFM - UChile]{Magister en Ciencias de la Computaci\'on\\Facultad de Ciencias F\'isicas y Matem\'aticas\\ Departamento de Ciencias de la Computaci\'on \\ Universidad de Chile}
-\institute[]{Profesor Gu\'ia: Mauricio Cerda\\Profesor Co-gu\'ia: Jacques Dumais}
+%\institute[]{Profesor Gu\'ia: Mauricio Cerda\\Profesor Co-gu\'ia: Jacques Dumais}
 
 %----------------------------------
 % ACTUAL PRESENTATION STARTS HERE
@@ -94,17 +95,11 @@
 \end{frame}
 
 \note[itemize]{
-\item En la naturaleza, es posible encontrar de forma ubicua, estructuras alargadas, que denominamos filamentos, que presentan distintas caracter\'isticas y comportamientos
-\item Las caracter\'isticas y/o comportamientos de un filamento, o un a red de estos, puede develar informaci\'on relevante respecto al ambiente o al interior del elemento donde se encuentra el filamento
+\item El inter\'es por el estudio de filamentos se debe en parte a que este tipo de estructuras alargadas se encuentran de forma ubicua en la naturaleza.
+\item En particular, las estructuras alargadas que llamaremos filamentos contienen informaci\'on con respecto al elemento donde se ubican.
+\item En este trabajo el enfoque se centra alrededor de filamentos observables a trav\'es de imagenes de microscop\'ia, cuyas caracter\'isticas y comportamientos, ya sea de un solo filamento o de un grupo de estos, puede develar informaci\'on relevante respecto del ambiente o del interior de la c\'elula donde se observa.
 
-\item pudiendo ser esto una c\'elula o una estrella, 
-
-\item Luego, una de las formas de recolectar esta informaci\'on de forma cuantitativa es mediante la individualizaci\'on de filamentos
-
-\item enfoque de investigaci\'on en microscop\'ia
-
-\item mt, actina e interm con tama\~nos inferiores a la resoluci\'on m\'axima de microscopios actuales
-
+\item Al observar filamentos en c\'elulas es esperable enfrentar situaciones asociadas a la observaci\'on de microscop\'ia como lo es la existencia de ruido en la imagen observada, as\'i como tambi\'en el problema asociado al tama\~no de estos filamentos, lo que se relaciona a la necesidad de contar con im\'agenes de alta resoluci\'on para la observaci\'on de los filamentos. Para hacerse una idea, uno de los tipos de filamentos que se utilizan en esta trabajo son los microt\'ubulos, cuyo tamaño es de 25 nanometros.
 
 }
 
@@ -128,30 +123,35 @@
 \end{frame}
 
 \note[itemize]{
-    \item Derivado del problema de la resoluci\'on
+    \item Mediante la imagen a la izquierda, podemos destacar el problema de la resoluci\'on que existe en la observaci\'on mediante microscop\'ia \'optica, donde la cota m\'axima de resoluci\'on es el l\'imite de difracci\'on, denominando $\lambda/2$, Donde $\lambda$ es la longitud de onda de la luz utilizada (o color).
     
-    \item comparar individualizar con otros problemas que detectan e identifican, 
-    la detección por si sola es compleja
-    %Así, si se desea comparar el problema de individualizar filamentos con otros 
-    %problemas similares, donde se debe detectar e identificar, en este caso, se tiene el
-    \item Luego, a modo de resumen (pasar a sgte ppt)
+    \item Este l\'imite establece que 2 objetos cuya distancia sea inferior a $\lambda/2$ no pueden ser diferenciados. El impacto de lo anterior se puede reflejar al solicitarle a dos expertos realizar una individualizaci\'on de filamentos como los que se encuentran en la secci\'on roja, la que se ve magnificada en la imagen central. Es en esta situaci\'on donde ambos expertos pueden divergir en lo que identifican como filamentos. Las imágenes a la derecha reflejan las opciones posibles de filamentos en el ejemplo.
+    
+    
+    \item Esta situaci\'on aumenta la complejidad de individualizar filamentos, y no suele darse en otros en otros problemas donde se detectan e identifican estructuras, como puede ser la detecci\'on de rostros. 
 }
 
 \begin{frame}{Dificultades del Problema}
     \begin{enumerate}
         %\item Variaci\'on de las caracter\'isticas de filamentos entre diferentes c\'elulcas
+        \item Resoluci\'on y Ruido en las im\'agenes
         \item Desconocimiento de los puntos de inicio y fin de un filamento
         \item Necesidad de incorporar m\'as descriptores de los filamentos
-        \item Resoluci\'on y Ruido en las im\'agenes
-        \item Diferencias en el comportamiento de los filamentos dependiendo de la c\'elula observada.
+        
+        %\item Diferencias en el comportamiento de los filamentos dependiendo de la c\'elula observada.
     \end{enumerate}
 \end{frame}
 
 \note[itemize]{
-    \item podemos indicar que estos 4 son los elementos que definen la base de 
-    la individualizaci\'on
+    \item As\'i, adem\'as de lo anterior, existen elementos adicionales que definen la base de para realizar la individualizaci\'on de filamentos en imagenes de microscop\'ia.
     
-    \item el 1er punto dificulta bastante el utilizar herramientas o m\'etodos conocidos para recorrer caminos
+    \item Como mencionamos, esta el l\'imite de resoluci\'on y el ruido existente en una imagen
+    
+    \item A partir de una imagen puede resultar complejo identificar donde comienza y termina una filamento. En esta l\'inea, influye en parte la resoluci\'on as\'i como la informaci\'on conocida sobre el comportamiento del filamento.
+    
+    \item Dependiendo del filamento observado, el criterio de un experto puede basarse en aspectos geométricos o utilizar otras caracter\'isticas. Sin embargo, estos criterios por si solos no permiten siempre dirimir de forma clara situaciones como la presentada en la slide anterior.
+    
+    %el 1er punto dificulta bastante el utilizar herramientas o m\'etodos conocidos para recorrer caminos
     
     \item Estos puntos son abordados por separado en diferentes formas en algunos m\'etodos del estado del arte que veremos a continuaci\'on
 }
@@ -163,9 +163,12 @@
 \end{frame}
 
 \note[itemize]{
-    \item Clasificar en 2 grandes familias, donde ambas parten de una imagen, y realizan un procesamiento inicial de esta, pero se diferencian en si se basan s\'olo en el uso de herramientas de visi\'on por computador o si tambi\'en incorporar otras, como es el caso de los m\'etodos basados en optimizaci\'on
-    \item Los m\'etodos basados principalmente en herramientas de visi\'on por computador tienden a realizar un an\'alisis local a nivel de p\'ixel, recopilando informaci\'on a partir del vecindario del p\'ixel.
-    \item diferencia principal se observa en la cantidad o el tipo de caracter\'isticas, las que van aumentando a medida que se aborda un  problema de forma m\'as general. (hacer gesto de flecha)
+    \item En base a lo encontrado en la literatura, podemos agrupar en 2 familias de m\'etodos las t\'ecnicas que se aplican sobre la imagen de microscop\'ia.
+    
+    \item El primer grupo se basa en el procesamiento de im\'agenes de bajo nivel, logrando obtener informaci\'on de caracter geometrico o topol\'ogico, enfocandose en an\'alisis a nivel de p\'ixeles.
+    
+    \item El segundo grupo adem\'as de utilizar la imagen inicial, aplicando filtros de bajo nivel, se basa en la optimizaci\'on con el propósito de obtener informaci\'on adicional que permita construir un grafo que represente al conjunto o red de filamentos, o que permita individualizar filamentos. Ambos casos utilizan la optimizaci\'on debido a que la complejidad al intentar obtener caracter\'isticas cuantitativas que describan el comportamiento de los filamentos observados.
+    
     }
 
 %\subsection{M\'etodos basados en Vision por Computador}
@@ -201,68 +204,72 @@
 
 % }
 
-\begin{frame}{Quantitative IFS}
-    \begin{columns}
-        \begin{column}{0.6\textwidth}
-             \begin{figure}
-                \centering      \includegraphics[height=2.15in]{Pictures/QuantitativeIFS.png}
-                \caption{Jun Qiu and F LI. Quantitative morphological analysis of curvilinear network for microscopic image based on individual fibre segmentation (ifs). Journal of microscopy, 256(3):153–165, 2014}
-            \end{figure}       
-        \end{column}
-        \begin{column}{0.4\textwidth}
-            \begin{itemize}\fontsize{9pt}{7.2}\selectfont
-                \item 6 filtros sobre la imagen
-                \item {\it Short Branch Deleted Algorithm} realiza una clasificación de intersecciones
-                %\vspace{-0.5cm}
-                \begin{itemize}\fontsize{9pt}{7.2}\selectfont
-                    \item Nodos terminales
-                    \item Nodos Aislados
-                    \item Nodos puentes
-                    \item Intersecciones
-                \end{itemize}
-                \item Resultado: Fibras Aisladas (verde), superpuestas (púrpura) y otras (azul, rojo)
-            \end{itemize}
-        \end{column}
-    \end{columns}
-\end{frame}
+% \begin{frame}{Quantitative IFS}
+%     \begin{columns}
+%         \begin{column}{0.6\textwidth}
+%              \begin{figure}
+%                 \centering      \includegraphics[height=2.15in]{Pictures/QuantitativeIFS.png}
+%                 \caption{Jun Qiu and F LI. Quantitative morphological analysis of curvilinear network for microscopic image based on individual fibre segmentation (ifs). Journal of microscopy, 256(3):153–165, 2014}
+%             \end{figure}       
+%         \end{column}
+%         \begin{column}{0.4\textwidth}
+%             \begin{itemize}\fontsize{9pt}{7.2}\selectfont
+%                 \item 6 filtros sobre la imagen
+%                 \item {\it Short Branch Deleted Algorithm} realiza una clasificación de intersecciones
+%                 %\vspace{-0.5cm}
+%                 \begin{itemize}\fontsize{9pt}{7.2}\selectfont
+%                     \item Nodos terminales
+%                     \item Nodos Aislados
+%                     \item Nodos puentes
+%                     \item Intersecciones
+%                 \end{itemize}
+%                 \item Resultado: Fibras Aisladas (verde), superpuestas (púrpura) y otras (azul, rojo)
+%             \end{itemize}
+%         \end{column}
+%     \end{columns}
+% \end{frame}
 
-\note[itemize]{
-    \item El objetivo de esta investigaci\'on es realizar un estudio topol\'ogico a nivel de p\'ixeles de acuerdo a estructuras predefinidas
-    \item Se enfoca en clasificar las intersecciones para diferencias si los segmentos de filamento se encuentran superpuestos (p\'urpura), aislados(verde) y otros (azul, rojo)
+% \note[itemize]{
+%     \item Un ejemplo del primer grupo de familias, las basadas en procesamiento de imagenes de bajo nivel, es Quantitative IFS. El objetivo de esta investigaci\'on es realizar un estudio topol\'ogico a nivel de p\'ixeles de acuerdo a estructuras predefinidas
 
-    \item Se utilizan 6 filtros para procesar una imagen, resaltandose el filtro de esqueletonizaci\'on y el de estructuras alargadas
+%     \item Se utilizan 6 filtros para procesar una imagen, resaltandose el filtro de esqueletonizaci\'on y el de estructuras alargadas
     
-    \item El an\'alisis de estructuras predefinidas se denomina SBDA
-}
+%     \item Adicionalmente, realiza un an\'alisis de estructuras predefinidas se denomina SBDA para eliminar filamentos muy cortos que corresponden a artefactos.
+%     \item Como resultado, permite clasificar los segmentos de filamentos en base a si son segmentos que se encuentran superpuestos (p\'urpura), aislados(verde) y otros (azul, rojo)
+% }
 
 %\subsection{M\'etodos basados en Optimizaci\'on}
-\begin{frame}{SOAX: Curvas param\'etricas (SOAC) para identificar filamentos}
-    \begin{columns}
-        \begin{column}{0.65\textwidth}
-             \begin{figure}
-                \centering
-                \includegraphics[height=2in]{Pictures/SOAX_translated.jpg}
-                \caption{Ting Xu, Dimitrios Vavylonis, Feng-Ching Tsai, Gijsje H Koenderink, Wei Nie, Eddy Yusuf, I-Ju Lee, Jian-Qiu Wu, and Xiaolei Huang. Soax: a software for quantification of 3d biopolymer networks. Scientific reports, 5:9081, 2015.}
-            \end{figure}       
-        \end{column}
-        \begin{column}{0.35\textwidth}
-            \begin{itemize}\fontsize{9pt}{10.2}\selectfont
-                \item 1 SOAC = 1 Segmento de Filamento
-                \item 4 Par\'ametros: $\tau$, $K_{str}$, $t$, $c$
-                \item Funci\'on Objetivo $F = -L_{total} + cL_{<t}$
-            \end{itemize}
-        \end{column}
-    \end{columns}
-\end{frame}
+% \begin{frame}{SOAX: Curvas param\'etricas (SOAC) para identificar filamentos}
+%     \begin{columns}
+%         \begin{column}{0.65\textwidth}
+%              \begin{figure}
+%                 \centering
+%                 \includegraphics[height=2in]{Pictures/SOAX_translated.jpg}
+%                 \caption{Ting Xu, Dimitrios Vavylonis, Feng-Ching Tsai, Gijsje H Koenderink, Wei Nie, Eddy Yusuf, I-Ju Lee, Jian-Qiu Wu, and Xiaolei Huang. Soax: a software for quantification of 3d biopolymer networks. Scientific reports, 5:9081, 2015.}
+%             \end{figure}       
+%         \end{column}
+%         \begin{column}{0.35\textwidth}
+%             \begin{itemize}\fontsize{9pt}{10.2}\selectfont
+%                 \item 1 SOAC = 1 Segmento de Filamento
+%                 \item 4 Par\'ametros: $\tau$, $K_{str}$, $t$, $c$
+%                 \item Funci\'on Objetivo $F = -L_{total} + cL_{<t}$
+%             \end{itemize}
+%         \end{column}
+%     \end{columns}
+% \end{frame}
 
-\note[itemize]{
-    \item curvas parametricas de contorno abierto, que se elongan o estiran
-    %\item SOAC es la sigla en ingles para curvas elongadas de contorno abierto
-    \item Estas curvas nacen de puntos de alta intensidad, a partir de los cuales crecen/estiran hasta cruzarse con otra
-    \item  Asi, se identifican las uniones que representan nodos en una red de filamentos
-    \item Algunos de estos par\'ametros definen el crecimiento/elongamiento de las curvas, mientras que el factor c influye directamente en la funci\'on objetivo
-    \item se busca minimizar F, ajustando los par\'ametros, y obteniendo una red en la que no se puede explorar individualmente los filamentos
-}
+% \note[itemize]{
+%     \item SOAX es un m\'etodo que corresponde a la segunda familia de m\'etodos, los basados en optimizaci\'on. SOAX utiliza curvas parametricas de contorno abierto, que se elongan o estiran
+%     %\item SOAC es la sigla en ingles para curvas elongadas de contorno abierto
+%     \item Estas curvas nacen de puntos de alta intensidad, a partir de los cuales crecen/estiran hasta cruzarse con otra. 
+%     \item  Asi, se identifican las uniones que representan nodos en una red de filamentos
+%     \item En la fila B de la imagen, se puede observar como para un caso simple sucede la identificaci\'on de puntos de alta intensidad, la identificaci\'on de intersecciones y la fusi\'on de puntos de intersecci\'on.
+    
+%     \item El crecimiento de las curcas se definen meidante 
+%     los par\'ametros Tau y K\_str
+%     \item Debido a que se inicializan multiples curvas, se busca que minizar la funci\'on objetivo F con la finalidad de buscar la cantidad \'optima de curvas.
+%     \item como resultado se entrega informaci\'on geometrica y topologica de la red de filamentos
+% }
 
 \begin{frame}{DeFiNe}
     %\vspace{-1cm}
@@ -292,12 +299,17 @@
 \end{frame}
 
 \note[itemize]{
-    \item Los autores definen que su problem\'atica parte desde un grafo ponderado que representa una red de filamentos, y que la extracci\'on de esta red desde una imagen es un problema previo.
+    \item DeFiNe tambi\'en es una investigaci\'on de la segunda familia de m\'etodos, siendo la primera que realiza individualizaci\'on de filamentos.
+    
+    \item Los autores de DeFiNe definen que su problem\'atica parte desde un grafo ponderado que representa una red de filamentos, y que la extracci\'on de esta red desde una imagen es un problema previo.
+    
     \item Asi, un filamento se representa como un conjunto de aristas adyacentes, cuyas combinaciones posibles se definen como P. Recorrer estos P filamentos para evaluarlos es NP-Hard debido al n\'umero de combinaciones posibles entre las aristas
-    \item El problema de optimizaci\'on que DeFiNe resuelve se denomina FCP, y dado que es NP-Hard, los autores definen 2 heur\'isticas para extraer un subconjunto de filamentos posibles desde P, creando P prima
-    \item El uso de alguna de las heur\'isticas definidas para DeFiNe permite que P prima sea resuelto en tiempo polinomial, mediante la resoluci\'on de un Set Cover Problem, donde P prima es el dato de entrada
-    \item Como resultado, se pueden individualizar los filamentos
-    \item Los 2 problemas de este enfoque son que utiliza solo 1 propiedad asociada a las aristas para individualizar filamentos, y que DeFiNe no escale de buena manera cuando el grafo crece
+    
+    \item Dado lo anterior, el problema de optimizaci\'on que DeFiNe resuelve se denomina FCP, para el cual definen 2 heur\'isticas para acotar o buscar de forma m\'as optima un subconjunto de P que permita realizar parte de la individualizaci\'on de filamentos en tiempo polinomial.
+    Este subconjunto se denomina P'.
+    
+    \item A partir de P' se obtiene la entrada de datos para un problema del tipo Set Cover, cuyo resultado es una individualizaci\'on automatica de filamentos.
+    \item Los 2 problemas de este enfoque son que utiliza solo 1 caracter\'istica para describir el comportamiento de un filamento. Adicionalmente, DeFiNe no permite tiempos de computo menores a las horas a medida que el grafo que utiliza como dato de entrada aumenta el n\'umero de nodos.
 }
 
 
@@ -314,8 +326,7 @@
 
 \note[itemize]{
 
-    \item Los m\'etodos presentados, tanto los que individualizan como los que no lo hacen, presentan problemas asociados a la herramienta primaria que utilizan. 
-    \item Los que se basan principalmente {\bf s\'olamente} en herramientas de visi\'on por computador tienen un alto n\'umero de par\'ametros, mientras que los basados en optimizaci\'on pueden tener un alto costo computacional
+    \item A modo de resumen, se puede indicar que los m\'etodos basados en procesamiento de imagenes de bajo nivel tienen un alto n\'umero de par\'ametros, mientras que los basados en optimizaci\'on pueden tener un alto costo computacional
 
     \item A esto, le agregamos los problemas espec\'ificos, como son
     
@@ -332,16 +343,13 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Objetivo General}
-\small
-    \begin{itemize}
-        \item Desarrollar un modelo de optimizaci\'on para la individualizaci\'on de filamentos a partir de un grafo representativo de la red de filamentos, evaluando la variaci\'on en el resultado con distintas combinaciones entre las propiedades de cada segmento de filamento como el grosor, largo, \'angulo de bifurcaci\'on o direcci\'on.
-    \end{itemize}
-\end{frame}
 
-
-\begin{frame}{Objetivos Espec\'ificos}
+\begin{frame}{Objetivo General y Objetivos Espec\'ificos}
 \small
+\begin{itemize}
+    \item[OG] Desarrollar un modelo de optimizaci\'on para la individualizaci\'on de filamentos a partir de un grafo representativo de la red de filamentos, evaluando la variaci\'on en el resultado con distintas combinaciones entre las propiedades de cada segmento de filamento como el grosor, largo, \'angulo de bifurcaci\'on o direcci\'on.
+\end{itemize}
+
 \begin{enumerate}
     \item[OE 1] Generar un modelo de optimizaci\'on %para la identificaci\'on de filamentos a partir de un grafo con pesos que representa la red de filamentos.
     \item[OE 2] Implementar un algoritmo que resuelva el modelo de optimizaci\'on %, entregando como salida la identificaci\'on de filamentos, considerando casos de solapamiento y/o cruce.
@@ -351,13 +359,13 @@
 \end{enumerate}
 \end{frame}
 
-\note[itemize]{
+Para validar o rechazar esta hip\'otesis se planta el objetivo general que se indica, el cual se divide en 4 objetivos específicos:
 
-\item Generar un modelo de optimizaci\'on para la identificaci\'on de filamentos a partir de un grafo con pesos que representa la red de filamentos.
+\note[itemize]{
+    \item Generar un modelo de optimizaci\'on para la identificaci\'on de filamentos a partir de un grafo con pesos que representa la red de filamentos.
     \item Implementar un algoritmo que resuelva el modelo de optimizaci\'on, entregando como salida la identificaci\'on de filamentos, considerando casos de solapamiento y/o cruce.
     \item Identificar la ponderaci\'on de propiedades que entregue mejores resultados para grafos que representen una neurona, una bacteria y una c\'elula eucariota de planta.
-    \item Evaluar t\'ecnicas que usan s\'olo herramientas de visi\'on por computador \cite{boudaoud2014fibriltool}, basada en poblaci\'on de p\'ixeles, o que utilizan un m\'etodo derivado de contornos activos \cite{xu2015soax}.
-
+    \item Evaluar t\'ecnicas que usan s\'olo herramientas de visi\'on por computador, basada en poblaci\'on de p\'ixeles, o que utilizan un m\'etodo derivado de contornos activos.
 }
 
 \include{ACO}
@@ -389,7 +397,7 @@
     
     \item Se realiza una ponderaci\'on de las propiedades utilizadas en el algoritmo propuesto , la que var\'ia dependiendo del tipo de c\'elula y se encuentra asociado a la distribuci\'on de las caracter\'isticas en las distintas etapas de la metaheur\'istica ACO.
     
-    \item  Las t\'ecnicas indicadas se encuentran descritas en el cap\'itulo \ref{chap:stateoftheart}, y se enfocan en la extracci\'on de informaci\'on geom\'etrica y/o topol\'ogica. Sin embargo no realizan individualizaci\'on de filamentos, por lo que la evaluaci\'on fue dirigida hacia la investigaci\'on que da lugar a DeFiNe, que si realiza este procedimiento, siendo evaluada en el cap\'itulo result.
+    \item  Las t\'ecnicas indicadas se encuentran descritas en el estado del arte, y se enfocan en la extracci\'on de informaci\'on geom\'etrica y/o topol\'ogica. Sin embargo no realizan individualizaci\'on de filamentos, por lo que la evaluaci\'on fue dirigida hacia la investigaci\'on que da lugar a DeFiNe, que si realiza este procedimiento, siendo evaluada en el cap\'itulo result.
 }
 
 % \begin{frame}{Conclusiones}
@@ -399,6 +407,11 @@
 \begin{frame}{Agradecimientos}
     Esta tesis ha sido parcialmente financiada por el Fondo Nacional de Desarrollo Cient\'ifico y Tecnol\'ogico (FONDECYT 1180906 y 1190806) y la ICM (P09-015-F)
 \end{frame}
+
+\note[]{
+Agregar algunos logos?
+
+}
 
 % TITLE PAGE	
 

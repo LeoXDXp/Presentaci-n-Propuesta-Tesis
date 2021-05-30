@@ -5,10 +5,18 @@
     \includegraphics[height=2.5in]{Pictures/ACO-ant.png}
 \end{frame}
 
-\begin{frame}{Hormigas (OE 1)}
-\centering
-\includegraphics[height=2.5in]{Pictures/ACO-ant-2.png}
-\end{frame}
+\note[itemize]{
+    \item Como se mencion\'o previamente, uno de los problemas principales al individualizar filamentos es que se desconoce el comienzo y el final de un filamento al comienzo del problema. 
+    \item As\'i, resulta natural explorar el comportamiento de las hormigas al buscar alimento como inspiraci\'on para individualizar filamentos
+    \item A la izquierda de la imagen, en la letra {\bf a}, se puede observar que una hormiga que sale del hormiguero recorre un camino aleatorio hasta llegar al alimento. En su retorno, por el mismo camino, deposita feromonas para indicarle a otras hormigas por donde fue su recorrido.
+    
+    \item Luego, otras hormigas pueden tomar esta informaci\'on en su propio descubrimiento de un camino hacia el alimento, como se observa el la mitad de la imagen, en {\bf b}
+    
+    \item Finalmente, a la derecha de la imagen, se observa que las hormigas depositan m\'as y m\'as feromonas en el camino m\'as corto entre el hormiguero y el alimento, causando una convergencia sobre un camino \'optimo. Esta convergencia es lo que se define como el ciclo de reforzamiento positivo
+
+}
+
+
 
 \begin{frame}{Modelo de Feromonas (OE 1)}
 \small
@@ -17,7 +25,6 @@
     \item Recorrido aleatorio
     \item Convergencia sobre el camino m\'as corto
     \item Opciones de caminos posibles representan el espacio de b\'usqueda
-    \item Orden no estricto
 \end{itemize}
     \begin{algorithm}[H]
     \SetAlgoLined
@@ -31,44 +38,47 @@
     \end{algorithm}
 \end{frame}
 
-\begin{frame}{Adaptaci\'on de ACO a un problema de satisfacci\'on de restricciones (OE 1)}
-    \begin{itemize}
-        \item Hormigas Sint\'eticas o Agentes
-        %\item Basado en el comportamiento de las hormigas reales
-        \item Entendiendo los caminos posibles a recorrer por las hormigas como un grafo
-        \item Camino $s$ compuesto por aristas o componentes de soluci\'on $c_i$
-        \item Valor de la feromona depositada $\tau_{i}$
-        \item Se pueden agregar restricciones $\Omega$ en el desplazamiento
-    \end{itemize}
+\note[itemize]{
+    \item El comportamiento anterior se puede describir como el modelo de feromonas, 
+    \item Orden no estricto
+}
+
+\begin{frame}{Etapas del Algoritmo Propuesto (OE 1)}
+\centering  
+\includegraphics[height=2.5in]{Pictures/ACOdiagram.png}
 \end{frame}
 
+\note[itemize]{
+    \item Diagrama de las etapas del algoritmo propuesto
+}
+
 %\subsection{Problema de Satisfacci\'on de Restricciones}
-\begin{frame}{ACO aplicado como Problema de Satisfacci\'on de Restricciones (OE 1)}
-  \begin{columns}
-    \begin{column}{0.5\textwidth}
-        \begin{itemize}
-          \item $P = (S, \Omega, F)$
-          % esta definido por un conjunto discreto de variables
-          \item S:  Cjto. de soluciones, compuesto por variables discretas $X_{i}$, $i \in 1 \dotsc n$
-          %\item $S:\quad X = v_{i}^{j} \in D_{i} = \{v_{i}^{1} \dotsc  v_{i}^{|D_{i}|}\}$.
-          \item Sol. Candidata $s \in S$, y $s^{*}$ una soluci\'on \'optima
-          \item Cjto. de Restricciones $\Omega$
-          \item Funci\'on objetivo $F: S\rightarrow \mathbb R_{0}^{+}$
-          %\item  
+% \begin{frame}{ACO aplicado como Problema de Satisfacci\'on de Restricciones (OE 1)}
+%   \begin{columns}
+%     \begin{column}{0.5\textwidth}
+%         \begin{itemize}
+%           \item $P = (S, \Omega, F)$
+%           % esta definido por un conjunto discreto de variables
+%           \item S:  Cjto. de soluciones, compuesto por variables discretas $X_{i}$, $i \in 1 \dotsc n$
+%           %\item $S:\quad X = v_{i}^{j} \in D_{i} = \{v_{i}^{1} \dotsc  v_{i}^{|D_{i}|}\}$.
+%           \item Sol. Candidata $s \in S$, y $s^{*}$ una soluci\'on \'optima
+%           \item Cjto. de Restricciones $\Omega$
+%           \item Funci\'on objetivo $F: S\rightarrow \mathbb R_{0}^{+}$
+%           %\item  
           
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      \begin{itemize}
-          \item $s$ es factible si satisface las restricciones de $\Omega$
-          % y se relacionan mediante 
-          \item Pueden existir m\'ultiples soluciones $s^{*}$
-          \item $S^{*}$ es el conjunto que engloba todas las soluciones \'optimas
-          \item $s^{*} \in S^{*} \subseteq S$
-      \end{itemize}
-    \end{column}
-\end{columns}
-\end{frame}
+%       \end{itemize}
+%     \end{column}
+%     \begin{column}{0.5\textwidth}
+%       \begin{itemize}
+%           \item $s$ es factible si satisface las restricciones de $\Omega$
+%           % y se relacionan mediante 
+%           \item Pueden existir m\'ultiples soluciones $s^{*}$
+%           \item $S^{*}$ es el conjunto que engloba todas las soluciones \'optimas
+%           \item $s^{*} \in S^{*} \subseteq S$
+%       \end{itemize}
+%     \end{column}
+% \end{columns}
+% \end{frame}
 
 
 
@@ -91,35 +101,8 @@
 
 
 \section{Algoritmo Propuesto}
-%\subsection{Inicializaci\'on de Par\'ametros}
-\begin{frame}{Inicializaci\'on de Par\'ametros en ACO (OE 1)}
-    \begin{columns}
-        \hspace{-1cm}
-        \begin{column}{0.45\textwidth}
-            \begin{itemize} \fontsize{10pt}{5}\selectfont
-                \item Umbral $\theta$: 
-                \begin{itemize} \fontsize{10pt}{5}\selectfont
-                    \item $[0, \theta]$
-                    \item $]\theta, Max\_Angle]$
-                \end{itemize}
-                \item Umbral $Max\_Angle$: 
-                \begin{itemize} \fontsize{10pt}{5}\selectfont
-                    \item $max(2.5 \theta, 90\degree)$
-                    \item $\measuredangle (e_{i}, e_{j})> Max\_Angle$
-                \end{itemize}
-                \item Factor {\it Max\_Axial\_Displacement}: Curvatura y Magnitud entre segmentos
-                \item {\it Max\_Score}
-                \item Valor Inicial $\tau_0$
-                \item Criterio de finalizaci\'on de un recorrido
-            \end{itemize}
-        \end{column}
-        \begin{column}{0.55\textwidth}
-        %\vspace{-2cm}
-            \centering
-            \includegraphics[scale=0.55]{Pictures/ant-params.png}
-        \end{column}
-    \end{columns}
-\end{frame}
+
+
 
 %\subsection{Construcci\'on de Soluciones}
 \begin{frame}{ACO: Construcci\'on de Soluci\'on (OE 1)}
@@ -147,32 +130,56 @@
 % \end{enumerate}
 % \end{frame}
 
-\begin{frame}{ACO: Construcci\'on de Soluci\'on, 1ra Arista (OE 1)}
-    \centering
-    \includegraphics[scale=0.5]{Pictures/ant-initial-edge.png}
-    \begin{itemize}
-        \item Heur\'istica de Asignaci\'on Inicial: 3 criterios
-        \item Enfoque en la exploraci\'on del espacio de b\'usqueda
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{ACO: Construcci\'on de Soluci\'on (OE 1)}
-\centering
-\includegraphics[scale=0.35]{Pictures/ACO-ant-Constr-choices.png}
-        \begin{equation}
-P(c_{i} | s^{P}) = \frac
-        {\tau_{i}^{\alpha} ~ \eta_{i}^{\beta}}
-        {\sum\limits_{c_{i}\in N(s^p)}{\tau_{i}^{\alpha} ~ \eta_{i}^{\beta} } }, \forall c_{i} \in N(s^{P}).
-\label{eq:antProbabilities}
-\end{equation}
-\end{frame}
-
-\begin{frame}{ACO: Construcci\'on de Soluci\'on (OE 1)}
-    \centering
-    \includegraphics[scale=0.4]{Pictures/ACO-ant-Constr-choices.png}
+\begin{frame}{ACO: Construcci\'on de Soluci\'on, Asignaci\'on de 1ra Arista (OE 1)}
     \begin{columns}
         \begin{column}{0.35\textwidth}
             \begin{itemize}
+                \item Heur\'istica de Asignaci\'on Inicial: \begin{enumerate}
+                    \item Arista con un nodo grado 1
+                    \item Aristas en intersecciones
+                    \item Arista aleatoria
+                \end{enumerate}
+                
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.65\textwidth}
+            \centering
+            \includegraphics[scale=0.5]{Pictures/ant-initial-edge.png}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\note[itemize]{
+    \item Al comenzar, se debe asignar una arista. Para esto, se propone una heur\'istica que consta de 3 criterios. El enfoque de estos criterios se centra en la exploraci\'on del espacio de b\'usqueda
+    \item El primer criterio busca asignar aristas que esten en el borde del grafo
+    
+    \item De no existir m\'as aristas como las del 1er criterio, se buscan aristas que se encuentren en intersecciones, es decir que tengan uno de sus nodos con grado 2 o superior, y que el angulo que formen las aristas que comparten aquel nodo este en el rango intermedio definido previamente. Esto debido a que en varios tipos de filamentos hay casos en que los filamentos no nacen s\'olo del borde, sino tambi\'en a partir de otros filamentos.
+    
+    \item Como criterio final, se elige una arista al azar, privilegiando las aristas que no son parte de un camino ya evaluado como de buena calidad.
+
+}
+
+
+\begin{frame}{ACO: Construcci\'on de Soluci\'on (OE 1)}
+    \begin{columns}
+        \begin{column}{0.7\textwidth}
+            \centering
+            \includegraphics[scale=0.4]{Pictures/ACO-ant-Constr-choices.png}
+        \end{column}
+        \begin{column}{0.3\textwidth}
+            \begin{equation}
+            P(c_{i} | s^{P}) = \frac
+            {\tau_{i} ~ \eta_{i}}
+            {\sum\limits_{c_{j}\in N(s^p)}{\tau_{j} ~ \eta_{j} } } %, \forall c_{i} \in N(s^{P}).
+            \label{eq:antProbabilities}
+            \end{equation}
+        \end{column}
+    \end{columns}
+
+    \begin{columns}
+        \begin{column}{0.35\textwidth}
+            \begin{itemize}
+                \item Calidad $\sim$ Funci\'on Objetivo 
                 \item Calidad $s^{P}_1$ = $\sum \eta_{i}$
                 \item Calidad $s_1$ = $\frac{1}{n}\sum \eta_{i} $
             \end{itemize}
@@ -185,8 +192,14 @@ P(c_{i} | s^{P}) = \frac
             \end{itemize}
         \end{column}
     \end{columns}
-
 \end{frame}
+
+\note[itemize]{
+    \item Para evaluar la construcci\'on del camino, se suman los valores de la heur\'istica miope de cada arista seleccionada.
+    
+    As\'i, al referirnos a la calidad de una soluci\'on, nos referimos al valor entregado por la funci\'on objetivo. Se busca maximizar la funci\'on objetivo. 
+
+}
 
 %\subsection{M\'etodo de b\'usqueda no local}
 \begin{frame}{B\'usqueda no local: l\'ogicas globales/centralizadas (OE 1)}
@@ -212,26 +225,39 @@ P(c_{i} | s^{P}) = \frac
     \end{columns}
 \end{frame}
 
-\begin{frame}{ACO: Actualizaci\'on de Feromonas (OE 1)}
-\centering
-\includegraphics[scale=0.4]{Pictures/ACO-ant-ferom.png}
-\begin{itemize}
-    \item Evaluaci\'on de factiblidad de soluciones candidatas $s \in S$
-    \item Premiar los caminos de buena calidad
-    \item Prop\'osito: Convergencia sobre un camino \'optimo
-\end{itemize}
-\end{frame}
+\note[itemize]{
+    \item La b\'usqueda de soluciones de cada hormiga puede llevar a que dos o m\'as hormigas encuentren soluciones que son muy similares, repitiendo informaci\'on.
+
+}
+
+% \begin{frame}{ACO: Actualizaci\'on de Feromonas (OE 1)}
+% \centering
+% \includegraphics[scale=0.4]{Pictures/ACO-ant-ferom.png}
+% \begin{itemize}
+%     
+% \end{itemize}
+% \end{frame}
 
 
 %\subsection{Anti-feromonas}
-\begin{frame}{Anti-feromonas SAP (OE 1)}
-\centering
-\includegraphics[scale=0.4]{Pictures/ACO-ant-ferom-penalize.png}
-    \begin{itemize}
-        \item Cambio: $\tau_0 \longrightarrow \gamma$
-        \item $\gamma$ es un factor penaliza los caminos de mala calidad
-        \item 2 penalizaciones $\longrightarrow \tau_i = 0$ 
-    \end{itemize}
+\begin{frame}{ACO: Actualizaci\'on de feronomas, uso de Anti-feromonas SAP (OE 1)}
+    \centering
+    \includegraphics[scale=0.4]{Pictures/ACO-ant-ferom-penalize.png}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \item Evaluaci\'on de factiblidad de soluciones candidatas $s \in S$
+            \item Premiar los caminos de buena calidad
+            \item Prop\'osito: Convergencia sobre un camino \'optimo
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item Cambio: $\tau_0 \longrightarrow \gamma$
+                \item $\gamma$ es un factor penaliza los caminos de mala calidad
+                \item 2 penalizaciones $\longrightarrow \tau_i = 0$ 
+            \end{itemize}
+        \end{column}
+    \end{columns}
+    
 \end{frame}
 
 \begin{frame}{Problema de Anti-feromonas SAP (OE 1)}

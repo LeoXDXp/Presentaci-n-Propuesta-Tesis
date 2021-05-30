@@ -1,6 +1,63 @@
 \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
 \section{Anexo}
 
+\begin{frame}{Inicializaci\'on de Par\'ametros en ACO (OE 1)}
+    \begin{columns}
+        \hspace{-1cm}
+        \begin{column}{0.4\textwidth}
+            \begin{enumerate}[A)] \fontsize{10pt}{5}\selectfont
+                \item Umbrales $\theta$ y $Max\_Angle$ 
+                \begin{enumerate}[1]\fontsize{10pt}{5}\selectfont
+                    \item $[0, \theta]$
+                    \item $]\theta, Max\_Angle]$
+                    \item $ > Max\_Angle$
+                \end{enumerate}
+                % \begin{itemize} \fontsize{10pt}{5}\selectfont
+                %     \item $max(2.5 \theta, 90\degree)$
+                %     \item $\measuredangle (e_{i}, e_{j})> Max\_Angle$
+                % \end{itemize}
+                \item Factor {\it Max\_Axial\_Displacement}: Curvatura y Magnitud entre segmentos
+                %\item {\it Max\_Score}
+                %\item Valor Inicial $\tau_0$
+                \item Criterio de finalizaci\'on de un recorrido
+            \end{enumerate}
+        \end{column}
+        \begin{column}{0.25\textwidth}
+            \centering
+            \begin{figure}
+                %\centering
+                \includegraphics[scale=0.55]{Pictures/ant-params-1.png}
+                \caption{Caso A1}
+            \end{figure}
+            \vspace{0.1cm}
+            \begin{figure}
+                %\centering
+                \includegraphics[scale=0.55]{Pictures/ant-params-2.png}
+                \caption{Caso A2}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.25\textwidth}
+            \begin{figure}
+                 \centering
+                 \includegraphics[scale=0.55]{Pictures/ant-params-3.png}
+                 \caption{Caso B}
+             \end{figure}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\note[itemize]{
+    \item Es necesario definir inicialmente 2 umbrales, el umbral teta y el umbral max angle. Estos umbrales nos definen 3 rangos. En estos rangos se clasifica el \'angulo que forman 2 aristas entre s\'i. Si el \'angulo pertenece al primer rango, se sabe con certeza que ambas aristas pertenecen al mismo filamento. As\'i, estas 2 aristas pertenecen al mismo trozo o segmento de filamento, definido como seg.
+    
+    
+    Por otra parte, si este \'angulo es mayor que el umbra Max Angle, se tiene certeza que ambas aristas no pertenecen al mismo filamento. 
+    \item Dado que al utilizar un grafo que no considera la curvatura en el c\'alculo de \'angulos, es posible perder informaci\'on, por lo que los filamentos que tengan aristas cuyos \'angulos pertenezcan al segundo 2do rango , necesitan de an\'alis adicional para determinar si se descartan o no.
+    
+    
+    \item Otro elemento a considerar es el Factor Max Axial Displacement, el que es utilizado para otorgar flexibilidad a la evaluaci\'on adicional mencionada previamente, influyendo en la evaliaci\'on de la curvatura de un filamento, as\'i como en la magnitud entre segmentos1
+
+}
+
 \begin{frame}{Heur\'istica Miope}
     \begin{equation}%\fontsize{9pt}{7.2}\selectfont
     \eta_{ij} = 
