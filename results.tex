@@ -1,77 +1,44 @@
 \section{Resultados}
 
-\begin{frame}{Implementaci\'on del Algoritmo Propuesto (OE 2)}
-    \begin{itemize}
-        \item Pre y post procesamiento de resultados en {\tt Python}: 
-        \begin{itemize}
-            \item Pre: Extracci\'on de un grafo (JSON), a partir de una imagen (PNG),  mediante {\tt sknw}/{\tt NetworkX}
-            \item Post: Visualizaci\'on de resultados
-        \end{itemize}
-        
-        \item Algoritmo Propuesto en {\tt C++}. Par\'ametros de entrada:
-        \begin{itemize}
-            \item Imagen a analizar (PNG) y el grafo (JSON)
-            \item Tipo de c\'elula
-            \item Color del fondo/segundo plano
-            \item Opcionales: Nivel de debugging
-        \end{itemize}
-        
-        
-    \end{itemize}
-\end{frame}
+
 
 \begin{frame}{Metodolog\'ia}
 \begin{itemize}
-    \item M\'etricas y Medidas: VI, \'Indice Rand, \'Indice Jaccard
-    \item {\it Precision}, {\it Recall}, F1/F-Measure
-    \item N$\degree$ Filamentos Propuestos vs {\it Ground Truth}
-    \item N$\degree$ Filamentos Correctos vs {\it Ground Truth}
-    \item Promedio de 5 Iteraciones del algoritmo propuesto, con distinta semillas
-    \item 8 Im\'agenes: 2 Sint\'eticas, 3 de Microt\'ubulos en {\it Arabidopsis Marchantia} y 3 de neuronas de rat\'on
+    \item Par\'ametros principales de las configuraciones utilizadas:
+        \begin{itemize}
+            \item $\theta$
+            \item $Max\_Axial\_Displacement$
+            \item Uso de 1 o 3 pasos de la heur\'istica de asignaci\'on inicial
+        \end{itemize}
+    
+    \item 12 Im\'agenes: 2 Sint\'eticas, 7 de Microt\'ubulos en {\it Arabidopsis Marchantia} y 3 de neuronas de rat\'on
+    \begin{itemize}
+        \item Caso evaluado por 2 expertos
+    \end{itemize}
+    
+    %\item M\'etricas y Medidas:  VI, \'Indice Rand, \'Indice Jaccard
+    \item Evaluaci\'on de:
+        \begin{itemize}
+            \item {\it Precision}, {\it Recall}, F1/F-Measure
+            \item N$\degree$ filamentos propuestos y correctos vs {\it ground truth}
+        \end{itemize}
 \end{itemize}
 \end{frame}
 
 \note[itemize]{
-    \item Funci\'on F1 o F-measure que pondera los resultados de precision y recall
-
+    \item Dentro de los par\'ametros disponibles para personalizar el algoritmo propuesto, los principales par\'ametros utilizados en las pruebas fueron el umbral theta, el par\'ametro max axial displacement y el uso parcial o total de la heurística de asignación inicial
+    \item Estos par\'ametros fueron los que mostraron mayor impacto en los resultados
+    \item Las pruebas consideraron un total de 12 imágenes entre sint\'eticas y reales, con una imagen de microtúbulo de planta siendo evaluada por 2 expertos.
+    \item La evaluaci\'on se centra en el n\'umero de filamentos propuestos o correctos que indica el algoritmo propuesto. Esta informaci\'on se complementa con las medidas de precision y recall.
+    
+    \item (SKIP) N$\degree$ Filamentos Propuestos y Correctos vs {\it Ground Truth}
+    
+    \item El resultado de la individualización de filamentos para cada imagen, consiste en el promedio de 10 Iteraciones del algoritmo propuesto, cambiando en cada ocasión la semilla con la finalidad de explorar el espacio de b\'usqueda desde distintas partes.
 }
 
-\begin{frame}{Par\'ametros del Algoritmo Propuesto (AP) (OE 3)}
-    \centering
-    \resizebox{\textwidth}{!}{
-    %\centering
-    \begin{tabular}{|c|c|c|c|c|}
-        \hline
-        & 
-        & 
-        \multirow{4}{1.5cm}{\it Max Axial Displ.} & \multirow{4}{1.5cm}{Permite Superposici\'on} &
-        \multirow{4}{2cm}{Aplica Heur\'istica Asignaci\'on Completa}\\
-        \diagbox[width=10em]{C\'elula}{Par\'ametro} & 
-        $\theta$ & & &\\
-        & & & &\\
-         \hline
-        Neurona (AP N) & 45\textdegree & 2 & Si & No\\
-        MT Planta (AP MT-P) & 30\textdegree & 1.5 & Si & Si\\
-        MT Animal (AP MT-A) & 60\textdegree & 2.5 & Si & Si\\
-        Sint\'etico (AP S) & 45\textdegree & 1.5 & Si & No \\
-        \hline
-    \end{tabular}
-}
-\end{frame}
 
-\begin{frame}{Ponderaci\'on de los par\'ametros (OE 3)}
 
-    \begin{itemize}%\fontsize{9pt}{12}\selectfont
-    \item No es posible utilizar un \'unico par\'ametro para obtener una ponderaci\'on directa
-    \item Construcci\'on de soluciones: $\frac{100}{n}$\% el grado de los nodos, y el remanente para el \'angulo entre aristas, con $n$ como el n\'umero de aristas.
-    \item M\'etodo de b\'usqueda no local: 100\% posici\'on de la arista.
-    \item Actualizaci\'on de feromonas: 
-    \begin{itemize}%\fontsize{9pt}{12}\selectfont
-        \item Caso General: 50\% curvatura, 50\% diferencia de magnitud entre segmentos
-        \item Neuronas: $33.\overline{3}\%$ curvatura, $33.\overline{3}\%$ diferencia de magnitud entre segmentos y $33.\overline{3}\%$ informaci\'on topol\'ogica de centralidad.
-    \end{itemize}
-\end{itemize}
-\end{frame}
+
 
 % \begin{frame}{Im\'agenes Sint\'eticas}
 
@@ -261,22 +228,29 @@
 \end{frame}
 
 \begin{frame}{Resultados Generales (OE 4)}
-\resizebox{\textwidth}{!}{
-    \begin{tabular}{|c|c|c|c|c|c|}
+\resizebox{\textwidth}{3.1cm}{
+    \begin{tabular}{|c|c|c|c|c|}
         \hline
-        & &                 Filamentos & Promedio Filamentos & Distribuci\'on &   \\
-        Figura & Configuraci\'on & Correctos & Propuestos 10 Iters & Normal & $p$-value  \\ \hline
-         4.1 & S1  & 6 & 5.9 & No & {\bf 1} \\
-         4.2 & S2 & 5 & 8.5 & No & 0.003\\
-         4.3 & MT-P & 12 & 12.4 & No & {\bf 0.125}\\
-         4.4 & MT-P & 12 & 15 & Si & 0\\
-         4.5 & MT-P & 5 & 5 & No & {\bf 1}\\
-         4.6 & N & 24 & 60.2 & Si & 0\\
-         4.7 & N & 29 & 34.3 & Si & 0\\
-         4.8 & N & 14 & 17.6 & No & 0.003\\ \hline
+        Figura & Config. & Fil. Correctos & Fil. Propuestos & $p$-value  \\ \hline
+         4.1 & S1  & 6 & 5.9 & {\bf 1} \\
+         4.2 & S2 & 5 & 8.5 & 0.003\\
+         4.3 & MtP & 12 & 12.4 & {\bf 0.125}\\
+         4.4 & MtP & 12 & 15 & 0\\
+         4.5 & MtP & 5 & 5 & {\bf 1}\\
+         4.6 & N & 24 & 60.2 & 0\\
+         4.7 & N & 29 & 34.3 & 0\\
+         4.8 & N & 14 & 17.6 & 0.003\\ 
+         5.3b & MtP & 19 & 21 & 0.001\\
+         5.3c & MtP & 23 & 29.4 & 0 \\
+         5.9a & MtP & 13 & 14 & 0.001\\
+         5.10a & MtP & 12 & 13.1 & 0\\
+         \hline
     \end{tabular}
 }
-    % \begin{itemize}
-    %     \item Comparaci\'on de conjuntos ofrece menos claridad que comparaci\'on por clasificaci\'on
-    % \end{itemize}
 \end{frame}
+
+\note[itemize]{
+    \item El hecho que el algoritmo propuesto no tenga diferencias estadísticamente significativas en 3 de las pruebas, as\'i como que presente un n\'umero de filamentos propuestos cercano a lo indicado por un experto en la mayor\'ia de los casos representa la capacidad del algoritmo de acotar el espacio de b\'usqueda de forma eficiente
+    
+    \item Es relevante destacar que la configuraci\'on predefinida para neuronas o para microt\'ubulos de planta no ha sido ajustada o sintonizada. Es probable que con una sintonización de par\'ametros, los resultados mejoren.
+}

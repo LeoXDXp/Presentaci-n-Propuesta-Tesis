@@ -45,7 +45,7 @@
 
 \begin{frame}{Etapas del Algoritmo Propuesto (OE 1)}
 \centering  
-\includegraphics[height=2.5in]{Pictures/ACOdiagram.png}
+\includegraphics[height=2.8in]{Pictures/ACOdiagram.png}
 \end{frame}
 
 \note[itemize]{
@@ -102,17 +102,34 @@
 
 \section{Algoritmo Propuesto}
 
-
+\begin{frame}{ACO: Construcci\'on de Soluci\'on, Asignaci\'on de 1ra Arista (OE 1)}
+    \begin{columns}
+        \begin{column}{0.3\textwidth}
+            \begin{itemize}
+                \item Heur\'istica de Asignaci\'on Inicial: \begin{enumerate}
+                    \item Arista con un nodo grado 1
+                    \item Aristas en intersecciones
+                    \item Arista aleatoria
+                \end{enumerate}
+                
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.7\textwidth}
+            \centering
+            \includegraphics[scale=0.5]{Pictures/ant-initial-edge.png}
+        \end{column}
+    \end{columns}
+\end{frame}
 
 %\subsection{Construcci\'on de Soluciones}
-\begin{frame}{ACO: Construcci\'on de Soluci\'on (OE 1)}
-\centering
-\includegraphics[scale=0.4]{Pictures/ACO-ant-Constr.png}
-\begin{itemize}
-    \item Influencia de feromonas $\tau$ y de una heur\'istica $\eta$ en la elecci\'on de Aristas/Componentes $c_i$ que respeten restricciones en $\Omega$
-    \item Aspecto aleatorio en la elecci\'on
-\end{itemize}
-\end{frame}
+% \begin{frame}{ACO: Construcci\'on de Soluci\'on (OE 1)}
+% \centering
+% \includegraphics[scale=0.4]{Pictures/ACO-ant-Constr.png}
+% \begin{itemize}
+%     \item Influencia de feromonas $\tau$ y de una heur\'istica $\eta$ en la elecci\'on de Aristas/Componentes $c_i$ que respeten restricciones en $\Omega$
+%     \item Aspecto aleatorio en la elecci\'on
+% \end{itemize}
+% \end{frame}
 
 % \begin{frame}{ACO: Heur\'istica de Asignaci\'on Inicial}
 % \begin{enumerate}
@@ -130,24 +147,7 @@
 % \end{enumerate}
 % \end{frame}
 
-\begin{frame}{ACO: Construcci\'on de Soluci\'on, Asignaci\'on de 1ra Arista (OE 1)}
-    \begin{columns}
-        \begin{column}{0.35\textwidth}
-            \begin{itemize}
-                \item Heur\'istica de Asignaci\'on Inicial: \begin{enumerate}
-                    \item Arista con un nodo grado 1
-                    \item Aristas en intersecciones
-                    \item Arista aleatoria
-                \end{enumerate}
-                
-            \end{itemize}
-        \end{column}
-        \begin{column}{0.65\textwidth}
-            \centering
-            \includegraphics[scale=0.5]{Pictures/ant-initial-edge.png}
-        \end{column}
-    \end{columns}
-\end{frame}
+
 
 \note[itemize]{
     \item Al comenzar, se debe asignar una arista. Para esto, se propone una heur\'istica que consta de 3 criterios. El enfoque de estos criterios se centra en la exploraci\'on del espacio de b\'usqueda
@@ -156,17 +156,21 @@
     \item De no existir m\'as aristas como las del 1er criterio, se buscan aristas que se encuentren en intersecciones, es decir que tengan uno de sus nodos con grado 2 o superior, y que el angulo que formen las aristas que comparten aquel nodo este en el rango intermedio definido previamente. Esto debido a que en varios tipos de filamentos hay casos en que los filamentos no nacen s\'olo del borde, sino tambi\'en a partir de otros filamentos.
     
     \item Como criterio final, se elige una arista al azar, privilegiando las aristas que no son parte de un camino ya evaluado como de buena calidad.
+    
+    \item Influencia de feromonas $\tau$ y de una heur\'istica $\eta$ en la elecci\'on de Aristas/Componentes $c_i$ que respeten restricciones en $\Omega$
+    \item Aspecto aleatorio en la elecci\'on
 
 }
 
 
 \begin{frame}{ACO: Construcci\'on de Soluci\'on (OE 1)}
     \begin{columns}
-        \begin{column}{0.7\textwidth}
+        \begin{column}{0.65\textwidth}
             \centering
             \includegraphics[scale=0.4]{Pictures/ACO-ant-Constr-choices.png}
         \end{column}
-        \begin{column}{0.3\textwidth}
+        \begin{column}{0.35\textwidth}
+        \small
             \begin{equation}
             P(c_{i} | s^{P}) = \frac
             {\tau_{i} ~ \eta_{i}}
@@ -245,12 +249,16 @@
     \includegraphics[scale=0.4]{Pictures/ACO-ant-ferom-penalize.png}
     \begin{columns}
         \begin{column}{0.5\textwidth}
-            \item Evaluaci\'on de factiblidad de soluciones candidatas $s \in S$
-            \item Premiar los caminos de buena calidad
-            \item Prop\'osito: Convergencia sobre un camino \'optimo
+            \begin{itemize}
+            \small
+                \item Evaluaci\'on de factiblidad de soluciones candidatas $s \in S$
+                \item Feronomonas: premiar los caminos de buena calidad para lograr onvergencia sobre un camino \'optimo
+                
+            \end{itemize}
         \end{column}
         \begin{column}{0.5\textwidth}
             \begin{itemize}
+            \small
                 \item Cambio: $\tau_0 \longrightarrow \gamma$
                 \item $\gamma$ es un factor penaliza los caminos de mala calidad
                 \item 2 penalizaciones $\longrightarrow \tau_i = 0$ 
@@ -275,15 +283,6 @@
 \end{frame}
 
 
-\begin{frame}{Extensi\'on de Anti-feromonas sobre un segmento (OE 1)}
-    \centering
-    \includegraphics[scale=0.4]{Pictures/ant_segments_simple_case.png}
-    \begin{itemize}
-        \item Cada arista del segmento forma un \'angulo en el rango $[0, \theta]$ con sus vecinos
-        \item Penalizaci\'on de $e_3$ se asocia al $seg^{b}_{1}$, sin perjudicar otros caminos que pasen por $e_3$ pero no por el segmento $seg^{b}_{1}$.
-    \end{itemize}
-\end{frame}
-
 % \begin{frame}{Anti-feromonas sobre un segmento de una sola arista (OE 1)}
 %     \centering
 %     \includegraphics[height=2in]{Pictures/ant_segments_complex_case_B2.png}
@@ -303,13 +302,18 @@
 % \end{frame}
 
 %\subsection{Criterios para la Actualizaci\'on de Anti-feromonas}
-\begin{frame}{Anti-feromonas sobre soluciones de calidad intermedia (OE 1)}
-\begin{itemize}
+\begin{frame}{Criterios de Anti-feromonas sobre soluciones de calidad intermedia (OE 1)}
+\begin{enumerate}
+    
     \item Curvatura de una soluci\'on
     \item Magnitud de desplazamiento entre segmentos
     \item Criterio espec\'ifico para neuronas
-\end{itemize}
+\end{enumerate}
 \end{frame}
+
+\note[itemize]{
+    \item Los 2 primeros criterios se relacionan a la rigidez que presenta un filamento, el que varía dependiendo de la estructura observada. 
+}
 
 \begin{frame}{Curvatura de una soluci\'on (OE 1)}
 \centering
@@ -318,6 +322,11 @@
         \item El \'angulo entre la proyecci\'on de $\Vec{p}$ y $\Vec{q}$ debe ser menor a $\theta \times Max\_Axial\_Displacement$ para no descartar la soluci\'on.
     \end{itemize}
 \end{frame}
+
+\note[itemize]{
+\item una soluci\'on como la destacada en color naranja se puede calificar como una soluci\'on infactible debido a su pronunciada curvatura, lo que no es normal de observar en los filamentos. 
+\item As\'i, el c\'alculo de esta curvatura corresponde al \'angulo formado entre el vector q y la proyecci\'on del vector p. Este \'angulo debe respetar el umbral que define la multiplicaci\'on de los par\'ametros theta y Max axial displacement
+}
 
 \begin{frame}{Magnitud de desplazamiento entre segmentos (OE 1)}
     \centering
@@ -329,6 +338,10 @@
         \item Comportamiento esperado de la rigidez permite descartar soluciones con cambios demasiado pronunciados entre sus segmentos
     \end{itemize}
 \end{frame}
+
+\note[itemize]{
+\item 
+}
 
 %%\subsection{Extracci\'on de informaci\'on para individualizar filamentos}
 \begin{frame}{Criterio espec\'ifico para neuronas (OE 1)}

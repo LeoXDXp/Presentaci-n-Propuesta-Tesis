@@ -71,6 +71,43 @@
     \end{equation}    
 \end{frame}
 
+\begin{frame}{Ponderaci\'on de los par\'ametros (OE 3)}
+
+    \begin{itemize}%\fontsize{9pt}{12}\selectfont
+    \item No es posible utilizar un \'unico par\'ametro para obtener una ponderaci\'on directa
+    \item Construcci\'on de soluciones: $\frac{100}{n}$\% el grado de los nodos, y el remanente para el \'angulo entre aristas, con $n$ como el n\'umero de aristas.
+    \item M\'etodo de b\'usqueda no local: 100\% posici\'on de la arista.
+    \item Actualizaci\'on de feromonas: 
+    \begin{itemize}%\fontsize{9pt}{12}\selectfont
+        \item Caso General: 50\% curvatura, 50\% diferencia de magnitud entre segmentos
+        \item Neuronas: $33.\overline{3}\%$ curvatura, $33.\overline{3}\%$ diferencia de magnitud entre segmentos y $33.\overline{3}\%$ informaci\'on topol\'ogica de centralidad.
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Par\'ametros del Algoritmo Propuesto (AP) (OE 3)}
+    \centering
+    \resizebox{\textwidth}{!}{
+    %\centering
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        & 
+        & 
+        \multirow{4}{1.5cm}{\it Max Axial Displ.} & \multirow{4}{1.5cm}{Permite Superposici\'on} &
+        \multirow{4}{2cm}{Aplica Heur\'istica Asignaci\'on Completa}\\
+        \diagbox[width=10em]{C\'elula}{Par\'ametro} & 
+        $\theta$ & & &\\
+        & & & &\\
+         \hline
+        Neurona (AP N) & 45\textdegree & 2 & Si & No\\
+        MT Planta (AP MT-P) & 30\textdegree & 1.5 & Si & Si\\
+        MT Animal (AP MT-A) & 60\textdegree & 2.5 & Si & Si\\
+        Sint\'etico (AP S) & 45\textdegree & 1.5 & Si & No \\
+        \hline
+    \end{tabular}
+}
+\end{frame}
+
 \begin{frame}{VI, \'Indice Rand e \'Indice Jaccard}
 \resizebox{\textwidth}{!}{
     \begin{tabular}{|c|c|c|c|c|c|}
@@ -89,6 +126,35 @@
     \end{tabular}
     %\caption{VI $\in [0, VI\_Max]$, Rand y Jaccard $\in [0, 1]$ }
 }
+\end{frame}
+
+\begin{frame}{Extensi\'on de Anti-feromonas sobre un segmento (OE 1)}
+    \centering
+    \includegraphics[scale=0.4]{Pictures/ant_segments_simple_case.png}
+    \begin{itemize}
+        \item Cada arista del segmento forma un \'angulo en el rango $[0, \theta]$ con sus vecinos
+        \item Penalizaci\'on de $e_3$ se asocia al $seg^{b}_{1}$, sin perjudicar otros caminos que pasen por $e_3$ pero no por el segmento $seg^{b}_{1}$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Implementaci\'on del Algoritmo Propuesto (OE 2)}
+    \begin{itemize}
+        \item Pre y post procesamiento de resultados en {\tt Python}: 
+        \begin{itemize}
+            \item Pre: Extracci\'on de un grafo (JSON), a partir de una imagen (PNG),  mediante {\tt sknw}/{\tt NetworkX}
+            \item Post: Visualizaci\'on de resultados
+        \end{itemize}
+        
+        \item Algoritmo Propuesto en {\tt C++}. Par\'ametros de entrada:
+        \begin{itemize}
+            \item Imagen a analizar (PNG) y el grafo (JSON)
+            \item Tipo de c\'elula
+            \item Color del fondo/segundo plano
+            \item Opcionales: Nivel de debugging
+        \end{itemize}
+        
+        
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{VI, \'Indice Rand e \'Indice Jaccard}
