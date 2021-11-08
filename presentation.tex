@@ -96,10 +96,11 @@
 
 \note[itemize]{
 \item El inter\'es por el estudio de filamentos se debe en parte a que este tipo de estructuras alargadas se encuentran de forma ubicua en la naturaleza.
-\item En particular, las estructuras alargadas que llamaremos filamentos contienen informaci\'on con respecto al elemento donde se ubican.
+\item En particular, las estructuras alargadas que llamaremos filamentos contienen informaci\'on con respecto al elemento donde se ubican. 2 ejemplos de filamentos se pueden observar en las imágenes en la parte superior de la presentación, teniendo en la imagen de la izquierda filamentos a un nivel celular, mientras que en la imagen a la derecha podemos observar filamentos en el sol.
 \item En este trabajo el enfoque se centra alrededor de filamentos observables a trav\'es de imagenes de microscop\'ia, cuyas caracter\'isticas y comportamientos, ya sea de un solo filamento o de un grupo de estos, puede develar informaci\'on relevante respecto del ambiente o del interior de la c\'elula donde se observa.
 
-\item Al observar filamentos en c\'elulas es esperable enfrentar situaciones asociadas a la observaci\'on de microscop\'ia como lo es la existencia de ruido en la imagen observada, as\'i como tambi\'en el problema asociado al tama\~no de estos filamentos, lo que se relaciona a la necesidad de contar con im\'agenes de alta resoluci\'on para la observaci\'on de los filamentos. Para hacerse una idea, uno de los tipos de filamentos que se utilizan en esta trabajo son los microt\'ubulos, cuyo tamaño es de 25 nanometros.
+\item Al observar filamentos en c\'elulas es esperable enfrentar situaciones asociadas a la observaci\'on de microscop\'ia como lo es la existencia de ruido en la imagen observada, as\'i como tambi\'en el problema asociado al tama\~no de estos filamentos, lo que se relaciona a la necesidad de contar con im\'agenes de alta resoluci\'on para la observaci\'on de los filamentos. Para hacerse una idea, uno de los tipos de filamentos que se utilizan en esta trabajo son los microt\'ubulos, cuyo tamaño es de 25 nanómetros.
+/item En cuanto a la resolución (pasar a sgte slide)
 
 }
 
@@ -109,21 +110,31 @@
         \centering
         \includegraphics[scale=0.5]{Pictures/NoConsenso.png}
     \end{column}
+    \hspace{-1.5cm}
     \begin{column}{0.2\textwidth}
-        \includegraphics[scale=0.5]{Pictures/NoConsenso2.png}
+        \begin{figure}
+            %\centering
+            \includegraphics[scale=0.5]{Pictures/NoConsenso2.png}
+            \caption{Secci\'on resaltada en rojo}
+            %\label{fig:my_label}
+        \end{figure}
     \end{column}
     \begin{column}{0.2\textwidth}
         \includegraphics[scale=0.5]{Pictures/NoConsenso3.png}
         \vspace{0.5cm}
         \includegraphics[scale=0.5]{Pictures/NoConsenso4.png}
     \end{column}
+    \hspace{-1cm}
     \begin{column}{0.2\textwidth}
+    Opci\'on 1 \\
+    \vspace{1.5cm}
+    Opci\'on 2
     \end{column}
 \end{columns}
 \end{frame}
 
 \note[itemize]{
-    \item Mediante la imagen a la izquierda, podemos destacar el problema de la resoluci\'on que existe en la observaci\'on mediante microscop\'ia \'optica, donde la cota m\'axima de resoluci\'on es el l\'imite de difracci\'on, denominando $\lambda/2$, Donde $\lambda$ es la longitud de onda de la luz utilizada (o color).
+    \item (cont) es posible destacar en la imagen a la izquierda de esta vista, el problema que existe en la observaci\'on mediante microscop\'ia \'optica, donde la cota m\'axima de resoluci\'on es el l\'imite de difracci\'on, denominando $\lambda/2$, Donde $\lambda$ es la longitud de onda de la luz utilizada (o color).
     
     \item Este l\'imite establece que 2 objetos cuya distancia sea inferior a $\lambda/2$ no pueden ser diferenciados. El impacto de lo anterior se puede reflejar al solicitarle a dos expertos realizar una individualizaci\'on de filamentos como los que se encuentran en la secci\'on roja, la que se ve magnificada en la imagen central. Es en esta situaci\'on donde ambos expertos pueden divergir en lo que identifican como filamentos. Las imágenes a la derecha reflejan las opciones posibles de filamentos en el ejemplo.
     
@@ -143,13 +154,11 @@
 \end{frame}
 
 \note[itemize]{
-    \item As\'i, adem\'as de lo anterior, existen elementos adicionales que definen la base de para realizar la individualizaci\'on de filamentos en imagenes de microscop\'ia.
-    
-    \item Como mencionamos, esta el l\'imite de resoluci\'on y el ruido existente en una imagen
+    \item As\'i, en conjunto con el l\'imite de resoluci\'on y el ruido existente en una imagen, también es necesario considerar al menos dos elementos adicionales para definir la dificultad del problema de individualizar filamentos en imagenes de microscop\'ia:
     
     \item A partir de una imagen puede resultar complejo identificar donde comienza y termina una filamento. En esta l\'inea, influye en parte la resoluci\'on as\'i como la informaci\'on conocida sobre el comportamiento del filamento.
     
-    \item Dependiendo del filamento observado, el criterio de un experto puede basarse en aspectos geométricos o utilizar otras caracter\'isticas. Sin embargo, estos criterios por si solos no permiten siempre dirimir de forma clara situaciones como la presentada en la slide anterior.
+    \item Dependiendo del filamento observado, el criterio de un experto puede fundamentarse en aspectos geométricos o utilizar otras caracter\'isticas. Sin embargo, estos criterios por si solos no permiten siempre dirimir de forma clara situaciones como la presentada en la slide anterior.
     
     %el 1er punto dificulta bastante el utilizar herramientas o m\'etodos conocidos para recorrer caminos
     
@@ -165,10 +174,11 @@
 \note[itemize]{
     \item En base a lo encontrado en la literatura, podemos agrupar en 2 familias de m\'etodos las t\'ecnicas que se aplican sobre la imagen de microscop\'ia.
     
-    \item El primer grupo se basa en el procesamiento de im\'agenes de bajo nivel, logrando obtener informaci\'on de caracter geometrico o topol\'ogico, enfocandose en an\'alisis a nivel de p\'ixeles.
+    \item El primer grupo se basa en el procesamiento de im\'agenes de bajo nivel, logrando obtener informaci\'on de caracter geometrico o topol\'ogico, enfocandose en el an\'alisis a nivel de p\'ixeles. La principal critica a estos métodos radica en la tendencia a un alto número de parámetros a configurar.
     
-    \item El segundo grupo adem\'as de utilizar la imagen inicial, aplicando filtros de bajo nivel, se basa en la optimizaci\'on con el propósito de obtener informaci\'on adicional que permita construir un grafo que represente al conjunto o red de filamentos, o que permita individualizar filamentos. Ambos casos utilizan la optimizaci\'on debido a que la complejidad al intentar obtener caracter\'isticas cuantitativas que describan el comportamiento de los filamentos observados.
+    \item El segundo grupo de métodos, adem\'as de utilizar la imagen inicial aplicando filtros de bajo nivel, se basa en la optimizaci\'on con el propósito de obtener informaci\'on adicional a la que se obtiene con el primer grupo. En particular, el uso de funciones de optimización responde a la necesidad de analizar combinaciones de opciones para construir una representación de una red de filamentos, o para la individualización de estos. Así, la información adicional obtenida representa caracter\'isticas cuantitativas que describen el comportamiento de los filamentos.
     
+    \item Del 2do grupo de métodos, destacamos la investigación que da pie a la herramienta llamada DeFiNe, debido a que es la primera que realiza individualizaci\'on de filamentos.
     }
 
 %\subsection{M\'etodos basados en Vision por Computador}
@@ -271,7 +281,7 @@
 %     \item como resultado se entrega informaci\'on geometrica y topologica de la red de filamentos
 % }
 
-\begin{frame}{DeFiNe}
+\begin{frame}{DeFiNe: Filament Covering Problem}
     %\vspace{-1cm}
     \begin{columns}
         \begin{column}{0.55\textwidth}
@@ -299,14 +309,13 @@
 \end{frame}
 
 \note[itemize]{
-    \item DeFiNe tambi\'en es una investigaci\'on de la segunda familia de m\'etodos, siendo la primera que realiza individualizaci\'on de filamentos.
+\small
+    \item Los autores de DeFiNe plantean que su problem\'atica parte desde un grafo ponderado que representa una red de filamentos, y que la extracci\'on de esta red desde una imagen es un problema previo.
     
-    \item Los autores de DeFiNe definen que su problem\'atica parte desde un grafo ponderado que representa una red de filamentos, y que la extracci\'on de esta red desde una imagen es un problema previo.
+    \item Asi, un filamento se representa como un conjunto de aristas adyacentes, cuyas combinaciones posibles se definen como P. Recorrer el universo de P filamentos para evaluarlos es NP-Hard debido al n\'umero de combinaciones entre las aristas
     
-    \item Asi, un filamento se representa como un conjunto de aristas adyacentes, cuyas combinaciones posibles se definen como P. Recorrer estos P filamentos para evaluarlos es NP-Hard debido al n\'umero de combinaciones posibles entre las aristas
-    
-    \item Dado lo anterior, el problema de optimizaci\'on que DeFiNe resuelve se denomina FCP, para el cual definen 2 heur\'isticas para acotar o buscar de forma m\'as optima un subconjunto de P que permita realizar parte de la individualizaci\'on de filamentos en tiempo polinomial.
-    Este subconjunto se denomina P'.
+    \item Dado lo anterior, el problema de optimizaci\'on que DeFiNe resuelve se denomina FCP o Filament Covering Problem, para el cual definen 2 heur\'isticas para acotar o buscar de forma m\'as optima un subconjunto de P que permita realizar parte de la individualizaci\'on de filamentos en tiempo polinomial.
+    Este subconjunto se denomina P' es posible de obtener a partir de las heurísticas basadas en Randon Minimum Spanning Tree (RMST) o en Breath First Search.
     
     \item A partir de P' se obtiene la entrada de datos para un problema del tipo Set Cover, cuyo resultado es una individualizaci\'on automatica de filamentos.
     \item Los 2 problemas de este enfoque son que utiliza solo 1 caracter\'istica para describir el comportamiento de un filamento. Adicionalmente, DeFiNe no permite tiempos de computo menores a las horas a medida que el grafo que utiliza como dato de entrada aumenta el n\'umero de nodos.
@@ -326,9 +335,9 @@
 
 \note[itemize]{
 
-    \item A modo de resumen, se puede indicar que los m\'etodos basados en procesamiento de imagenes de bajo nivel tienen un alto n\'umero de par\'ametros, mientras que los basados en optimizaci\'on pueden tener un alto costo computacional
+    \item A modo de resumen, se puede indicar que los m\'etodos basados en procesamiento de imágenes de bajo nivel tienen un alto n\'umero de par\'ametros, mientras que los basados en optimizaci\'on pueden tener un alto costo computacional
 
-    \item A esto, le agregamos los problemas espec\'ificos, como son
+    \item A esto, le agregamos los problemas espec\'ificos, como son el que:
     
     \item Se desconoce a priori el n\'umero de filamentos a buscar dado que una imagen puede tener individualizaciones distintas para 2 expertos.
     \item Generalmente se busca individualizar m\'as de un filamento por imagen, lo que conlleva a elegir los mejores filamentos entre las soluciones que se encuentren.
@@ -343,6 +352,10 @@
     \end{itemize}
 \end{frame}
 
+\note[itemize]{
+    \item En consecuencia con lo mencionado hasta el momento con respecto al estado del arte y las dificultades de individualizar filamentos en imágenes de microscopía, se establece la hipótesis que señala que es posible identificar filamentos mediante un modelo de optimización si se cuenta con un grafo con ciertas características como dato de entrada.
+
+}
 
 \begin{frame}{Objetivo General y Objetivos Espec\'ificos}
 \small
