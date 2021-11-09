@@ -7,24 +7,25 @@
 
 \note[itemize]{
     \item Como se mencion\'o previamente, uno de los problemas principales al individualizar filamentos es que se desconoce el comienzo y el final de un filamento al comienzo del problema. 
-    \item As\'i, resulta natural explorar el comportamiento de las hormigas al buscar alimento como inspiraci\'on para individualizar filamentos
-    \item A la izquierda de la imagen, en la letra {\bf a}, se puede observar que una hormiga que sale del hormiguero recorre un camino aleatorio hasta llegar al alimento. En su retorno, por el mismo camino, deposita feromonas para indicarle a otras hormigas por donde fue su recorrido.
+    \item As\'i, resulta natural explorar el comportamiento de las hormigas al buscar alimento como inspiraci\'on para individualizar filamentos. Este comportamiento se puede resumir en las 3 etapas que se muestran en la imagen.
+    \item En una primera etapa, a la izquierda de la imagen en la letra {\bf a}, se puede observar que una hormiga que sale del hormiguero recorre un camino aleatorio hasta llegar al alimento. En su retorno, por el mismo camino, deposita feromonas para indicarle a otras hormigas por donde fue su recorrido.
     
     \item Luego, otras hormigas pueden tomar esta informaci\'on en su propio descubrimiento de un camino hacia el alimento, como se observa el la mitad de la imagen, en {\bf b}
     
     \item Finalmente, a la derecha de la imagen, se observa que las hormigas depositan m\'as y m\'as feromonas en el camino m\'as corto entre el hormiguero y el alimento, causando una convergencia sobre un camino \'optimo. Esta convergencia es lo que se define como el ciclo de reforzamiento positivo
 
+    \item La comunicaci\'on indirecta entre las hormigas que conduce a la convergencia sobre un camino \'optimo se describe como el modelo de feromonas
 }
 
 
 
-\begin{frame}{Modelo de Feromonas (OE 1)}
+\begin{frame}{Modelo de Feromonas para la Individualizaci\'on de Filamentos (OE 1)}
 \small
 \begin{itemize}
     \item Comunicaci\'on indirecta mediante feromonas
+    \item B\'usqueda de una o m\'as soluciones
     \item Recorrido aleatorio
-    \item Convergencia sobre el camino m\'as corto
-    \item Opciones de caminos posibles representan el espacio de b\'usqueda
+    \item Representaci\'on de filamentos mediante un grafo
 \end{itemize}
     \begin{algorithm}[H]
     \SetAlgoLined
@@ -39,8 +40,10 @@
 \end{frame}
 
 \note[itemize]{
-    \item El comportamiento anterior se puede describir como el modelo de feromonas, 
-    \item Orden no estricto
+    \item Este modelo sirve de inspiraci\'on para la metaheur\'istica ACO, mediante la cual es posible encontrar no solo una \'unica soluci\'on, sino que tambi\'en un conjunto de soluciones.
+    
+    \item  La representaci\'on de un conjunto de caminos en ACO puede ser interpretado como un grafo, donde cada camino corresponde a un filamento. 
+    \item En si, la metaheur\'istica ACO cuenta con 4 etapas, 3 de las cuales se encuentran en un ciclo y cuyo puede variar con respecto a lo que se presenta en el algoritmo 1. Esta flexibilidad es una de las caracter\'isticas de la metaheur\'istica.
 }
 
 \begin{frame}{Etapas del Algoritmo Propuesto (OE 1)}
@@ -49,7 +52,10 @@
 \end{frame}
 
 \note[itemize]{
-    \item Diagrama de las etapas del algoritmo propuesto
+    \item En particular,  el uso de ACO para la individualizaci\'on de filamentps se refleja en el diagrama, siendo ACO la parte central del algoritmo propuestp.
+    \item Para preparar los datos de entrada para ACO, es necesario extraer desde una imagen un grafo que represente una red de filamentos, utilizando alguna herramienta externa.
+    \item Adicionalmente es posible alimentar algunos par\'ametros de entrada de ACO en el algoritmo propuesto mediante informaci\'on conocida a priori del comportamiento de la c\'elula observada en la imagen de la que se extrae el grafo.
+    \item Con lo anterior, el algoritmo propuesto entra al ciclo donde se encuentran las 3 etapas descrita en el algoritmo 1: La construcci\'on de caminos, la actualizaci\'on de feromonas y el m\'etodo de b\'usqueda no local
 }
 
 %\subsection{Problema de Satisfacci\'on de Restricciones}
@@ -150,12 +156,13 @@
 
 
 \note[itemize]{
-    \item Al comenzar, se debe asignar una arista. Para esto, se propone una heur\'istica que consta de 3 criterios. El enfoque de estos criterios se centra en la exploraci\'on del espacio de b\'usqueda
-    \item El primer criterio busca asignar aristas que esten en el borde del grafo
+    \item la etapa de construcci\'on de una soluci\'on se compone de 2 partes: La asignaci\'on de la 1ra arista por donde la hormiga comenzar\'a su recorrido y de la elecci\'on de la siguiente arista a recorrer
+    \item La asignaci\'on de la primera arista se realiza mediante una heru\'istica que consta de 3 criterios. El enfoque de estos criterios se centra en la exploraci\'on del espacio de b\'usqueda
+    \item El primer criterio busca asignar aristas que esten en el borde del grafo, como la arista con uno de sus nodos en A1.
     
-    \item De no existir m\'as aristas como las del 1er criterio, se buscan aristas que se encuentren en intersecciones, es decir que tengan uno de sus nodos con grado 2 o superior, y que el angulo que formen las aristas que comparten aquel nodo este en el rango intermedio definido previamente. Esto debido a que en varios tipos de filamentos hay casos en que los filamentos no nacen s\'olo del borde, sino tambi\'en a partir de otros filamentos.
+    \item De no existir m\'as aristas como las del 1er criterio, se buscan aristas que se encuentren en intersecciones, es decir que tengan uno de sus nodos con grado 2 o superior, y que el angulo que formen las aristas que comparten aquel nodo este en el rango intermedio definido previamente. Esto debido a que en varios tipos de filamentos hay casos en que los filamentos no nacen s\'olo del borde, sino tambi\'en a partir de otros filamentos. Un ejemplo de esto es una de las aristas que contiene al nodo en A2. 
     
-    \item Como criterio final, se elige una arista al azar, privilegiando las aristas que no son parte de un camino ya evaluado como de buena calidad.
+    \item De no contar con aristas disponibles seg\'un los criterios previos, se elige una arista al azar, privilegiando las aristas que no son parte de un camino ya evaluado como de buena calidad.
     
     \item Influencia de feromonas $\tau$ y de una heur\'istica $\eta$ en la elecci\'on de Aristas/Componentes $c_i$ que respeten restricciones en $\Omega$
     \item Aspecto aleatorio en la elecci\'on
