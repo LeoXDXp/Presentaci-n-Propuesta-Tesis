@@ -156,16 +156,16 @@
 
 
 \note[itemize]{
+    \small
     \item la etapa de construcci\'on de una soluci\'on se compone de 2 partes: La asignaci\'on de la 1ra arista por donde la hormiga comenzar\'a su recorrido y de la elecci\'on de la siguiente arista a recorrer
     \item La asignaci\'on de la primera arista se realiza mediante una heru\'istica que consta de 3 criterios. El enfoque de estos criterios se centra en la exploraci\'on del espacio de b\'usqueda
     \item El primer criterio busca asignar aristas que esten en el borde del grafo, como la arista con uno de sus nodos en A1.
     
     \item De no existir m\'as aristas como las del 1er criterio, se buscan aristas que se encuentren en intersecciones, es decir que tengan uno de sus nodos con grado 2 o superior, y que el angulo que formen las aristas que comparten aquel nodo este en el rango intermedio definido previamente. Esto debido a que en varios tipos de filamentos hay casos en que los filamentos no nacen s\'olo del borde, sino tambi\'en a partir de otros filamentos. Un ejemplo de esto es una de las aristas que contiene al nodo en A2. 
     
-    \item De no contar con aristas disponibles seg\'un los criterios previos, se elige una arista al azar, privilegiando las aristas que no son parte de un camino ya evaluado como de buena calidad.
+    \item De no contar con aristas disponibles seg\'un los criterios previos, se elige una arista al azar, privilegiando las aristas que no son parte de un camino ya evaluado como una soluci\'on factible.
     
-    \item Influencia de feromonas $\tau$ y de una heur\'istica $\eta$ en la elecci\'on de Aristas/Componentes $c_i$ que respeten restricciones en $\Omega$
-    \item Aspecto aleatorio en la elecci\'on
+   \item Una vez que se le asigna una arista inicial a la hormiga, esta debe elegir que nuevas aristas irá agregando en su camino 
 
 }
 
@@ -191,7 +191,7 @@
         \begin{column}{0.35\textwidth}
             \begin{itemize}
                 \item Calidad $\sim$ Funci\'on Objetivo 
-                \item Calidad $s^{P}_1$ = $\sum \eta_{i}$
+                %\item Calidad $s^{P}_1$ = $\sum \eta_{i}$
                 \item Calidad $s_1$ = $\frac{1}{n}\sum \eta_{i} $
             \end{itemize}
         \end{column}
@@ -206,9 +206,20 @@
 \end{frame}
 
 \note[itemize]{
-    \item Para evaluar la construcci\'on del camino, se suman los valores de la heur\'istica miope de cada arista seleccionada.
+    \item Cada una de las posibles aristas vecinas a elegir tiene una probabilidad de ser elegida. Esta probabilidad se define seg\'un la ecuaci\'on a la derecha de la diapositiva y en esta influye la feromona $\tau$ y el valor de una heur\'istica $\eta$ asociada a cada arista.
+    \item Esta heur\'istica entrega una puntuaci\'on asociada al \'angulo que forma la arista vecina con la última arista que fue agregada al camino o soluci\'on.
     
-    As\'i, al referirnos a la calidad de una soluci\'on, nos referimos al valor entregado por la funci\'on objetivo. Se busca maximizar la funci\'on objetivo. 
+    \item a modo de ejemplo, las aristas en rojo representan las aristas vecina de C6, que fue la ùltima en ser añadida hasta ese punto al recorrido de la hormiga, teniendo cada una de las aristas rojas una probabilidad de ser elegida. 
+
+    \item Una vez que la hormiga termina su recorrido, se evalua la soluci\'on mediante el promedio de los valores de eta. Esta evaluaci\'on corresponde a la funci\'on objetivo de la metaheur\'istica ACO y se puede separar en 3 rangos: 
+    
+    \item Las soluciones que no cumplen con una calidad m\'inima, que se desechan
+    \item Las soluciones que se definen como de buena calidad, que son las que se eligen como soluciones candidatas
+    \item y las soluciones que requieren de mayor evaluaci\'on dado que con los criterios aplicados durante la construcci\'on no pueden ser desechados ni aceptados.
+    
+    \item Luego, las soluciones de calidad intermedia y superior pasan a las siguientes etapas.
+    
+    \item NO LEER - Respira: se busca maximizar la funci\'on objetivo
 
 }
 
@@ -237,8 +248,13 @@
 \end{frame}
 
 \note[itemize]{
-    \item La b\'usqueda de soluciones de cada hormiga puede llevar a que dos o m\'as hormigas encuentren soluciones que son muy similares, repitiendo informaci\'on.
-
+\small
+    \item Una de las etapas siguientes corresponde a la b\'usqueda no local, la que se basa en l\'ogicas globales o centralizadas, a diferencia de la construcci\'on de soluciones de cada hormiga que es miope.
+    %\item La b\'usqueda de soluciones de cada hormiga puede llevar a que dos o m\'as hormigas encuentren soluciones que son muy similares, repitiendo informaci\'on.
+    \item Esta etapa busca eliminar soluciones duplicadas o muy similares, privilegiando las soluciones que contengan dentro de si a otras. A modo de ejemplo, en naranjo se muestran dos soluciones similares, siendo la soluci\'on de la derecha levemente m\'as larga.
+    \item Se elige la soluci\'on m\'as larga para evitar ambiguedades y que en caso de error, la soluci\'on indicada como un filamento sea igual o m\'as extensa en vez de ser corta con respecto a lo que pueda indicar un experto
+    \item Este an\'alisis es similar al que puede suceder entre 2 expertos que ante la misma imagen identifiquen distintos filamentos, como se ejemplifica con las im\'agenes de la derecha.
+    
 }
 
 % \begin{frame}{ACO: Actualizaci\'on de Feromonas (OE 1)}
@@ -275,6 +291,13 @@
     
 \end{frame}
 
+\note[itemize]{
+    \item la \'ultima etapa a mencionar corresponde a la actualizaci\'on de feromonas. Al finalizar el recorrido de una hormiga, es necesario actualizar el valor de la feromonas. En el caso de una metaheur\'istica ACO tradicional, se aumenta el valor de tau para cada arista que pertenece a un camino de buena calidad.
+    \item Sin embargo, ese enfoque privilegia la convergencia sobre un sola soluci\'on, y a su vez puede ocasionar la perdida de soluciones factibles.
+    \item Para evitar eso, se propone el uso de Anti-feromonas, cuyo objetivo es acotar el espacio de b\'usqueda mediante la penalizaci\'on de los caminos o soluciones de mala o baja calidad.
+    \item As\'i, el valor de tau que influye en la probabilidad de elecci\'on de una arista disminuye, pudiendo llegar a cero, lo que ocasiona que esa arista no pueda ser elegida por ninguna hormiga que aun este construyendo una soluci\'on.
+}
+
 \begin{frame}{Problema de Anti-feromonas SAP (OE 1)}
 \centering
 \includegraphics[scale=0.4]{Pictures/ACO-ant-constr-penalize.png}
@@ -284,11 +307,29 @@
     \end{itemize}
 \end{frame}
 
+\note[itemize]{
+    \item Sin embargo, el cambio de feromonas a anti-feromonas no soluciona el problema que se puede originar al focalizar la penalizaci\'on solo en las aristas.
+    
+    \item Una arista con un tau penalizado por pertenecer a uno o más caminos de mala calidad, puede bloquear otros caminos, dado que el valor de tau no guarda relación con las otras aristas que conforman el camino de mala calidad que caus\'o la penalización. Así, las soluciones que pudiesen pasar por esa arista se ven limitadas.
+    
+    \item A modo de ejemplo, el camino verde que es de mala calidad origina una penalizaci\'on sobre la arista en rojo. Luego, el camino azul, que puede construir una soluci\'on de buena calidad si incorpora la arista en rojo, se ve bloqueado, ya que la arista roja tiene una penalizaci\'on que hace menos probable o derechamente imposible su elecci\'on.
+    
+    
+
+}
+
 \begin{frame}{Anti-feromonas SAP dependientes del camino previo (OE 1)}
     \centering
     \includegraphics[scale=0.51]{Pictures/ACO-ant-ferom-penalize-seg.png}
 \end{frame}
 
+\note[itemize]{
+    \item Por ende, se propone un cambio para que la penalizaci\'on de una arista guarde relaci\'on con con el conjunto de aristas que la preceden en el camino
+    \item As\'i, solo hormigas que repitan parcial o totalmente l camino verde no podran elegir la arista en rojo, mientras que hormigas que provengan de otro recorrido, como la hormiga del camino azul no se ver\'an afectadas, evitando la perdida de soluciones.
+    
+    \item El conjunto de aristas predecesoras se denomina segmento.
+
+}
 
 % \begin{frame}{Anti-feromonas sobre un segmento de una sola arista (OE 1)}
 %     \centering
