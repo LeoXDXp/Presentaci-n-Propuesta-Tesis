@@ -71,6 +71,59 @@
     \end{equation}    
 \end{frame}
 
+\note[itemize]{
+  \item En particular, la heur\'istica miope $\eta_{ij}$ entrega una puntuaci\'on que disminuye a medida que el \'angulo mencionado aumenta, siendo el rango $[0, \theta]$ el que otorga la puntuaci\'on m\'axima de $Max\_Score$. Si el \'angulo es mayor a $Max\_Angle$ la puntuaci\'on corresponde a 0. Para el rango intermedio $]\theta, Max\_Angle]$, la puntuaci\'on depende de la diferencia entre el \'angulo formando entre la arista $c_{ij} \in N(s^{P})$ y $s_{n}^{P}$. Mientras m\'as aumenta esta diferencia, menor es la puntuaci\'on asignada.
+}
+
+\begin{frame}{Extensi\'on de Anti-feromonas sobre un segmento (OE 1)}
+    \centering
+    \includegraphics[scale=0.4]{Pictures/ant_segments_simple_case.png}
+    \begin{itemize}
+        \item Cada arista del segmento forma un \'angulo en el rango $[0, \theta]$ con sus vecinos
+        \item Penalizaci\'on de $e_3$ se asocia al $seg^{b}_{1}$, sin perjudicar otros caminos que pasen por $e_3$ pero no por el segmento $seg^{b}_{1}$.
+    \end{itemize}
+\end{frame}
+
+\note[itemize]{
+  \item En este ejemplo se observa el camino de una hormiga $b$ compuesto por 2 segmentos. El \'angulo entre las aristas e1 y e2, as\'i como el \'angulo de e3 con e4 pertenece al rango 0, theta.
+  \item El \'angulo entre las aristas $e_2$ y $e_3$ pertenece al rango $]\theta, Max\_Angle]$, lo que determina el fin del segmento $seg^{b}_1$ e inicia el segmento $seg^{b}_2$.
+}
+
+\begin{frame}{Curvatura de una soluci\'on y Magnitud de desplazamiento entre segmentos}
+    \centering
+    \begin{equation}\fontsize{9pt}{7.2}\selectfont
+    \tau_{ij} \leftarrow
+        \begin{cases}
+        \tau_{ij} \cdot \gamma \text{ si } \measuredangle(proy(\Vec{p}), \Vec{q}) \geq \theta \cdot \text{Max\_Axial\_Displacement},\\[3ex]
+        
+        \text{0 si } \tau_{ij} \leq 0.25, \\[3ex]
+        \tau_{ij} \quad \text{en otro caso.}
+        \end{cases}
+    \end{equation}
+    \vspace{1cm}
+    \begin{equation}\fontsize{9pt}{7.2}\selectfont
+    \tau_{ij} \leftarrow
+        \begin{cases}
+        \begin{split}
+         \tau_{ij} \cdot \gamma \text{ si } & \sin(\measuredangle seg^{a}_{pMaxMin}) > seg^{a}_{iMax} \cdot 0.1 \cdot \text{Max\_Axial\_Displacement} \\ & \land \measuredangle seg^{a}_{pMaxMin}) > \theta,
+        \end{split}
+        \\[3ex]
+        
+        \text{0 si } \tau_{ij} \leq 0.25, \\[3ex]
+        \tau_{ij} \quad \text{en otro caso}.
+        \end{cases}
+\end{equation}
+\end{frame}
+
+\note[itemize]{
+
+  \item El \'angulo entre la proyecci\'on de $\Vec{p}$ y $\Vec{q}$ no debe superar el valor que resulta al multiplicar el \'angulo $\theta$ por el factor {\it Max\_Axial\_Displacement}. Este factor permite flexibilizar la tolerancia de la curvatura en base a $\theta$. Si el recorrido de la hormiga tiene un \'angulo igual o mayor al umbral, implica que la soluci\'on encontrada es demasiado curva para representar un filamento, por lo que es penalizada y descartada. 
+  
+
+  \item Para la magnitud de desplazamiento entre segmentos se define el segmento m\'as largo entre ambos segmentos comparados, en un camino $a$, como $seg^{a}_{iMax}$ , mientras que el segmento menor es $seg^{a}_{jMin}$. El \'angulo entre $seg^{a}_{jMin}$ y la proyecci\'on de $seg^{a}_{iMax}$ se define como 
+$\measuredangle seg^{a}_{pMaxMin}$ por simplicidad. \bf{En el caso de que el \'angulo $\measuredangle seg^{a}_{pMaxMin}$ este en el rango $[0, \theta]$ se entiende que se respeta el criterio de m\'aximo desplazamiento.}
+}
+
 \begin{frame}{Ponderaci\'on de los par\'ametros (OE 3)}
 
     \begin{itemize}%\fontsize{9pt}{12}\selectfont
@@ -128,14 +181,7 @@
 }
 \end{frame}
 
-\begin{frame}{Extensi\'on de Anti-feromonas sobre un segmento (OE 1)}
-    \centering
-    \includegraphics[scale=0.4]{Pictures/ant_segments_simple_case.png}
-    \begin{itemize}
-        \item Cada arista del segmento forma un \'angulo en el rango $[0, \theta]$ con sus vecinos
-        \item Penalizaci\'on de $e_3$ se asocia al $seg^{b}_{1}$, sin perjudicar otros caminos que pasen por $e_3$ pero no por el segmento $seg^{b}_{1}$.
-    \end{itemize}
-\end{frame}
+
 
 \begin{frame}{Implementaci\'on del Algoritmo Propuesto (OE 2)}
     \begin{itemize}
@@ -204,31 +250,6 @@
 \end{frame}
 
 
-\begin{frame}{Curvatura de una soluci\'on y Magnitud de desplazamiento entre segmentos}
-    \centering
-    \begin{equation}\fontsize{9pt}{7.2}\selectfont
-    \tau_{ij} \leftarrow
-        \begin{cases}
-        \tau_{ij} \cdot \gamma \text{ si } \measuredangle(proy(\Vec{p}), \Vec{q}) \geq \theta \cdot \text{Max\_Axial\_Displacement},\\[3ex]
-        
-        \text{0 si } \tau_{ij} \leq 0.25, \\[3ex]
-        \tau_{ij} \quad \text{en otro caso.}
-        \end{cases}
-    \end{equation}
-    \vspace{1cm}
-    \begin{equation}\fontsize{9pt}{7.2}\selectfont
-    \tau_{ij} \leftarrow
-        \begin{cases}
-        \begin{split}
-         \tau_{ij} \cdot \gamma \text{ si } & \sin(\measuredangle seg^{a}_{pMaxMin}) > seg^{a}_{iMax} \cdot 0.1 \cdot \text{Max\_Axial\_Displacement} \\ & \land \measuredangle seg^{a}_{pMaxMin}) > \theta,
-        \end{split}
-        \\[3ex]
-        
-        \text{0 si } \tau_{ij} \leq 0.25, \\[3ex]
-        \tau_{ij} \quad \text{en otro caso}.
-        \end{cases}
-\end{equation}
-\end{frame}
 
 % \begin{frame}{Ponderaci\'on de las caracter\'isticas}
 %     \begin{itemize}\fontsize{9pt}{12}\selectfont

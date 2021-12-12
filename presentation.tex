@@ -43,7 +43,13 @@
 
 %----------------------------------
 % ACTUAL PRESENTATION STARTS HERE
+%(Validar que se ve la presentación.y el puntero)
+%Hola Profesores, buenas tardes, esta presentación corresponde a la defensa de la tesis titulada …
+
+%La presentación consta de 6 secciones, a través de las que se explicará brevemente el trabajo realizado en la tesis
 %----------------------------------
+
+
 
 \begin{document}
 
@@ -95,12 +101,13 @@
 \end{frame}
 
 \note[itemize]{
+\small
 \item El inter\'es por el estudio de filamentos se debe en parte a que este tipo de estructuras alargadas se encuentran de forma ubicua en la naturaleza.
 \item En particular, las estructuras alargadas que llamaremos filamentos contienen informaci\'on con respecto al elemento donde se ubican. 2 ejemplos de filamentos se pueden observar en las imágenes en la parte superior de la presentación, teniendo en la imagen de la izquierda filamentos a un nivel celular, mientras que en la imagen a la derecha podemos observar filamentos en el sol.
 \item En este trabajo el enfoque se centra alrededor de filamentos observables a trav\'es de imagenes de microscop\'ia, cuyas caracter\'isticas y comportamientos, ya sea de un solo filamento o de un grupo de estos, puede develar informaci\'on relevante respecto del ambiente o del interior de la c\'elula donde se observa.
 
-\item Al observar filamentos en c\'elulas es esperable enfrentar situaciones asociadas a la observaci\'on de microscop\'ia como lo es la existencia de ruido en la imagen observada, as\'i como tambi\'en el problema asociado al tama\~no de estos filamentos, lo que se relaciona a la necesidad de contar con im\'agenes de alta resoluci\'on para la observaci\'on de los filamentos. Para hacerse una idea, uno de los tipos de filamentos que se utilizan en esta trabajo son los microt\'ubulos, cuyo tamaño es de 25 nanómetros.
-/item En cuanto a la resolución (pasar a sgte slide)
+\item Al observar filamentos en c\'elulas es esperable enfrentar situaciones asociadas a la observaci\'on de microscop\'ia como lo es la existencia de ruido en la imagen observada, as\'i como tambi\'en el problema asociado al tama\~no de estos filamentos, lo que se relaciona a la necesidad de contar con im\'agenes de alta resoluci\'on para la observaci\'on de los filamentos. Para hacerse una idea, uno de los tipos de filamentos que se utilizan en esta trabajo son los microt\'ubulos, cuyo tamaño es de 25 nan\'ometros. También se pueden visualizar otros tipos de filamentos microscopicos de menor tama\~no en la imagen. 
+\item En la misma linea con respecto a la resolución (pasar a sgte slide)
 
 }
 
@@ -136,7 +143,7 @@
 \note[itemize]{
     \item (cont) es posible destacar en la imagen a la izquierda de esta vista, el problema que existe en la observaci\'on mediante microscop\'ia \'optica, donde la cota m\'axima de resoluci\'on es el l\'imite de difracci\'on, denominando $\lambda/2$, Donde $\lambda$ es la longitud de onda de la luz utilizada (o color).
     
-    \item Este l\'imite establece que 2 objetos cuya distancia sea inferior a $\lambda/2$ no pueden ser diferenciados. El impacto de lo anterior se puede reflejar al solicitarle a dos expertos realizar una individualizaci\'on de filamentos como los que se encuentran en la secci\'on roja, la que se ve magnificada en la imagen central. Es en esta situaci\'on donde ambos expertos pueden divergir en lo que identifican como filamentos. Las imágenes a la derecha reflejan las opciones posibles de filamentos en el ejemplo.
+    \item Este l\'imite establece que 2 objetos cuya distancia sea inferior a $\lambda/2$ no pueden ser diferenciados. El impacto de lo anterior se puede reflejar al solicitarle a dos expertos qu realicen una individualizaci\'on de filamentos como los que se encuentran en la secci\'on roja, la que se ve magnificada en la imagen central. Es en esta situaci\'on donde ambos expertos pueden divergir en lo que identifican como filamentos. Las imágenes a la derecha reflejan las opciones posibles de filamentos en el ejemplo.
     
     
     \item Esta situaci\'on aumenta la complejidad de individualizar filamentos, y no suele darse en otros en otros problemas donde se detectan e identifican estructuras, como puede ser la detecci\'on de rostros. 
@@ -172,13 +179,13 @@
 \end{frame}
 
 \note[itemize]{
-    \item En base a lo encontrado en la literatura, podemos agrupar en 2 familias de m\'etodos las t\'ecnicas que se aplican sobre la imagen de microscop\'ia.
+    \item En base a lo encontrado en la literatura, podemos agrupar en 2 familias de m\'etodos las t\'ecnicas que se aplican sobre la imagen de microscop\'ia que contiene filamentos.
     
-    \item El primer grupo se basa en el procesamiento de im\'agenes de bajo nivel, logrando obtener informaci\'on de caracter geometrico o topol\'ogico, enfocandose en el an\'alisis a nivel de p\'ixeles. La principal critica a estos métodos radica en la tendencia a un alto número de parámetros a configurar.
+    \item El primer grupo se basa en el procesamiento de im\'agenes de bajo nivel, logrando obtener informaci\'on de caracter geometrico o topol\'ogico, enfocandose en el an\'alisis a nivel de p\'ixeles. La principal critica a estos m\'etodos radica en la tendencia a un alto número de parámetros a configurar.
     
-    \item El segundo grupo de métodos, adem\'as de utilizar la imagen inicial aplicando filtros de bajo nivel, se basa en la optimizaci\'on con el propósito de obtener informaci\'on adicional a la que se obtiene con el primer grupo. En particular, el uso de funciones de optimización responde a la necesidad de analizar combinaciones de opciones para construir una representación de una red de filamentos, o para la individualización de estos. Así, la información adicional obtenida representa caracter\'isticas cuantitativas que describen el comportamiento de los filamentos.
+    \item El segundo grupo de m\'etodos, adem\'as de utilizar la imagen inicial aplicando filtros de bajo nivel, se basa en la optimizaci\'on con el propósito de obtener informaci\'on adicional a la que se obtiene con el primer grupo. En particular, el uso de funciones de optimización responde a la necesidad de analizar combinaciones de opciones para construir una representación de una red de filamentos, o para la individualización de estos. As\'i, la informaci\'on adicional obtenida representa caracter\'isticas cuantitativas que describen el comportamiento de los filamentos.
     
-    \item Del 2do grupo de métodos, destacamos la investigación que da pie a la herramienta llamada DeFiNe, debido a que es la primera que realiza individualizaci\'on de filamentos.
+    \item Del 2do grupo de m\'etodos, destacamos la investigación que da pie a la herramienta llamada DeFiNe, debido a que es la primera que realiza individualizaci\'on de filamentos.
     }
 
 %\subsection{M\'etodos basados en Vision por Computador}
@@ -315,7 +322,7 @@
     \item Asi, un filamento se representa como un conjunto de aristas adyacentes, cuyas combinaciones posibles se definen como P. Recorrer el universo de P filamentos para evaluarlos es NP-Hard debido al n\'umero de combinaciones entre las aristas
     
     \item Dado lo anterior, el problema de optimizaci\'on que DeFiNe resuelve se denomina FCP o Filament Covering Problem, para el cual definen 2 heur\'isticas para acotar o buscar de forma m\'as optima un subconjunto de P que permita realizar parte de la individualizaci\'on de filamentos en tiempo polinomial.
-    Este subconjunto se denomina P' es posible de obtener a partir de las heurísticas basadas en Randon Minimum Spanning Tree (RMST) o en Breath First Search.
+    Este subconjunto que se denomina P' se obtiene a partir de las heurísticas basadas en Randon Minimum Spanning Tree (RMST) o en Breath First Search con restricci\'on de \'angulo.
     
     \item A partir de P' se obtiene la entrada de datos para un problema del tipo Set Cover, cuyo resultado es una individualizaci\'on automatica de filamentos.
     \item Los 2 problemas de este enfoque son que utiliza solo 1 caracter\'istica para describir el comportamiento de un filamento. Adicionalmente, DeFiNe no permite tiempos de computo menores a las horas a medida que el grafo que utiliza como dato de entrada aumenta el n\'umero de nodos.
@@ -335,7 +342,7 @@
 
 \note[itemize]{
 
-    \item A modo de resumen, se puede indicar que los m\'etodos basados en procesamiento de imágenes de bajo nivel tienen un alto n\'umero de par\'ametros, mientras que los basados en optimizaci\'on pueden tener un alto costo computacional
+    \item A modo de resumen de los princpales problemas para individualizar filamentos, se puede indicar que los m\'etodos basados en procesamiento de imágenes de bajo nivel tienen un alto n\'umero de par\'ametros, mientras que los basados en optimizaci\'on pueden tener un alto costo computacional
 
     \item A esto, le agregamos los problemas espec\'ificos, como son el que:
     
@@ -353,7 +360,7 @@
 \end{frame}
 
 \note[itemize]{
-    \item En consecuencia con lo mencionado hasta el momento con respecto al estado del arte y las dificultades de individualizar filamentos en im\'agenes de microscop\'ia, se establece la hip\'otesis que señala que es posible identificar filamentos mediante un modelo de optimizaci\'on si se cuenta con un grafo con ciertas caracter\'isticas como dato de entrada.
+    \item En consecuencia con lo mencionado hasta el momento con respecto al estado del arte y las dificultades de individualizar filamentos en im\'agenes de microscop\'ia, se establece la hip\'otesis que se\~nala que es posible identificar filamentos mediante un modelo de optimizaci\'on si se cuenta con un grafo con pesos, no dirigido que represente una red de filamentos como dato de entrada.
 
 }
 
@@ -376,10 +383,10 @@
 
 \note[itemize]{
     \item Para validar o rechazar esta hip\'otesis se plantea el objetivo general que se indica, el cual se divide en 4 objetivos específicos:
-    \item Generar un modelo de optimizaci\'on para la identificaci\'on de filamentos a partir de un grafo con pesos que representa la red de filamentos.
-    \item Implementar un algoritmo que resuelva el modelo de optimizaci\'on, entregando como salida la identificaci\'on de filamentos, considerando casos de solapamiento y/o cruce.
-    \item Identificar la ponderaci\'on de propiedades que entregue mejores resultados para grafos que representen casos espec\'ificos de filamentos como en una neurona y los microt\'ubulos en plantas
-    \item Evaluar t\'ecnicas que usan s\'olo herramientas de procesamiento de im\'agenes de bajo nivel, basada en poblaci\'on de p\'ixeles, o herramientas que utilizan un m\'etodo derivado de contornos activos.
+    \item Primero, Generar un modelo de optimizaci\'on para la identificaci\'on de filamentos a partir de un grafo con pesos que representa la red de filamentos.
+    \item Segundo, Implementar un algoritmo que resuelva el modelo de optimizaci\'on, entregando como salida la identificaci\'on de filamentos, considerando casos de solapamiento y/o cruce.
+    \item Tercero, Identificar la ponderaci\'on de propiedades que entregue mejores resultados para grafos que representen casos espec\'ificos de filamentos como en una neurona y los microt\'ubulos en plantas
+    \item y finalmente, Evaluar t\'ecnicas que usan s\'olo herramientas de procesamiento de im\'agenes de bajo nivel, basada en poblaci\'on de p\'ixeles, o herramientas que utilizan un m\'etodo derivado de contornos activos.
 }
 
 \include{ACO}
