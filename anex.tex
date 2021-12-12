@@ -121,7 +121,9 @@
   
 
   \item Para la magnitud de desplazamiento entre segmentos se define el segmento m\'as largo entre ambos segmentos comparados, en un camino $a$, como $seg^{a}_{iMax}$ , mientras que el segmento menor es $seg^{a}_{jMin}$. El \'angulo entre $seg^{a}_{jMin}$ y la proyecci\'on de $seg^{a}_{iMax}$ se define como 
-$\measuredangle seg^{a}_{pMaxMin}$ por simplicidad. \bf{En el caso de que el \'angulo $\measuredangle seg^{a}_{pMaxMin}$ este en el rango $[0, \theta]$ se entiende que se respeta el criterio de m\'aximo desplazamiento.}
+ el \'angulo $seg^{a}_{pMaxMin}$ por simplicidad. 
+
+\item \bf{En el caso de que el \'angulo $seg^{a}_{pMaxMin}$ este en el rango $[0, \theta]$ se entiende que se respeta el criterio de m\'aximo desplazamiento.}
 }
 
 \begin{frame}{Ponderaci\'on de los par\'ametros (OE 3)}
@@ -137,6 +139,41 @@ $\measuredangle seg^{a}_{pMaxMin}$ por simplicidad. \bf{En el caso de que el \'a
     \end{itemize}
 \end{itemize}
 \end{frame}
+
+\note[itemize]{
+  \item No contar con un \'unico par\'ametro para obtener una ponderaci\'on puede resultar beneficioso, dado que es un par\'ametro menos del cual preocuparse en caso de necesitar una sintonizaci\'on de par\'ametros.
+  
+  \item Lo anterior tambi\'en impacta positivamente si se desean agregar nuevas caracter\'isticas a evaluar en el algoritmo propuesto
+}
+
+\begin{frame}{Complejidad computacional de las etapas del Algoritmo Propuesto}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|l|}
+    \hline
+    Etapa de ACO & Complejidad Computacional \\\hline
+    Construcci\'on de una soluci\'on & $\mathcal{O}{(n^{2}s)}$ \\
+    Actualizaci\'on de feromonas & $\mathcal{O}{(n^{2}s)}$ \\
+    B\'usqueda no local & $\mathcal{O}{(log(s))}$ \\
+    \hline
+    \end{tabular}
+    \caption{}
+    \label{tab:computComplexity}
+    \begin{itemize}
+        \item $n$ representa el n\'umero de nodos mientras que $s$ representa el n\'umero de hormigas utilizadas
+        \item Peor caso: $\frac{n(n-1)}{2}$ aristas
+        \item La complejidad computacional del algoritmo propuesto es $\mathcal{O}{(Max\_Iter (n^{2}s + log(s)))}$.
+    \end{itemize}
+    
+\end{table}
+\end{frame}
+
+\note[itemize]{
+  \item Para calcular la complejidad computacional del algoritmo propuesto es necesario establecer previamente las condiciones del peor caso, lo que permitir\'a establecer la cota superior de la complejidad computacional. Estas condiciones consisten en suponer que el grafo que representa la red de filamentos es completamente conectado, as\'i como que el algoritmo propuesto permita la opci\'on de ciclos en los filamentos y superposici\'on entre los mismos.
+
+  \item Se asume el peor caso, que corresponde a un grafo completamente conectado, con lo que el n\'umero de aristas corresponde a $\frac{n(n-1)}{2}$, con $n$ como el n\'umero de nodos. Otras caracter\'isticas del grafo corresponden a que es sim\'etrico y no dirigido.
+
+}
 
 \begin{frame}{Par\'ametros del Algoritmo Propuesto (AP) (OE 3)}
     \centering
@@ -161,6 +198,10 @@ $\measuredangle seg^{a}_{pMaxMin}$ por simplicidad. \bf{En el caso de que el \'a
 }
 \end{frame}
 
+% \note[itemize]{
+%   \item 
+% }
+
 \begin{frame}{VI, \'Indice Rand e \'Indice Jaccard}
 \resizebox{\textwidth}{!}{
     \begin{tabular}{|c|c|c|c|c|c|}
@@ -175,11 +216,24 @@ $\measuredangle seg^{a}_{pMaxMin}$ por simplicidad. \bf{En el caso de que el \'a
          4.5 & MT-P & 1.9459 & 0.4286 & 0.8929 & 0.40 \\
          4.6 & N & 6.0258 & 1.7950 & 0.8864 & 0.1389 \\
          4.7 & N & 5.0814 & 3.7256 & 0.8775 & 0.0703 \\
-         4.8 & N & 4.2046 & 1.0060 & 0.8794 & 0.2157 \\ \hline
+         4.8 & N & 4.2046 & 1.0060 & 0.8794 & 0.2157 \\ 
+         5.3b & MtP & 3.6635 & 1.4749 & 0.9305 & 0.2781\\
+         5.3c & MtP & 4.0775 & 3.5850 & 0.8994 & 0.1331 \\
+         5.9a & MtP & 2.9444 & 1.1781 & 0.8739 & 0.2144\\
+         5.10a & MtP & 3.1354 & 1.4533 & 0.2446 & 0.4477\\
+         
+         \hline
     \end{tabular}
     %\caption{VI $\in [0, VI\_Max]$, Rand y Jaccard $\in [0, 1]$ }
 }
 \end{frame}
+\note[itemize]{
+  \item Los \'indices Rand y Jaccard, as\'i como la m\'etrica VI presentan resultados que no permiten concluir cual es la calidad del resultado obtenido
+  
+  \item  Los valores de los \'indices Rand y Jaccard se encuentran en el rango $[0,1]$, siendo 1 el valor ideal. Se observa en la tabla que los resultados del \'indice Rand se contradicen con los del \'indice Jaccard. 
+  
+  \item En cuando a la m\'etrica VI, esta penaliza los casos en que una aristas pertenece a m\'as de un filamento propuesto, lo que dificulta la evaluaci\'on mediante esta m\'etrica para los casos de superposici\'on de filamentos, que es un caso frecuente en las pruebas realizadas.
+}
 
 
 

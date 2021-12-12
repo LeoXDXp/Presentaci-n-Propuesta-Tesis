@@ -441,7 +441,9 @@ Criterios de anti-feromonas para calidad intermedia:
 \end{frame}
 
 \note[itemize]{
-  \item Si la c\'elula observada es una neurona, es necesario validar que los filamentos de una neurona parten del {\tt soma} o centro de la misma, y que filamentos posteriores que no comiencen del soma solo pueden nacer a partir de otros filamentos. Un camino que termine en un nodo final de grado de 1 \bf{no} respeta aquel comportamiento, debido a que en un grafo que representa una red de filamentos de una neurona, los nodos ubicados en el soma o en la intersecci\'on entre filamentos presentan un grado mayor a 1.
+  \item Si la c\'elula observada es una neurona, es necesario validar que los filamentos de una neurona parten del {\tt soma} o centro de la misma, y que filamentos posteriores que no comiencen del soma solo pueden nacer a partir de otros filamentos. Un camino que termine en un nodo final de grado de 1 \textbf{no} respeta aquel comportamiento, debido a que en un grafo que representa una red de filamentos de una neurona, los nodos ubicados en el soma o en la intersecci\'on entre filamentos presentan un grado mayor a 1.
+  
+  \item La identificaci\'on de los nodos del soma se puede realizar de forma aproximada mediante algoritmos de grafos como closeness centrality. As\'i mismo, algoritmos aplicables a grafos pueden permitir extender la extracci\'on de informaci\'on para agregar nuevos criterios de anti-feromonas para casos espec\'ificos.
   
   \item As\'i, se utiliza el grado del nodo final para penalizar mediante la anti-feromona.
 }

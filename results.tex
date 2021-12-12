@@ -26,14 +26,14 @@
 \end{frame}
 
 \note[itemize]{
-    \item Dentro de los par\'ametros disponibles para personalizar el algoritmo propuesto, los principales par\'ametros utilizados en las pruebas fueron el umbral theta, el par\'ametro max axial displacement y el uso parcial o total de la heurística de asignación inicial
+    \item Dentro de los par\'ametros disponibles para personalizar el algoritmo propuesto, los principales par\'ametros utilizados en las pruebas fueron el umbral theta, el par\'ametro max axial displacement y el uso parcial o total de la heurística de asignaci\'on inicial
     \item Estos par\'ametros fueron los que mostraron mayor impacto en los resultados
-    \item Las pruebas consideraron un total de 12 imágenes entre sint\'eticas y reales, con una imagen de microtúbulo de planta siendo evaluada por 2 expertos.
+    \item Las pruebas consideraron un total de 12 im\'agenes entre sint\'eticas y reales, con una imagen de microt\'ubulo de planta siendo evaluada por 2 expertos.
     \item La evaluaci\'on se centra en el n\'umero de filamentos propuestos o correctos que indica el algoritmo propuesto. Esta informaci\'on se complementa con las medidas de precision y recall.
     
-    \item (SKIP) N$\degree$ Filamentos Propuestos y Correctos vs {\it Ground Truth}
+    %\item (SKIP) N$\degree$ Filamentos Propuestos y Correctos vs {\it Ground Truth}
     
-    \item El resultado de la individualización de filamentos para cada imagen, consiste en el promedio de 10 Iteraciones del algoritmo propuesto, cambiando en cada ocasión la semilla con la finalidad de explorar el espacio de b\'usqueda desde distintas partes.
+    \item El resultado de la individualización de filamentos para cada imagen, consiste en el promedio de 10 iteraciones del algoritmo propuesto, cambiando en cada ocasión la semilla con la finalidad de explorar el espacio de b\'usqueda desde distintas partes.
 }
 
 
@@ -193,6 +193,17 @@
     \end{itemize}
 \end{frame}
 
+\note[itemize]{
+\small
+  \item En las neuronas de raton, las pruebas ejecutadas con DeFiNe presentan cantidades de filamentos propuestos 2 a 6 veces mayores que el n\'umero de filamentos individualizados por un experto. Este comportamiento puede atribuirse a la obligaci\'on que DeFiNe tiene de asignar todas las aristas al menos a un filamento. En comparaci\'on, el algoritmo propuesto al tener mayor flexibilidad, asigna en promedio un 57\% de las aristas a filamentos.
+  
+  \item Adicionalmente, los tiempos de ejecuci\'on de las pruebas con DeFiNe son sustancialmente mayores, encontr\'andose en el rango de los minutos a las 4 horas, dependiendo de los par\'ametros utilizados. Lo anterior puede asociarse al n\'umero de aristas que las muestras de neurona tienen en su respectivo grafo
+  
+  \item En cuanto al algoritmo propuesto, a pesar de ejecutar todas las evaluaciones en tiempos menores a 40 segundos, las individualizaciones correctas son bajas, mientras que el n\'umero de filamentos propuestos se acerca a la cantidad de filamentos individualizados manualmente por un experto, exceptuando el caso de la Muestra N1.
+  
+  \item  Es posible asociar un comportamiento razonable del n\'umero de filamentos propuestos con la restricci\'on especial para neuronas considerada dentro de las penalizaci\'on de anti-feromonas, lo que permite mantener acotado el n\'umero de filamentos propuestos mediante el descarte de soluciones infactibles.
+}
+
 \begin{frame}{Muestra N3 de neurona de rat\'on (OE 4)}
     \vspace{-0.2cm}
         \begin{columns}
@@ -227,6 +238,14 @@
     \end{table}
 \end{frame}
 
+\note[itemize]{
+  \item a\'un cuando los calces exactos son bajos, existen varios filamentos propuestos que se encuentran en un rango de 1 a 3 aristas faltantes o sobrantes, con respecto a un filamento correcto.
+  
+  \item la columna C/P refleja el n\'umero de filamentos correctos con respecto a los propuestos por cada m\'etodo, mientras que la columna C/GT indica la relaci\'on entre los filamentos correctamente individualizados por el m\'etodo y el criterio del experto. Finalmente la La columna F.S. indica el n\'umero de filamentos cuya diferencia con respecto a ser un calce exacto es a lo m\'as de 3 aristas. (*) Las columnas con asterisco representan el m\'aximo obtenido tras las 10 ejecuciones del algoritmo propuesto, mientras que las sin asterisco representan el promedio.
+  
+  \item Nuevamente el algoritmo presenta un comportamiento balanceado en sus 10 iteraciones, donde el mejor resultado no se diferencia demasiado del promedio.
+}
+
 \begin{frame}{Resultados Generales (OE 4)}
 \resizebox{\textwidth}{3.1cm}{
     \begin{tabular}{|c|c|c|c|c|}
@@ -250,7 +269,10 @@
 \end{frame}
 
 \note[itemize]{
+    
     \item El hecho que el algoritmo propuesto no tenga diferencias estadísticamente significativas en 3 de las pruebas, as\'i como que presente un n\'umero de filamentos propuestos cercano a lo indicado por un experto en la mayor\'ia de los casos representa la capacidad del algoritmo de acotar el espacio de b\'usqueda de forma eficiente
     
     \item Es relevante destacar que la configuraci\'on predefinida para neuronas o para microt\'ubulos de planta no ha sido ajustada o sintonizada. Es probable que con una sintonización de par\'ametros, los resultados mejoren.
+    
+    \item SKIP Se defini\'o que La hip\'otesis nula (H0) fuese la no existencia de diferencia estad\'isticamente significativa entre el n\'umero de filamentos individualizados por el algoritmo propuesto y lo definido por el experto que realiz\'o la individualizaci\'on manual respectiva. En el caso de que el valor $p$ o {\it p-value} sea menor al 5\%, se rechaza H0. 
 }
