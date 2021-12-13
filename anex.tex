@@ -171,8 +171,9 @@
 \note[itemize]{
   \item Para calcular la complejidad computacional del algoritmo propuesto es necesario establecer previamente las condiciones del peor caso, lo que permitir\'a establecer la cota superior de la complejidad computacional. Estas condiciones consisten en suponer que el grafo que representa la red de filamentos es completamente conectado, as\'i como que el algoritmo propuesto permita la opci\'on de ciclos en los filamentos y superposici\'on entre los mismos.
 
-  \item Se asume el peor caso, que corresponde a un grafo completamente conectado, con lo que el n\'umero de aristas corresponde a $\frac{n(n-1)}{2}$, con $n$ como el n\'umero de nodos. Otras caracter\'isticas del grafo corresponden a que es sim\'etrico y no dirigido.
+  \item En este peor caso el n\'umero de aristas corresponde a $\frac{n(n-1)}{2}$, con $n$ como el n\'umero de nodos
 
+  \item Por su parte, el par\'ametro Max Iter refleja el n\'umero m\'aximo de iteraciones del algoritmo propuesto, por lo que puede limitar superiormente la complejidad del algoritmo propuesto.
 }
 
 \begin{frame}{Par\'ametros del Algoritmo Propuesto (AP) (OE 3)}
@@ -198,22 +199,27 @@
 }
 \end{frame}
 
-% \note[itemize]{
-%   \item 
-% }
+\note[itemize]{
+  \item El \'angulo entre aristas, o theta, varia deponiendo del tipo de filamento.
+  
+  \item Todos los casos permiten superposici\'on, dado que es el caso m\'as frecuente, as\'i como presenta mayor complejidad de calcular.
+  
+  \item Finalmente, el uso completo de la heur\'istica de asignaci\'on inicial entrega flexibildiad en la construcci\'on de las soluciones. Esta flexibilidad modifica la exploraci\'on de soluciones. En el caso de las neuronas as\'i como de la imagen sint\'etica, no existian casos que requiriesen de todos los criterios de esta heur\'istica.
+}
 
 \begin{frame}{VI, \'Indice Rand e \'Indice Jaccard}
-\resizebox{\textwidth}{!}{
+\small
+\resizebox{1.55\textheight}{!}{
     \begin{tabular}{|c|c|c|c|c|c|}
         \hline
         Figura & Config. de Par\'ametros & VI Max & VI & Rand & Jaccard \\ \hline
-         4.1 & MT-P  & 2.3978 & 1.6360 & 0.7646 & 0.2485 \\
+         4.1 & MtP  & 2.3978 & 1.6360 & 0.7646 & 0.2485 \\
          4.1 & S1  & 2.3978 & 0.7091 & 0.8637 & 0.4750  \\
-         4.2 & MT-P & 3.0445 & 2.2296 & 0.7276 & 0.1806 \\
+         4.2 & MtP & 3.0445 & 2.2296 & 0.7276 & 0.1806 \\
          4.2 & S2 & 3.0445 & 2.5878 & 0.7276 & 0.1673  \\
-         4.3 & MT-P & 3.4965 & 2.1656 & 0.8658 & 0.2407 \\
-         4.4 & MT-P & 3.7612 & 2.6285 & 0.8683 & 0.2488  \\
-         4.5 & MT-P & 1.9459 & 0.4286 & 0.8929 & 0.40 \\
+         4.3 & MtP & 3.4965 & 2.1656 & 0.8658 & 0.2407 \\
+         4.4 & MtP & 3.7612 & 2.6285 & 0.8683 & 0.2488  \\
+         4.5 & MtP & 1.9459 & 0.4286 & 0.8929 & 0.40 \\
          4.6 & N & 6.0258 & 1.7950 & 0.8864 & 0.1389 \\
          4.7 & N & 5.0814 & 3.7256 & 0.8775 & 0.0703 \\
          4.8 & N & 4.2046 & 1.0060 & 0.8794 & 0.2157 \\ 
@@ -221,7 +227,6 @@
          5.3c & MtP & 4.0775 & 3.5850 & 0.8994 & 0.1331 \\
          5.9a & MtP & 2.9444 & 1.1781 & 0.8739 & 0.2144\\
          5.10a & MtP & 3.1354 & 1.4533 & 0.2446 & 0.4477\\
-         
          \hline
     \end{tabular}
     %\caption{VI $\in [0, VI\_Max]$, Rand y Jaccard $\in [0, 1]$ }

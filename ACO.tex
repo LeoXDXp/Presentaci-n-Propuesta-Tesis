@@ -387,7 +387,7 @@ Criterios de anti-feromonas para calidad intermedia:
 
 \item Este \'angulo debe respetar el umbral que define la multiplicaci\'on de los par\'ametros theta y Max axial displacement
 \item una soluci\'on como la destacada en color naranja se puede calificar como una soluci\'on infactible debido a su pronunciada curvatura, lo que no es normal de observar en los filamentos. 
-\item 
+
 }
 
 \begin{frame}{Magnitud de desplazamiento entre segmentos (OE 1)}
@@ -402,16 +402,18 @@ Criterios de anti-feromonas para calidad intermedia:
 \end{frame}
 
 \note[itemize]{
-%\small
+\small
 \item Para explicar el segundo criterio, se hace necesario aclarar a que corresponde un segmento. Un segmento esta formado por una o m\'as aristas, donde cada arista del segmento forma un \'angulo en el rango $[0, \theta]$ con sus vecinos. Un ejemplo de un segmento es el formado por las aristas e4 y e7 en la parte superior del camino indicado en naranja. Las aristas que tienen \'angulos mayores a theta con sus vecinos conforman segmentos de una sola arista.
 
 \item Una ventaja de utilizar segmentos de camino es evitar volver a evaluar la relaci\'on entre todas las aristas que conforman el camino, ya que al tener aristas que forman \'angulos en el rango $[0, \theta]$, podemos asumir que forman parte del mismo filamento.
 
 \item Luego, a partir de cada par de segmentos vecinos en una soluci\'on, se  selecciona el segmento de mayor longitud, el que servir\'a para determinar cual es el movimiento proyectado con respecto al movimiento reflejado por el segmento de menor longitud.
 
-\item Esto permite descartar soluciones que respeten el criterio de curvatura, pero que presentan movimientos pronunciados o muy bruscos que sobrepasan la rigidez esperada de un filamento.
+\item En este ejemplo, podemos observar una soluci\'on que cumple con el criterio de curvatura, pero que presenta una diferencia marcada entre los segmentos 1 y 2. 
 
-\item En este ejemplo, podemos observar un segmento que cumple con el criterio de curvatura, pero que presenta una diferencia marcada entre los segmentos 1 y 2.
+\item Existe una tolerancia de cuanto pueden variar los segmentos entre s\'i. En el algoritmo propuesto se define esta tolerancia considerando el par\'ametro Max Axial Displacement as\'i como la magnitud de los segmentos comparados.
+
+\item Esto permite descartar soluciones que respeten el criterio de curvatura, pero que presentan movimientos pronunciados o muy bruscos que sobrepasan la rigidez esperada de un filamento.
 }
 
 %%\subsection{Extracci\'on de informaci\'on para individualizar filamentos}

@@ -19,26 +19,21 @@
     %\item M\'etricas y Medidas:  VI, \'Indice Rand, \'Indice Jaccard
     \item Evaluaci\'on de:
         \begin{itemize}
-            \item {\it Precision}, {\it Recall}, F1/F-Measure
+            \item {\it Precision} y {\it Recall}
             \item N$\degree$ filamentos propuestos y correctos vs {\it ground truth}
         \end{itemize}
 \end{itemize}
 \end{frame}
 
 \note[itemize]{
-    \item Dentro de los par\'ametros disponibles para personalizar el algoritmo propuesto, los principales par\'ametros utilizados en las pruebas fueron el umbral theta, el par\'ametro max axial displacement y el uso parcial o total de la heurística de asignaci\'on inicial
-    \item Estos par\'ametros fueron los que mostraron mayor impacto en los resultados
-    \item Las pruebas consideraron un total de 12 im\'agenes entre sint\'eticas y reales, con una imagen de microt\'ubulo de planta siendo evaluada por 2 expertos.
-    \item La evaluaci\'on se centra en el n\'umero de filamentos propuestos o correctos que indica el algoritmo propuesto. Esta informaci\'on se complementa con las medidas de precision y recall.
+    \item Antes de discutir los resultados obtenidos, es necesario explicar los par\'ametros considerados. Dentro de los par\'ametros disponibles para personalizar el algoritmo propuesto, los principales par\'ametros utilizados en las pruebas fueron el umbral theta, el par\'ametro max axial displacement y el uso parcial o total de la heurística de asignaci\'on inicial debido a que estos par\'ametros fueron los que mostraron mayor impacto en los resultados
+    \item Las pruebas considerar un total de 12 im\'agenes entre sint\'eticas y reales, con una imagen de microt\'ubulo de planta siendo evaluada por 2 expertos.
+    \item La evaluaci\'on considera el n\'umero de filamentos propuestos as\'i como los correctos que indica el algoritmo propuesto, con respecto a lo indicado por un experto en cada caso. Esta informaci\'on se complementa con las medidas de precision y recall.
     
     %\item (SKIP) N$\degree$ Filamentos Propuestos y Correctos vs {\it Ground Truth}
     
-    \item El resultado de la individualización de filamentos para cada imagen, consiste en el promedio de 10 iteraciones del algoritmo propuesto, cambiando en cada ocasión la semilla con la finalidad de explorar el espacio de b\'usqueda desde distintas partes.
+    \item El resultado de la individualización de filamentos para cada imagen, consiste en el promedio de 10 iteraciones del algoritmo propuesto. Debido a que es un algoritmo que incluye c\'alculos de probabilidad, en cada iteraci\'on se cambia la semilla con la finalidad de explorar el espacio de b\'usqueda desde distintas partes.
 }
-
-
-
-
 
 % \begin{frame}{Im\'agenes Sint\'eticas}
 
@@ -107,20 +102,37 @@
 
     \vspace{-0.3cm}
     \begin{table}[h]
-    \resizebox{\textwidth}{!}{
-        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+    \resizebox{0.85\textwidth}{!}{
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
         \hline
-        Config & Iters & P & P* & R & R* & F1 & F1* & C/P & C/P* & C/GT & C/GT* & T[s] \\ \hline
-        DeFiNe 30\textdegree & 1 & 0.33 & - & 0.18 & - & 0.23 & - & 2/11 & - & {\bf 2/5} & - & 2.8 \\
-        DeFiNe 60\textdegree & 1& 0.23 & - & 0.25 & - & 0.24 & - & 2/7 & - & 2/5 & - & 3.6\\
-        AP MT-P & 5 & 0.34 & 0.35 & 0.27 & 0.28 & 0.3 & 0.31 & 3/9.2 & 3/9 & 3/6 & 3/6 & 0.3\\
-        AP S2 & 5 & 0.32 & 0.33 & 0.25 & 0.31 & 0.28 & 0.32 & 4/8.6 & 4/9 & {\bf 4/6} & 4/6 & 0.3\\
+        Config & Iters & P & R & C/P & C/P* & C/GT & C/GT* & T[s] \\ \hline
+        DeFiNe 30\textdegree & 1 & 0.33 & 0.18 & 2/11 & - & {\bf 2/5} & - & 2.8 \\
+        DeFiNe 60\textdegree & 1& 0.23 & 0.25 & 2/7 & - & 2/5 & - & 3.6\\
+        AP MtP & 10 & 0.34 & 0.27 & 3/9.2 & 3/9 & 3/6 & 3/6 & 0.3\\
+        AP S2 & 10 & 0.32 & 0.25 & 4/8.6 & 4/9 & {\bf 4/6} & 4/6 & 0.3\\
             \hline
         \end{tabular}
     }
-    \caption{Grafo de 17 aristas \\(*) indica el mejor resultado de las 5 iteraciones.}
+    \caption{(*) indica el mejor resultado de las 10 iteraciones.}
     \end{table}
 \end{frame}
+
+\note[itemize]{
+\small
+  \item A modo de ejemplo para las imagenes sint\'eticas evaluadas, se presenta una imagen sint\'etica que contiene 5 filamentos. El grafo que representa estos 5 filamentos esta compuesto por 17 aristas.
+  
+  %\item esta imagen sintetica se obtiene del paper de Define
+
+ \item Para DeFiNe, se consideran 2 configuraciones id\'enticas basadas en los mejores resultados obtenidos por esa herramienta de acuerdo a sus autores, y s\'olo se varia el \'angulo de umbral de BFS, mientras que con el algoritmo propuesto se utilizaron 2 configuraciones, una predeterminada para microt\'ubulos de planta, definida como MtP y otra personalizada definida como S2
+ 
+ \item Tanto para DeFiNe como para el algoritmo propuesto, los resultados de precision y recall no son muy elevados. Sin embargo se observa que ambas configuraciones del algoritmo propuesto tienen un comportamiento similar.
+ 
+ \item en particular, en la columna C vs P que representa los filamentos correctos versus el n\'umero de filamentos propuestos, la configurac\'on predeterminada para microt\'ubulo de planta logra 3 
+ 
+ 
+ \item se destaca que en la columna de filamentos correctos vs ground truth, para el algoritmo propuesto se consideran 6 filamentos como ground truth debido a que la herramienta 
+
+}
 
 \begin{frame}{Muestra MT-A Microt\'ubulo (OE 4)}
 \vspace{-1cm}
@@ -156,19 +168,23 @@
     \end{columns}
 
     \begin{table}[h]
-    \resizebox{\textwidth}{!}{
-        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+    \resizebox{0.85\textwidth}{!}{
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
         \hline
-              Config & Iters & P & P* & R & R* & F1 & F1* & C/P & C/P* & C/GT & C/GT* & T[s] \\ \hline
-             DeFiNe 30\textdegree & 1 & 0.65 & - & 0.45 & - & 0.53 & - & 8/16 & - & {\bf 8/12} & - & 4.1 \\
-             DeFiNe 60\textdegree & 1& 0.28 & - & 0.21 & - & 0.24 & - & 3/12 &- & 3/12 & - & 3.6\\
-            AP MT-P & 5 & 0.44 & 0.45 & 0.34 & 0.35 & 0.38 & 0.4 & 7.2/12.4 & 8/13 & 7.2/12 & {\bf 8/12} & 0.3\\
+              Config & Iters & P & R & C/P & C/P* & C/GT & C/GT* & T[s] \\ \hline
+             DeFiNe 30\textdegree & 1 & 0.65 & 0.45 & 8/16 & - & {\bf 8/12} & - & 4.1 \\
+             DeFiNe 60\textdegree & 1& 0.28 & 0.21 & 3/12 &- & 3/12 & - & 3.6\\
+            AP MT-P & 10 & 0.44 & 0.34 & 7.2/12.4 & 8/13 & 7.2/12 & {\bf 8/12} & 0.3\\
              \hline
         \end{tabular}
         }
-    \caption{Grafo de 29 aristas \\(*) indica el mejor resultado de las 5 iteraciones}
+    \caption{Grafo de 29 aristas}
     \end{table}
 \end{frame}
+
+\note[itemize]{
+  \item grafo de 29 aristas
+}
 
 \begin{frame}{Neuronas de rat\'on (OE 4)}
 %\vspace{-1cm}
@@ -210,31 +226,31 @@
         \begin{column}{0.45\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[height=1.3in]{Pictures/Porta18-3a1-phil-s10-v056-exactMatch-antLabeled.png}
+                \includegraphics[height=1.35in]{Pictures/Porta18-3a1-phil-s10-v056-exactMatch-antLabeled.png}
                 \caption{Muestra N3 Calce Exacto}
             \end{figure}
         \end{column}
         \begin{column}{0.45\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[height=1.3in]{Pictures/Porta18-3a1-phil-s10-v056-overmatches-3-antLabeled.png}
+                \includegraphics[height=1.35in]{Pictures/Porta18-3a1-phil-s10-v056-overmatches-3-antLabeled.png}
                 \caption{Muestra N3 con sub/sobre asignaci\'on}
             \end{figure}
         \end{column}
     \end{columns}
     
     \begin{table}[h]
-    \resizebox{\textwidth}{!}{
-        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+    \resizebox{0.85\textwidth}{!}{
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
         \hline
-              Muestra & P & P* & R & R* & F1 & F1* & C/P & C/P* & C/GT & C/GT* & F.S. & F.S.* \\ \hline
-            N1 & 0.62 & 0.6 & 0.15 & 0.13 & 0.24 & 0.22 & 1.6/59 & 3/66 & 1.6/24 & 3/24 & 1.4 & 1\\
-            N2 & 0.2 & 0.21 & 0.09 & 0.1 & 0.13 & 0.14 & 4.6/34.8 & 6/34 & 4.6/29 & 6/29 & {\bf 8} & 7 \\
-            N3 & 0.5 & 0.47 & 0.32 & 0.29 & 0.39 & 0.36 & 2/17.4 & 2/17 & 2/14 & 2/14 & {\bf 7.8} & 8\\
+              Muestra & P & R & C/P & C/P* & C/GT & C/GT* & F.S. & F.S.* \\ \hline
+            N1 & 0.62 & 0.15 & 1.6/59 & 3/66 & 1.6/24 & 3/24 & 1.4 & 1\\
+            N2 & 0.2 & 0.09 & 4.6/34.8 & 6/34 & 4.6/29 & 6/29 & {\bf 8} & 7 \\
+            N3 & 0.5 & 0.32 & 2/17.4 & 2/17 & 2/14 & 2/14 & {\bf 7.8} & 8\\
             \hline
         \end{tabular}
         }
-        \caption{(*) indica el mejor resultado de las 5 iteraciones}
+        \caption{(*) indica el mejor resultado de las 10 iteraciones}
     \end{table}
 \end{frame}
 
