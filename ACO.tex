@@ -163,7 +163,7 @@
     \small
     \item la etapa de construcci\'on de una soluci\'on se compone de 2 partes: Primero se debe asignar la 1ra arista por donde la hormiga comenzar\'a su recorrido, para luego comenzar el proceso iterativo de elegir la siguiente arista a recorrer.
     \item La asignaci\'on de la primera arista se realiza mediante una heru\'istica que consta de 3 criterios. El enfoque de estos criterios se centra en la exploraci\'on del espacio de b\'usqueda
-    \item El primer criterio busca asignar aristas que esten en el borde del grafo, como la arista con uno de sus nodos en A1.
+    \item El primer criterio busca asignar aristas que esten en el borde del grafo, como la arista A1.
     
     \item De no existir m\'as aristas como las del 1er criterio, se buscan aristas que cumplan con 2 condiciones: 1ro, que se encuentren en intersecciones, es decir que tengan uno de sus nodos con grado 2 o superior, como el nodo azul de la arista A2 y 2do, que el \'angulo que forma con otras aristas conectadas mediante el nodo con grado 2 o superior, se encuentre en el rango definido por 2 par\'ametros, theta y Max Angle. Esto debido a que en varios tipos de filamentos hay casos en que los filamentos no nacen s\'olo del borde, sino tambi\'en a partir de otros filamentos.  
     
@@ -220,10 +220,10 @@
     
     \item Las soluciones que no cumplen con una calidad m\'inima, que se desechan
     \item Las soluciones que se definen como de buena calidad, que son las que se eligen como soluciones candidatas
-    \item y las soluciones que requieren de mayor evaluaci\'on dado que con los criterios aplicados durante la construcci\'on no pueden ser desechados ni aceptados.
+    \item y las soluciones que requieren de mayor evaluaci\'on dado que con los criterios aplicados durante la construcci\'on no pueden ser desechados ni aceptados. Estas son las de calidad intermedia.
     \item Como se observa en la presentaci\'on, el par\'ametro Max Score es el que define los rangos de calidad.
     
-    \item (Respirar) Luego, las soluciones de calidad intermedia y superior pasan a las siguientes etapas, dado que se busca maximizar la funci\'on objetivo
+    \item (Respirar) Luego, las soluciones de calidad intermedia y de buena calidad pasan a las siguientes etapas, dado que se busca maximizar la funci\'on objetivo
 }
 
 %\subsection{M\'etodo de b\'usqueda no local}
@@ -277,15 +277,16 @@
         \begin{column}{0.5\textwidth}
             \begin{itemize}
             \small
-                \item Evaluaci\'on de factiblidad de soluciones candidatas $s \in S$
-                \item Feronomonas: premiar los caminos de buena calidad para lograr onvergencia sobre un camino \'optimo
+                %\item Evaluaci\'on de factiblidad de soluciones candidatas $s \in S$
+                \item Feronomonas: premiar los caminos de buena calidad para lograr convergencia sobre un camino \'optimo
+                \item Cambio: $\tau_0 \longrightarrow \gamma$
                 
             \end{itemize}
         \end{column}
         \begin{column}{0.5\textwidth}
             \begin{itemize}
             \small
-                \item Cambio: $\tau_0 \longrightarrow \gamma$
+                
                 \item $\gamma$ es un factor penaliza los caminos de mala calidad
                 \item 2 penalizaciones $\longrightarrow \tau_i = 0$ 
             \end{itemize}
@@ -306,14 +307,13 @@
 \includegraphics[scale=0.4]{Pictures/ACO-ant-constr-penalize.png}
     \begin{itemize}
         \item Problema: penalizaci\'on puede ocasionar perdida de soluciones factibles
-        \item Propuesta: Relacionar penalizaci\'on de $\tau_i$ con $c_i \in s^P$
     \end{itemize}
 \end{frame}
 
 \note[itemize]{
     \item Sin embargo, el cambio de feromonas a anti-feromonas no soluciona el problema que se puede originar al focalizar la penalizaci\'on solo en las aristas.
     
-    \item Una arista con un tau penalizado por pertenecer a uno o m\'as caminos de mala calidad, puede bloquear otros caminos, dado que el valor de tau no guarda relac<i\'on con las otras aristas que conforman el camino de mala calidad que caus\'o la penalización. As\'i, las soluciones que pudiesen pasar por esa arista se ven limitadas.
+    \item Una arista con un tau penalizado por pertenecer a uno o m\'as caminos de mala calidad, puede bloquear otros caminos, dado que el valor de tau no guarda relaci\'on con las otras aristas que conforman el camino de mala calidad que caus\'o la penalizaci\'on. As\'i, las soluciones que pudiesen pasar por esa arista se ven limitadas.
     
     \item A modo de ejemplo, el camino verde que es de mala calidad origina una penalizaci\'on sobre la arista en rojo. Luego, el camino azul, que puede construir una soluci\'on de buena calidad si incorpora la arista en rojo, se ve bloqueado, ya que la arista roja tiene una penalizaci\'on que hace menos probable o derechamente imposible su elecci\'on.
     
@@ -323,7 +323,10 @@
 
 \begin{frame}{Anti-feromonas SAP dependientes del camino previo (OE 1)}
     \centering
-    \includegraphics[scale=0.51]{Pictures/ACO-ant-ferom-penalize-seg.png}
+    \includegraphics[scale=0.50]{Pictures/ACO-ant-ferom-penalize-seg.png}
+    \begin{itemize}
+        \item Propuesta: Relacionar penalizaci\'on de $\tau_i$ con $c_i \in s^P$
+    \end{itemize}
 \end{frame}
 
 \note[itemize]{
@@ -367,7 +370,7 @@ Criterios de anti-feromonas para calidad intermedia:
 \end{frame}
 
 \note[itemize]{
-    \item La anti-feromona se aplica sobre hormigas que al finalizar su recorrido entregan una soluci\'on cuya calidad sea intermedia, dado que las hormigas con soluciones cuya calidad es inferior a intermedia ya han sido desechadas, mientras que las de buena calidad ya han sido seleccionadas como soluciones factibles.
+    \item La anti-feromona se aplica sobre hormigas que al finalizar su recorrido entregan una soluci\'on cuya calidad sea intermedia, dado que las hormigas con soluciones cuya calidad es inferior a intermedia, que son las que no cumplen con la calidad m\'inima, ya han sido desechadas, mientras que las de buena calidad ya han sido seleccionadas como soluciones factibles.
     \item Luego, de los 3 criterios utilizados para actualizar la penalizaci\'on mediante las anti-feromonas,  los 2 primeros se relacionan a la rigidez que presenta un filamento, el que var\'ia dependiendo de la estructura observada, mientras que el 3ro, que aplica solo a las neuronas, busca validar un comportamiento espec\'ifico, necesario para aceptar una soluci\'on.
     
     \item NO LEER: Solo si se pregunta: Las soluciones menores a la calidad mínima son las que tienen los angulos entre sus aristas mayores a max angle
@@ -377,13 +380,13 @@ Criterios de anti-feromonas para calidad intermedia:
 \centering
     \includegraphics[scale=0.5]{Pictures/ant_curvature_case.png}
     \begin{itemize}
-        \item Se definen $\Vec{p} = v^{a}_1 - mc^{a}$ y $\Vec{q} = mc^{a} - v^{a}_n$.
+        \item Se definen $\Vec{p} = v^{a}_1 - mc^{a}$ y $\Vec{q} = mc^{a} - v^{a}_5$.
         \item El \'angulo entre la proyecci\'on de $\Vec{p}$ y $\Vec{q}$ debe ser menor a $\theta \times Max\_Axial\_Displacement$ para no descartar la soluci\'on.
         \end{itemize}
 \end{frame}
 
 \note[itemize]{
-\item Con respecto al primer criterio, el c\'alculo de la curvatura corresponde al \'angulo formado entre el vector q y la proyecci\'on del vector p. El vector q se construye con el nodo inicial del recorrido, v1 en el ejemplo y el centro de masa, mientras que el vector q lo hace con el centro de masa y el nodo final del recorrido, vn.
+\item Con respecto al primer criterio, el c\'alculo de la curvatura corresponde al \'angulo formado entre el vector q y la proyecci\'on del vector p. El vector q se construye con el nodo inicial del recorrido, v1 en el ejemplo y el centro de masa, mientras que el vector q lo hace con el centro de masa y el nodo final del recorrido, v sub 5.
 
 \item Este \'angulo debe respetar el umbral que define la multiplicaci\'on de los par\'ametros theta y Max axial displacement
 \item una soluci\'on como la destacada en color naranja se puede calificar como una soluci\'on infactible debido a su pronunciada curvatura, lo que no es normal de observar en los filamentos. 
@@ -445,7 +448,7 @@ Criterios de anti-feromonas para calidad intermedia:
 \note[itemize]{
   \item Si la c\'elula observada es una neurona, es necesario validar que los filamentos de una neurona parten del {\tt soma} o centro de la misma, y que filamentos posteriores que no comiencen del soma solo pueden nacer a partir de otros filamentos. Un camino que termine en un nodo final de grado de 1 \textbf{no} respeta aquel comportamiento, debido a que en un grafo que representa una red de filamentos de una neurona, los nodos ubicados en el soma o en la intersecci\'on entre filamentos presentan un grado mayor a 1.
   
-  \item La identificaci\'on de los nodos del soma se puede realizar de forma aproximada mediante algoritmos de grafos como closeness centrality. As\'i mismo, algoritmos aplicables a grafos pueden permitir extender la extracci\'on de informaci\'on para agregar nuevos criterios de anti-feromonas para casos espec\'ificos.
+  \item La identificaci\'on de los nodos del soma se puede realizar de forma aproximada mediante algoritmos de grafos como closeness centrality. As\'i mismo, algoritmos aplicables a grafos pueden permitir extender la extracci\'on de informaci\'on para agregar nuevos criterios de anti-feromonas para otros casos espec\'ificos.
   
   \item As\'i, se utiliza el grado del nodo final para penalizar mediante la anti-feromona.
 }

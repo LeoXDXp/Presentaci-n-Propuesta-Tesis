@@ -28,7 +28,7 @@
 \note[itemize]{
     \item Antes de discutir los resultados obtenidos, es necesario explicar los par\'ametros considerados. Dentro de los par\'ametros disponibles para personalizar el algoritmo propuesto, los principales par\'ametros utilizados en las pruebas fueron el umbral theta, el par\'ametro max axial displacement y el uso parcial o total de la heurística de asignaci\'on inicial debido a que estos par\'ametros fueron los que mostraron mayor impacto en los resultados
     \item Las pruebas considerar un total de 12 im\'agenes entre sint\'eticas y reales, con una imagen de microt\'ubulo de planta siendo evaluada por 2 expertos.
-    \item La evaluaci\'on considera el n\'umero de filamentos propuestos as\'i como los correctos que indica el algoritmo propuesto, con respecto a lo indicado por un experto en cada caso. Esta informaci\'on se complementa con las medidas de precision y recall.
+    \item La evaluaci\'on considera el n\'umero de filamentos propuestos as\'i como los filamentos correctos que indica el algoritmo propuesto, con respecto a lo indicado por un experto en cada caso. Esta informaci\'on se complementa con las medidas de precision y recall.
     
     %\item (SKIP) N$\degree$ Filamentos Propuestos y Correctos vs {\it Ground Truth}
     
@@ -118,7 +118,7 @@
 \end{frame}
 
 \note[itemize]{
-\small
+\scriptsize
   \item A modo de ejemplo para las imagenes sint\'eticas evaluadas, se presenta una imagen sint\'etica que contiene 5 filamentos. El grafo que representa estos 5 filamentos esta compuesto por 17 aristas.
   
   %\item esta imagen sintetica se obtiene del paper de Define
@@ -127,11 +127,16 @@
  
  \item Tanto para DeFiNe como para el algoritmo propuesto, los resultados de precision y recall no son muy elevados. Sin embargo se observa que ambas configuraciones del algoritmo propuesto tienen un comportamiento similar.
  
- \item en particular, en la columna C vs P que representa los filamentos correctos versus el n\'umero de filamentos propuestos, la configurac\'on predeterminada para microt\'ubulo de planta logra 3 
+ \item En particular, en la 5ta columna, C vs P, que representa los filamentos correctamente identificados versus el n\'umero de filamentos propuestos, la configurac\'on predeterminada para microt\'ubulo de planta logra identificar correctametne 3 filamentos de los 9 que propone, mientras que la configuraci\'on S2, que tiene ajustes particulares para esta imagen, obtiene una identificaci\'on correcta adicional, y a la vez reduce el promedio de filamentos propuestos.
+ 
+ \item Una de las modificaciones de la configuraci\'on S2 con respecto a la de microt\'ubulos es que S2 solo utiliza el primer criterio en la heur\'istica de asignaci\'on inicial de aristas, ya que este caso sint\'etico no contiene filamentos que nacen a partir de otros.
+ %\item La idea principal es que el n\'umero de filamentos correctamente identificados sea sino identico, lo m\'as cercano al n\'umero de filamentos propuestos, ya que 
  
  
- \item se destaca que en la columna de filamentos correctos vs ground truth, para el algoritmo propuesto se consideran 6 filamentos como ground truth debido a que la herramienta 
-
+ \item Es necesario mencionar que en las columnas C vs GT, que representan los filamentos identificados correctamente con respecto a lo definido por un experto, se consideran 6 filamentos como ground truth para el algoritmo propuesto  debido a que la herramienta que genera el grafo para el algoritmo propuesto gener\'o una arista aislada en la parte superior, que realmente corresponde a la continuaci\'on de una arista y no a otra por si sola. 
+ 
+ \item En la visualizaci\'on de los filamentos identificados por el algoritmo propuesto, a la derecha de la presentaci\'on, se observa que los filamentos no identificados corresponden a los que presentan una mayor curvatura.
+ Es probable que con una configuraci\'on m\'as afinada, el algoritmo propuesto pueda encontrar los 2 filamentos faltantes, ya que ese comportamiento se aleja un poco de lo observado en los filamentos incluidos en este trabajo.
 }
 
 \begin{frame}{Muestra MT-A Microt\'ubulo (OE 4)}
@@ -240,13 +245,13 @@
     \end{columns}
     
     \begin{table}[h]
-    \resizebox{0.85\textwidth}{!}{
-        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+    \resizebox{0.65\textwidth}{!}{
+        \begin{tabular}{|c|c|c|c|c|c|c|c|}
         \hline
-              Muestra & P & R & C/P & C/P* & C/GT & C/GT* & F.S. & F.S.* \\ \hline
-            N1 & 0.62 & 0.15 & 1.6/59 & 3/66 & 1.6/24 & 3/24 & 1.4 & 1\\
-            N2 & 0.2 & 0.09 & 4.6/34.8 & 6/34 & 4.6/29 & 6/29 & {\bf 8} & 7 \\
-            N3 & 0.5 & 0.32 & 2/17.4 & 2/17 & 2/14 & 2/14 & {\bf 7.8} & 8\\
+              Muestra & C/Prop. & C/Prop.* & C/GT & C/GT* & F. Sub/Sobre asig. \\ \hline
+            N1 & 1.6/59 & 3/66 & 1.6/24 & 3/24 & 1.4\\
+            N2 & 4.6/34.8 & 6/34 & 4.6/29 & 6/29 & {\bf 8} \\
+            N3 & 2/17.4 & 2/17 & 2/14 & 2/14 & {\bf 7.8}\\
             \hline
         \end{tabular}
         }
@@ -255,15 +260,15 @@
 \end{frame}
 
 \note[itemize]{
-  \item a\'un cuando los calces exactos son bajos, existen varios filamentos propuestos que se encuentran en un rango de 1 a 3 aristas faltantes o sobrantes, con respecto a un filamento correcto.
+  \item En particular, al estudiar los filamentos propuestos por el algoritmo para el caso de neuronas, se observa que a\'un cuando los calces exactos son bajos, existen varios filamentos propuestos que se encuentran en un rango de 1 a 3 aristas faltantes o sobrantes, con respecto a un filamento correcto.
   
-  \item la columna C/P refleja el n\'umero de filamentos correctos con respecto a los propuestos por cada m\'etodo, mientras que la columna C/GT indica la relaci\'on entre los filamentos correctamente individualizados por el m\'etodo y el criterio del experto. Finalmente la La columna F.S. indica el n\'umero de filamentos cuya diferencia con respecto a ser un calce exacto es a lo m\'as de 3 aristas. (*) Las columnas con asterisco representan el m\'aximo obtenido tras las 10 ejecuciones del algoritmo propuesto, mientras que las sin asterisco representan el promedio.
+  \item as\'i, al incluir los filamentos propuestos con una diferencia de hasta 3 aristas, lo cual se refleja en las \'ultima columna de filamentos con sub o sobre asignaci\'on, se pueden encontrar varios filamentos candidatos descartados que se encuentran cercanos a lo definido por un experto, lo que indica para las neuronas puede ser necesario incluir un an\'alisis adicional durante la construcci\'on de soluciones mediante las hormigas.
   
-  \item Nuevamente el algoritmo presenta un comportamiento balanceado en sus 10 iteraciones, donde el mejor resultado no se diferencia demasiado del promedio.
+  \item Lo anterior mejorar\'ia la cantidad de filamentos correctos, manteniendo el comportamiento del n\'umero de filamentos propuestos 
 }
 
 \begin{frame}{Resultados Generales (OE 4)}
-\resizebox{\textwidth}{3.1cm}{
+\resizebox{0.85\textwidth}{!}{
     \begin{tabular}{|c|c|c|c|c|}
         \hline
         Figura & Config. & Fil. Correctos & Fil. Propuestos & $p$-value  \\ \hline
@@ -286,7 +291,7 @@
 
 \note[itemize]{
     
-    \item El hecho que el algoritmo propuesto no tenga diferencias estadísticamente significativas en 3 de las pruebas, as\'i como que presente un n\'umero de filamentos propuestos cercano a lo indicado por un experto en la mayor\'ia de los casos representa la capacidad del algoritmo de acotar el espacio de b\'usqueda de forma eficiente
+    \item En general, el hecho que el algoritmo propuesto no tenga diferencias estad\'isticamente significativas en 3 de las pruebas, as\'i como que presente un n\'umero de filamentos propuestos cercano a lo indicado por un experto en la mayor\'ia de los casos representa la capacidad del algoritmo de acotar el espacio de b\'usqueda de forma eficiente
     
     \item Es relevante destacar que la configuraci\'on predefinida para neuronas o para microt\'ubulos de planta no ha sido ajustada o sintonizada. Es probable que con una sintonización de par\'ametros, los resultados mejoren.
     
