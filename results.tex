@@ -35,41 +35,7 @@
     \item El resultado de la individualización de filamentos para cada imagen, consiste en el promedio de 10 iteraciones del algoritmo propuesto. Debido a que es un algoritmo que incluye c\'alculos de probabilidad, en cada iteraci\'on se cambia la semilla con la finalidad de explorar el espacio de b\'usqueda desde distintas partes.
 }
 
-% \begin{frame}{Im\'agenes Sint\'eticas}
 
-%     \begin{figure*}[h]
-%         \centering
-%         \begin{subfigure}[t]{0.31\textwidth}
-%             \centering
-%             \includegraphics[height=1.3in]{Pictures/Synth-QuantitativeIFS-Fig7_groundTruth.png}
-%         \end{subfigure}
-%         ~ %\hspace{0.1cm}
-%         \begin{subfigure}[t]{0.31\textwidth}
-%             \centering
-%             \includegraphics[height=1.3in]{Pictures/QFS7-DeFiNeExactMatch-30.png}
-%         \end{subfigure}
-%         ~
-%         \begin{subfigure}[t]{0.31\textwidth}
-%             \centering
-%             \includegraphics[height=1.3in]{Pictures/Synth-QuantitativeIFS-Fig7-phil-s1271-v056-exactMatch-antLabeled.png}
-%         \end{subfigure}
-%     \end{figure*}
-    
-% \resizebox{\textwidth}{!}{
-%         %\footnotesize
-%         \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-%         \hline
-%             Config & Iters & P & P* & R & R* & F1 & F1* & C/P & C/P* & C/GT & C/GT* & T[s]\\ \hline
-%              DeFiNe 30\textdegree  & 1 & 0.72 & - & 0.47 & - & 0.57 & - & 4/6 & - & 4/6 & - & 2.3 \\
-%              DeFiNe 60\textdegree & 1 &0.63 & - & 0.58 & - & 0.60 & - & 3/5 & - & 3/6 &- & 2.3\\
-%             AP MT-P & 5 & 0.51 & 0.57 & 0.32 & 0.57 & 0.39 & 0.57 & 3/6.2 & 3/5 & 3/6 & 3/6 & 0.3\\
-%             %Mejor Iteraci\'on P1 & 0.5714 & 0.5714 & 0.5714 & 3/5 &  & 0.3135 \\
-%             AP S1 & 5 & 0.68 & 0.87 &0.57 & 1 & 0.62 & 0.93 & 4/5.8 & 4/5 & 4/6 & 4/6 & 0.2\\
-%             % {\bf Mejor Iteraci\'on P2} & 0.875 & 1 & 0.9333 & 4/5 & 4/6 & 0.3073\\
-%              \hline
-%         \end{tabular}
-%     }
-% \end{frame}
 
 \begin{frame}{Im\'agenes Sint\'eticas (OE 4)}
     \vspace{-0.6cm}
@@ -130,23 +96,20 @@
  \item En particular, en la 5ta columna, C vs P, que representa los filamentos correctamente identificados versus el n\'umero de filamentos propuestos, la configurac\'on predeterminada para microt\'ubulo de planta logra identificar correctametne 3 filamentos de los 9 que propone, mientras que la configuraci\'on S2, que tiene ajustes particulares para esta imagen, obtiene una identificaci\'on correcta adicional, y a la vez reduce el promedio de filamentos propuestos.
  
  \item Una de las modificaciones de la configuraci\'on S2 con respecto a la de microt\'ubulos es que S2 solo utiliza el primer criterio en la heur\'istica de asignaci\'on inicial de aristas, ya que este caso sint\'etico no contiene filamentos que nacen a partir de otros.
- %\item La idea principal es que el n\'umero de filamentos correctamente identificados sea sino identico, lo m\'as cercano al n\'umero de filamentos propuestos, ya que 
+
  
- 
- \item Es necesario mencionar que en las columnas C vs GT, que representan los filamentos identificados correctamente con respecto a lo definido por un experto, se consideran 6 filamentos como ground truth para el algoritmo propuesto  debido a que la herramienta que genera el grafo para el algoritmo propuesto gener\'o una arista aislada en la parte superior, que realmente corresponde a la continuaci\'on de una arista y no a otra por si sola. 
- 
- \item En la visualizaci\'on de los filamentos identificados por el algoritmo propuesto, a la derecha de la presentaci\'on, se observa que los filamentos no identificados corresponden a los que presentan una mayor curvatura.
+ \item Es necesario mencionar que en las columnas C vs GT, que representan los filamentos identificados correctamente con respecto a lo definido por un experto, se consideran 6 filamentos como ground truth para el algoritmo propuesto  debido a que la herramienta que genera el grafo para el algoritmo propuesto gener\'o una arista aislada en la parte superior, que realmente corresponde a la continuaci\'on de una arista y no a otra por si sola. \quad\quad  En la visualizaci\'on de los filamentos identificados por el algoritmo propuesto, a la derecha de la presentaci\'on, se observa que los filamentos no identificados corresponden a los que presentan una mayor curvatura.
  Es probable que con una configuraci\'on m\'as afinada, el algoritmo propuesto pueda encontrar los 2 filamentos faltantes, ya que ese comportamiento se aleja un poco de lo observado en los filamentos incluidos en este trabajo.
 }
 
-\begin{frame}{Muestra MT-A Microt\'ubulo (OE 4)}
+\begin{frame}{Muestra MT-A Microt\'ubulos (OE 4)}
 \vspace{-1cm}
     \begin{columns}
         \begin{column}{0.22\textwidth}
             \begin{figure}
                 \centering
                 \includegraphics[height=1.3in]{Pictures/SPINNING-DISK-MARCHANTIA-rois-unlabeled.png}
-                \caption{Imagen Original}
+                \caption{12 fil. individualizados por un experto}
             \end{figure}
         \end{column}
         \begin{column}{0.22\textwidth}
@@ -166,8 +129,8 @@
         \begin{column}{0.22\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[height=1.3in]{Pictures/50-ROIs-Spinning-Marchantia-phil-s10-v05-nobg-antLabeled.png}
-                \caption{AP S2}
+                \includegraphics[height=1.3in]{Pictures/50-ROIs-Spinning-Marchantia-phil-s0-v05-nobg-antLabeled.png}
+                \caption{AP MtP}
             \end{figure}
         \end{column}
     \end{columns}
@@ -179,16 +142,75 @@
               Config & Iters & P & R & C/P & C/P* & C/GT & C/GT* & T[s] \\ \hline
              DeFiNe 30\textdegree & 1 & 0.65 & 0.45 & 8/16 & - & {\bf 8/12} & - & 4.1 \\
              DeFiNe 60\textdegree & 1& 0.28 & 0.21 & 3/12 &- & 3/12 & - & 3.6\\
-            AP MT-P & 10 & 0.44 & 0.34 & 7.2/12.4 & 8/13 & 7.2/12 & {\bf 8/12} & 0.3\\
+            AP MtP & 10 & 0.44 & 0.34 & 7.2/12.4 & 8/13 & 7.2/12 & {\bf 8/12} & 0.3\\
              \hline
         \end{tabular}
         }
     \caption{Grafo de 29 aristas}
     \end{table}
+
 \end{frame}
 
 \note[itemize]{
-  \item grafo de 29 aristas
+  \item En cuanto a las im\'agenes reales, la primera imagen es de la planta Arabidopsis Marchantia, en la que se pueden observar microt\'ubulos. Como se observa en la imagen a la izquierda, un experto individualiz\'o un subconjunto de los filamentos.
+  
+
+  \item mejor resultado del algo prop es igual al mejor resultado de DeFine, en menor tiempo
+  
+  \item La muestra MT-A fue evaluada por un segundo experto (cambiar slide) 
+}
+
+
+\begin{frame}{Muestra MT-A2 Microt\'ubulos (OE 4)}
+\vspace{-1cm}
+    \begin{columns}
+        \begin{column}{0.22\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[height=1.3in]{Pictures/Slice6-SPINNING-DISK-MARCHANTIA-1-PL.png}
+                \caption{19 fil. individualizados por un 2do experto}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.22\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[height=1.1in]{Pictures/Slice6-Spinning-PL-gtruth-preSkel-BW-littleClean-ground-truth-no-label-ants.png}
+                \caption{Ground Truth}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.22\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[height=1.3in]{Pictures/Slice6-Spinning-PL-DeFiNeExactMatch-60.png}
+                \caption{DeFiNe 30\textdegree}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.22\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[height=1.1in]{Pictures/Slice6-Spinning-PL-gtruth-preSkel-BW-littleClean-phil-s8192-v05-exactMatch-no-label-ants.png}
+                \caption{AP MtP}
+            \end{figure}
+        \end{column}
+    \end{columns}
+
+    \begin{table}[h]
+    \resizebox{0.85\textwidth}{!}{
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+              Config & Iters & P & R & C/P & C/P* & C/GT & C/GT* & T[s] \\ \hline
+             DeFiNe 30\textdegree & 1 & 0.37 & 0.25 & 8/25 & - & 8/19 & - & 2.0 \\
+             DeFiNe 60\textdegree & 1& 0.29 & 0.3 & 9/19 &- & {\bf 9/19} & - & 4.7\\
+            AP MT-P & 10 & 0.46 & 0.41 & 11.9/21 & 12/21 & 11.9/19 & {\bf 12/19} & 1.6\\
+             \hline
+        \end{tabular}
+        }
+    \caption{Grafo de 39 aristas}
+    \end{table}
+\end{frame}
+
+\note[itemize]{
+  \item grafo de 39 aristas
 }
 
 \begin{frame}{Neuronas de rat\'on (OE 4)}
